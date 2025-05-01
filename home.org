@@ -1,7 +1,7 @@
 #+title: Portfolio
-== Welcome to my corner of the internet
-* HELLO
-==== My name is *Albin*
+
+==Welcome to my corner of the internet
+====My name is *Albin*
 
 I created this webpage using org-mode
 
