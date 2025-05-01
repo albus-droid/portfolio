@@ -1,9 +1,11 @@
 #+title: Portfolio
+#+author: Albin
 
-==Welcome to my corner of the internet
-====My name is *Albin*
+* Welcome to my corner of the internet
+My name is *Albin*
 
+* Fun fact
 I created this webpage using org-mode
 
-- Current Project
- - Learning org-mode in emacs
+* Current Project
+** Learning org-mode in emacs
