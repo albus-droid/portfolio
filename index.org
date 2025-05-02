@@ -2,13 +2,18 @@
 #+author: Albin
 #+options: toc:nil num:nil
 
+#+HTML: <div style="border:1px solid #ccc; padding:10px; border-radius:6px; width:fit-content; margin:auto; background-colour:#f9f9f9; text-align:center">
+
 #+HTML: <div align="center">
+
 * Albin Babu Varghese
 Toronto, ON | [[https://github.com/albus-droid][albus-droid]] | [[https://linkedin.com/in/albin-babu-varghese][albin-babu-varghese]] | [[mailto:albinbabuvarghese.com][mail@albinbabuvarghese.com]]
 #+HTML: </div>
 
 * Skills
 - **Languages:** Python, Javascript, Bash, C, Rust
+
+#+HTML: </div>
 
 * Fun fact
 I created this webpage using org-mode
