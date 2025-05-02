@@ -2,6 +2,8 @@
 #+author: Albin
 #+options: toc:nil num:nil
 
+* Albin Babu Varghese
+Toronto, ON | [[[[mailto:mail@albinbabuvarghese.com]]][mail@albinbabuvarghese.com]] | [[https://github.com/albus-droid][albus-droid]]
 * Contact Information
 - **Email:** mail@albinbabuvarghese.com
 - **Linkedin:** mail@albinbabuvarghese.com
