@@ -4,8 +4,7 @@
 
 #+HTML: <div align="center">
 * Albin Babu Varghese
-Toronto, ON | [[https://github.com/albus-droid][albus-droid]]
-
+Toronto, ON | [[https://github.com/albus-droid][albus-droid]] | [[https://linkedin.com/in/albin-babu-varghese][albin-babu-varghese]] | [[mailto:albinbabuvarghese.com][mail@albinbabuvarghese.com]]
 #+HTML: </div>
 
 * Skills
