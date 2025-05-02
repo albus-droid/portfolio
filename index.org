@@ -2,7 +2,11 @@
 #+author: Albin
 #+options: toc:nil num:nil
 
-* Welcome to my corner of the internet
+* Contact Information
+- **Email:** mail@albinbabuvarghese.com
+- **Linkedin:** mail@albinbabuvarghese.com
+- **Email:** mail@albinbabuvarghese.com
+- **Website:** mail@albinbabuvarghese.com
 My name is *Albin*
 
 * Fun fact
