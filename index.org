@@ -2,11 +2,11 @@
 #+author: Albin
 #+options: toc:nil num:nil
 
-#+BEGIN_CENTER
+#+HTML: <div align="center">
 * Albin Babu Varghese
 Toronto, ON | [[https://github.com/albus-droid][albus-droid]]
 
-#+END_CENTER
+#+HTML: </div>
 
 * Skills
 - **Languages:** Python, Javascript, Bash, C, Rust
