@@ -6,10 +6,12 @@
 
 #+HTML: <div align="center">
 * Albin Babu Varghese
-Toronto, ON | :octocat: [[https://github.com/albus-droid][albus-droid]] | [[https://linkedin.com/in/albin-babu-varghese][albin-babu-varghese]] | [[mailto:albinbabuvarghese.com][mail@albinbabuvarghese.com]]
+Toronto, ON | [[https://github.com/albus-droid][albus-droid]] | [[https://linkedin.com/in/albin-babu-varghese][albin-babu-varghese]] | [[mailto:albinbabuvarghese.com][mail@albinbabuvarghese.com]]
 #+HTML: </div>
 * Skills
 - **Languages:** Python, Javascript, Bash, C, Rust
+* Experience
+- **Projects:**
 #+HTML: </div>
 
 *  Fun fact:
