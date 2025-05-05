@@ -25,3 +25,4 @@ Learning org-mode in emacs
 * TODO Add a Page for Resume
 * TODO Add my picture
 * TODO Make a page for a blog
+* DONE Made a website using org-mode
