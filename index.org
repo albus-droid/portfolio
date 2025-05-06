@@ -22,6 +22,9 @@ Learning org-mode in emacs
 
 * Deployed in Cloudflare Pages
 
+* TODO Learn to write scripts in el
+* TODO Learn about Nix
+* DONE Learn docker
 * TODO Add a Page for Resume
 * TODO Add my picture
 * TODO Make a page for a blog
