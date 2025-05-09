@@ -22,7 +22,7 @@ Learning org-mode in emacs
 
 * Deployed in Cloudflare Pages
 
-* TODO Learn to write scripts in el
+* DONE write scripts in el
 * TODO Learn about Nix
 * DONE Learn docker
 * TODO Add a Page for Resume
