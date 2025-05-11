@@ -1,3 +1,4 @@
+;; This script builds html files from org files
 ;; Load the publishing system
 (require 'ox-publish)
 (setq org-publish-project-alist
