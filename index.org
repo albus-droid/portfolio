@@ -30,3 +30,4 @@ Learning org-mode in emacs
 * TODO Make a page for a blog
 * DONE Made a website using org-mode
 * TODO How does git work
+* TODO Learning go
