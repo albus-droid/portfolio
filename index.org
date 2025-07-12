@@ -19,5 +19,6 @@ I created this webpage using org-mode
 
 *  Current Project:
 Learning org-mode in emacs
-
-* Deployed in Cloudflare Pages
+#+BEGIN_QUOTE
+Deployed in Cloudflare Pages
+#+END_QUOTE
