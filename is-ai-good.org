@@ -1,0 +1,5 @@
+Is AI good for Kernel Development. Maybe Yes or maybe no. Well it depends. I think everything bad we can throw at AI driven software has happened because of these 'Vibe Coders'. Companies are actively pushing their employees to use these tools. One reason is that it will increase their productivity and also, it means more productivity, less people to pay for. 
+
+Kernel development is not very different. Some guy out there got his patch merged which was actually coded based on his inputs by an AI, very much to the surprise of everyone in Kernel Development community and also for the person who actually merged his patch. He suggests using a Co-Developed-by tag instead of the long standing Generated-by tag which was previously used for patches generated using Coccinelle, a C programming helper in my words.
+
+Wait till December for them to decide if AI code is worth having in the Kernel. Personally I feel it would be a really bad idea.
