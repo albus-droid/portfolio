@@ -1,4 +1,4 @@
-#+title: Albin Babu Varghese — Portfolio
+#+title: Portfolio
 #+author: Albin Babu Varghese
 #+OPTIONS: toc:nil num:nil html-postamble:nil
 #+EXPORT_FILE_NAME: index.html
@@ -225,9 +225,6 @@ AKTU · Mar–May 2021 — React/Node.js app; server-side debugging; MongoDB int
 # -----------------------------------------------------------------------------
 * Fun Fact
 I created this webpage using Emacs Org mode and deployed it on Cloudflare Pages.
-
-* Current Project
-Learning Org mode in Emacs; exploring better publishing workflows and custom CSS.
 
 # -----------------------------------------------------------------------------
 # Contact
