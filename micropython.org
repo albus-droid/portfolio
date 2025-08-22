@@ -1,0 +1,19 @@
+#+TITLE: Micropython questions I have for Myself
+
+* What is Micropython?
+It's an implementation of Python3 that is really lightweight. It can run on baremetal. How?
+
+* Is it same as Python then?
+I don't know, it feels like a stripped down version of Python. Something I'm not really familiar with.
+
+* How does it even work?
+It works on pyboard, which is a basically running low-level Python OS.
+
+* How fast is it?
+I don't know. All it says is that it is compact enough to run on within 256K storage and 16K RAM.
+
+* Why do you use it?
+For portability so that you don't have to learn C. But how efficient is it compared to something like C, which is often though as the Gold Standard for embedded programming.
+
+I'm more interested about the OS. Is it written in C?
+So basically just a board with an OS and Python installed built in?
