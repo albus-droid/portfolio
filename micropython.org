@@ -17,3 +17,26 @@ For portability so that you don't have to learn C. But how efficient is it compa
 
 I'm more interested about the OS. Is it written in C?
 So basically just a board with an OS and Python installed built in?
+
+** Flask Replacement
+Microdot  framework. How is it small? How did he achieve it?
+He used rhsell. Is it a shell or terminal emulator? It's a shell I believe.
+It uses asyncio to achieve concurrency, since there is no support for processes or threads.
+
+How is different from flask?
+The author said there are some functionalities that are actually missing which he chose to ignore, since it would make it too large for his device. 
+There is support for WebSocket and SSE. 
+
+Before all that. Why?
+It is really light so it is compatable with Micropython. But is CPython same as Python. Why is it called CPython?
+
+What is flask's application context? What is it used for?
+
+What is FastAPI framework, Where is it used? Why is it used? Is it something like Flask but more beginner friendly?
+
+What about Bottle Framework?
+So in Micropython the code is precompiled on the host? Interesting. So there is an .mpy file. How big is that files and how does the board know which files to run based if its just plugged in.
+
+Was he doing cross compilation for this project too.
+
+He was also speaking about Native code emitters and Viper code emitter for Micropython. What are they?
