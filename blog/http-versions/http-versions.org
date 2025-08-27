@@ -1,0 +1,12 @@
+#+title: HTTP Versions -  An Overview
+
+Hyper Text Transfer Protocol or HTTP have been in existence since the beginning of 1990s. It has since undergone a lot of changes.
+
+* There are a lot of http versions
+** What are they ?
+** Why do they exist ?
+** How do each of them differ?
+** Where are they used?
+
+* A demo project I made with this information
+* What I learned from this
