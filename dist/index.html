@@ -1,352 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Albin — Terminal Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Cursive for name + Mono for terminal vibes -->
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albin Babu Varghese</title>
   <style>
-    :root{
-      --bg:#0b0c10;           /* deep black/blue */
-      --panel:#111217;        /* card */
-      --fg:#e6e8eb;           /* light gray */
-      --muted:#9aa0aa;        /* muted gray */
-      --term:#7CFF6B;         /* terminal green */
-      --accent:#60ffa8;       /* softer green */
-      --link:#97f5ff;         /* cyan-ish for links */
-      --danger:#ff6262;       /* red for errors */
-      --shadow:0 10px 30px rgba(0,0,0,.45);
-      --radius:18px;
-      --pad:16px;
-    }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body{
-      margin:0;
-      font-family: "JetBrains Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      color:var(--fg);
-      background:radial-gradient(1200px 900px at 15% -10%, #0f1117 0%, #0b0c10 40%, #07080b 100%);
-      /* Subtle scanline for CRT feel */
-      background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px);
-      background-size: 100% 3px;
+    body {
+      background-color: #0b0c10;
+      color: #e6e8eb;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      text-align: center;
     }
 
-    .wrap{
-      min-height: 100%;
-      display:grid;
-      grid-template-rows: 1fr auto;
+    pre.ascii {
+      color: #66fcf1;
+      font-size: 12px;
+      white-space: pre;
+      margin-bottom: 20px;
     }
 
-    .hero{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-direction:column;
-      gap:22px;
-      padding: clamp(40px, 6vh, 120px) 18px 0 18px;
-      text-align:center;
+    h1 {
+      font-family: 'Brush Script MT', cursive;
+      font-size: 3em;
+      margin: 10px 0;
+      color: #ffffff;
     }
 
-    .name{
-      font-family: "Pacifico", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      font-weight: 400;
-      font-size: clamp(40px, 6.5vw, 92px);
-      letter-spacing:.6px;
-      color: var(--fg);
-      text-shadow:0 2px 30px rgba(96,255,168,.08), 0 0 0 #000; /* gentle glow */
-      transform: translateZ(0);
+    .buttons {
+      margin-top: 15px;
     }
 
-    .subtitle{ color:var(--muted); font-size: 14px; letter-spacing:.4px; }
-
-    .links{
-      display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 8px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #0b0c10;
+      background-color: #66fcf1;
+      transition: 0.3s;
     }
 
-    .chip{
-      --ring: 0 0 0 0 rgba(96,255,168,0);
-      display:inline-flex; align-items:center; gap:10px;
-      padding:10px 14px; border-radius:999px; position:relative;
-      background:linear-gradient(180deg, #15171f 0%, #0e1016 100%);
-      border:1px solid rgba(124,255,107,.25);
-      box-shadow: var(--shadow), var(--ring);
-      text-decoration:none; color:var(--fg); font-weight:600; letter-spacing:.2px;
-      transition: transform .15s ease, box-shadow .2s ease, border-color .15s ease;
+    .btn:hover {
+      background-color: #45a29e;
+      color: white;
     }
-    .chip:hover{ transform: translateY(-1px); border-color: rgba(124,255,107,.6); }
-    .chip:focus-visible{ outline:none; box-shadow: var(--shadow), 0 0 0 6px rgba(124,255,107,.15); }
-    .chip .dot{ width:8px; height:8px; border-radius:50%; background:var(--term); box-shadow:0 0 10px var(--term), 0 0 20px var(--term) inset; }
-
-    /* Terminal card */
-    .terminal{
-      width:min(980px, calc(100% - 24px));
-      margin: 28px auto 56px;
-      background: #0e1117;
-      border: 1px solid rgba(108, 255, 146, .18);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    .term-top{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:10px 14px; background: linear-gradient(180deg, #121520 0%, #0d0f16 100%);
-      border-bottom:1px solid rgba(124,255,107,.15);
-    }
-    .buttons{ display:flex; gap:8px; }
-    .circle{ width:12px; height:12px; border-radius:50%; }
-    .red{ background:#ff5f56; box-shadow:0 0 10px rgba(255,95,86,.4); }
-    .yellow{ background:#ffbd2e; box-shadow:0 0 10px rgba(255,189,46,.35); }
-    .green{ background:#27c93f; box-shadow:0 0 10px rgba(39,201,63,.35); }
-    .title{ color:var(--muted); font-size:12px; letter-spacing:.3px; }
-
-    .screen{ padding: 14px; }
-    .out{ min-height: 260px; font-size:14px; line-height:1.65; }
-    .line{ white-space: pre-wrap; }
-    .prompt{ display:flex; align-items:center; gap:8px; }
-    .ps1{ color:var(--accent); }
-    .caret{ color:var(--term); }
-
-    .input-wrap{ position:relative; flex:1; }
-    #cli{
-      width:100%;
-      background:transparent; color:var(--fg);
-      font: inherit; border:0; outline:0; padding:4px 2px; caret-color:var(--term);
-    }
-
-    /* Blinking block caret effect overlay */
-    #cli::selection{ background: rgba(151,245,255,.25); }
-
-    /* Helper chips */
-    .help-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
-    .help{
-      font-size:12px; color:#111; background:linear-gradient(180deg,#97f5ff,#60ffa8);
-      padding:6px 10px; border-radius:999px; font-weight:700; letter-spacing:.2px;
-      border:1px solid rgba(255,255,255,.2);
-      text-transform:uppercase;
-    }
-
-    /* Mobile */
-    @media (max-width: 520px){
-      .out{ min-height: 180px; }
-    }
-
-    /* Subtle glow underline links in terminal */
-    .tlink{ color:var(--link); text-decoration:none; border-bottom:1px dotted rgba(151,245,255,.4); }
-    .tlink:hover{ border-bottom-color: rgba(151,245,255,.9); }
-
-    /* Accessibility: hide-only visuals */
-    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
   </style>
 </head>
 <body>
-<div class="wrap">
-  <main>
-    <section class="hero" aria-labelledby="site-owner">
-      <h1 id="site-owner" class="name">Albin Babu Varghese</h1>
-      <p class="subtitle">backend & cloud • go · docker · k8s • linux enjoyer</p>
-      <nav class="links" aria-label="Primary social links">
-        <a class="chip" id="lnk-linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <span class="dot" aria-hidden="true"></span>
-          LinkedIn
-        </a>
-        <a class="chip" id="lnk-github" href="https://github.com/albus-droid" target="_blank" rel="noopener" aria-label="GitHub">
-          <span class="dot" aria-hidden="true"></span>
-          GitHub
-        </a>
-        <a class="chip" id="lnk-email" href="mailto:your.email@example.com" aria-label="Email">
-          <span class="dot" aria-hidden="true"></span>
-          Email
-        </a>
-      </nav>
-    </section>
+  <!-- ASCII Art -->
+  <pre class="ascii">
+     ___    _ _     _        _                 
+    / _ \  | | |   | |      | |                
+   / /_\ \ | | |__ | |__  __| | ___  _   _ ___ 
+   |  _  | | | '_ \| '_ \/ _` |/ _ \| | | / __|
+   | | | | | | |_) | |_) | (_| | (_) | |_| \__ \
+   \_| |_/ |_|_.__/|_.__/\__,_|\___/ \__,_|___/
+          ALBIN BABU VARGHESE
+  </pre>
 
-    <section class="terminal" aria-label="Interactive terminal">
-      <div class="term-top">
-        <div class="buttons" aria-hidden="true">
-          <span class="circle red"></span>
-          <span class="circle yellow"></span>
-          <span class="circle green"></span>
-        </div>
-        <div class="title">albin@localhost — bash — 80x24</div>
-        <div style="width:44px"></div>
-      </div>
-      <div class="screen">
-        <div class="out" id="out" aria-live="polite" aria-atomic="false"></div>
-        <div class="prompt" aria-label="terminal prompt">
-          <span class="ps1">albin@localhost</span><span class="caret">~</span><span class="caret">$</span>
-          <div class="input-wrap">
-            <label class="sr-only" for="cli">Type a command and press Enter</label>
-            <input id="cli" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" autofocus placeholder="type 'help' to begin" />
-          </div>
-        </div>
-        <div class="help-row" aria-hidden="true">
-          <span class="help">try: help · blog · resume · ls · neofetch</span>
-        </div>
-      </div>
-    </section>
-  </main>
-</div>
+  <!-- Name -->
+  <h1>Albin Babu Varghese</h1>
 
-<script>
-(() => {
-  // ======== CONFIG (edit these!) ========
-  const CONFIG = {
-    name: "Albin Babu Varghese",                    // Name shown in the hero
-    email: "your.email@example.com",                // mailto: target
-    github: "https://github.com/albus-droid",       // your GitHub
-    linkedin: "https://www.linkedin.com/in/yourname/", // your LinkedIn
-    blogURL: "https://blog.example.com",            // blog link (opened via command)
-    resumeURL: "resume.pdf"                          // resume link/file
-  };
-
-  // Update hero links from CONFIG
-  document.getElementById('lnk-email').href = `mailto:${CONFIG.email}`;
-  document.getElementById('lnk-github').href = CONFIG.github;
-  document.getElementById('lnk-linkedin').href = CONFIG.linkedin;
-
-  // Utility to print lines into terminal
-  const out = document.getElementById('out');
-  const print = (html) => {
-    const line = document.createElement('div');
-    line.className = 'line';
-    line.innerHTML = html;
-    out.appendChild(line);
-    out.scrollTop = out.scrollHeight;
-  };
-  const nl = () => print('&nbsp;');
-
-  // Welcome message
-  print(`<span style="color:var(--accent)">Welcome, ${CONFIG.name}.</span> Type <strong>help</strong> to see commands.`);
-
-  // Command handlers
-  const commands = {
-    help(){
-      print(`Available commands:\n` +
-        `  <span style="color:var(--term)">blog</span>     — open the blog in a new tab\n`+
-        `  <span style="color:var(--term)">resume</span>   — open the resume\n`+
-        `  <span style="color:var(--term)">ls</span>       — list files\n`+
-        `  <span style="color:var(--term)">cat</span>      — print file (try: cat about.txt)\n`+
-        `  <span style="color:var(--term)">neofetch</span> — show system card\n`+
-        `  <span style="color:var(--term)">clear</span>    — clear the screen\n`+
-        `  <span style="color:var(--term)">whoami</span>   — show user\n`+
-        `  <span style="color:var(--term)">open</span>     — open <i>link</i> (open github | linkedin | email)`);
-    },
-    blog(){
-      window.open(CONFIG.blogURL, '_blank', 'noopener');
-      print(`Opening <span class="tlink">${CONFIG.blogURL}</span> ...`);
-    },
-    resume(){
-      window.open(CONFIG.resumeURL, '_blank', 'noopener');
-      print(`Opening <span class="tlink">${CONFIG.resumeURL}</span> ...`);
-    },
-    ls(){
-      print(`about.txt  blog.md  resume.pdf  links`);
-    },
-    cat(arg){
-      if(!arg){ print(`usage: cat <file>`); return; }
-      switch(arg){
-        case 'about.txt':
-          print(`Hi, I'm ${CONFIG.name}. I build backend & cloud things with Go, Docker and Kubernetes, and I live in the terminal.\nFind me via: <a class="tlink" href="${CONFIG.github}" target="_blank" rel="noopener">github</a> · <a class="tlink" href="${CONFIG.linkedin}" target="_blank" rel="noopener">linkedin</a> · <a class="tlink" href="mailto:${CONFIG.email}">email</a>.`);
-          break;
-        case 'blog.md':
-          print(`# Blog\nYour blog lives at ${CONFIG.blogURL}. Use the <span style="color:var(--term)">blog</span> command to open it.`);
-          break;
-        case 'resume.pdf':
-          print(`Your resume lives at ${CONFIG.resumeURL}. Use the <span style="color:var(--term)">resume</span> command to open it.`);
-          break;
-        case 'links':
-          print(`github: ${CONFIG.github}\nlinkedin: ${CONFIG.linkedin}\nemail: ${CONFIG.email}`);
-          break;
-        default:
-          print(`<span style="color:var(--danger)">cat:</span> ${arg}: No such file`);
-      }
-    },
-    neofetch(){
-      const art = [
-        "          █████╗ ██╗     ██████╗ ██╗███╗   ██╗",
-        "         ██╔══██╗██║     ██╔══██╗██║████╗  ██║",
-        "         ███████║██║     ██████╔╝██║██╔██╗ ██║",
-        "         ██╔══██║██║     ██╔══██╗██║██║╚██╗██║",
-        "         ██║  ██║███████╗██║  ██║██║██║ ╚████║",
-        "         ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝"
-      ].join('\n');
-      print(`<pre style="margin:0; color:var(--accent)">${art}</pre>`);
-      print(`user:   albin@localhost\nname:   ${CONFIG.name}\nshell:  bash\ntheme:  phosphor-green\nlinks:  <a class="tlink" href="${CONFIG.github}" target="_blank">github</a>  <a class="tlink" href="${CONFIG.linkedin}" target="_blank">linkedin</a>`);
-    },
-    clear(){ out.innerHTML = ''; },
-    whoami(){ print('albin'); },
-    open(arg){
-      if(!arg){ print('usage: open <github|linkedin|email>'); return; }
-      if(arg === 'github') { window.open(CONFIG.github, '_blank', 'noopener'); print(`Opening ${CONFIG.github} ...`); return; }
-      if(arg === 'linkedin') { window.open(CONFIG.linkedin, '_blank', 'noopener'); print(`Opening ${CONFIG.linkedin} ...`); return; }
-      if(arg === 'email') { window.location.href = `mailto:${CONFIG.email}`; print('Opening mail client...'); return; }
-      print(`<span style="color:var(--danger)">open:</span> unknown target '${arg}'`);
-    }
-  };
-
-  // Parse and run commands
-  const cli = document.getElementById('cli');
-  const history = [];
-  let idx = -1;
-
-  const run = (raw) => {
-    const input = raw.trim();
-    if(!input){ return; }
-
-    // Echo the command line
-    print(`<span class="ps1">albin@localhost</span> <span class="caret">~</span> <span class="caret">$</span> ${escapeHTML(input)}`);
-
-    const [cmd, ...rest] = input.split(/\s+/);
-    const arg = rest.join(' ').trim();
-
-    if(commands[cmd]){
-      try{
-        commands[cmd](arg);
-      }catch(e){
-        print(`<span style="color:var(--danger)">error:</span> ${e.message}`);
-      }
-    } else if (['blog','resume'].includes(cmd)) {
-      // handled above; defensive path
-      commands[cmd]();
-    } else {
-      print(`bash: ${escapeHTML(cmd)}: command not found`);
-    }
-  };
-
-  function escapeHTML(s){
-    return s.replace(/[&<>\"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  }
-
-  // Submit on Enter
-  cli.addEventListener('keydown', (e) => {
-    if(e.key === 'Enter'){
-      history.unshift(cli.value);
-      idx = -1;
-      run(cli.value);
-      cli.value = '';
-    } else if(e.key === 'ArrowUp'){
-      if(history.length){ idx = Math.min(idx + 1, history.length - 1); cli.value = history[idx]; setTimeout(()=>cli.setSelectionRange(cli.value.length, cli.value.length)); }
-      e.preventDefault();
-    } else if(e.key === 'ArrowDown'){
-      if(idx > 0){ idx--; cli.value = history[idx]; }
-      else { idx = -1; cli.value = ''; }
-      e.preventDefault();
-    }
-  });
-
-  // Focus input when clicking anywhere inside the terminal
-  document.querySelector('.terminal').addEventListener('click', () => cli.focus());
-
-  // Progressive enhancement: if resume/blog aren't configured, show a hint
-  if(!CONFIG.resumeURL || CONFIG.resumeURL === '#'){
-    nl(); print(`<em>Tip:</em> set <code>CONFIG.resumeURL</code> in the script.`);
-  }
-
-})();
-</script>
+  <!-- Buttons -->
+  <div class="buttons">
+    <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" class="btn">LinkedIn</a>
+    <a href="https://github.com/albus-droid" target="_blank" class="btn">GitHub</a>
+    <a href="mailto:your.email@example.com" class="btn">Email</a>
+  </div>
 </body>
 </html>
