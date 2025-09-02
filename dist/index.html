@@ -17,7 +17,7 @@
         body {
             background-color: var(--background);
             color: var(--foreground);
-            font-family: '"Source Code Pro"', monospace;
+	    font-family: "JetBrains Mono", monospace; 
             margin: 0;
             display: flex;
             align-items: center;
@@ -29,10 +29,10 @@
             padding: 1rem;
         }
         h1 {
-            font-family: '"Dancing Script"', cursive;
+	    font-family: "JetBrains Mono", monospace; 
             font-size: 5rem;
             margin-bottom: 2rem;
-            font-weight: 700;
+            font-weight: 100;
         }
         .button-container {
             flex-direction: row;
@@ -51,7 +51,7 @@
             border-radius: 0.375rem;
             transition: background-color 0.2s, color 0.2s;
             cursor: pointer;
-            font-family: '"Source Code Pro"', monospace;
+            font-family: "JetBrains Mono", monospace;
             font-size: 1rem;
             min-width: 1rem;
             justify-content: center;
@@ -66,12 +66,19 @@
             fill: currentColor;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Dancing+Script:wght@700&display=swap');
+	@font-face {
+	  font-family: 'JetBrains Mono';
+	  src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+	    url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Regular.woff') format('woff');
+	  font-weight: 400;
+	  font-style: normal;
+	  font-display: swap;
+	}
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Albin Babu Varghese</h1>
+        <h1>ALBIN BABU VARGHESE</h1>
         <h4>Linux | Cloud | Developer</h4>
         <div class="button-container">
             <a href="https://github.com/albus-droid" class="button" target="_blank" rel="noopener noreferrer">
