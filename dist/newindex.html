@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" style="--background: 0 0% 13%; --foreground: 42 100% 50%; --primary: 42 100% 50%; --primary-foreground: 0 0% 13%; --secondary: 0 0% 18%; --secondary-foreground: 42 100% 50%; --muted: 0 0% 18%; --muted-foreground: 47 100% 65%; --accent: 47 100% 65%; --accent-foreground: 0 0% 13%; --border: 42 100% 30%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albin Babu Varghese - Resume</title>
+    <style>
+        @font-face {
+            font-family: 'JetBrains Mono';
+            src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+            url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Regular.woff') format('woff');
+            font-style: normal;
+            font-display: swap;
+	    }
+
+        body {
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            font-family: 'JetBrains Mono', monospace;
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        main {
+            max-width: 42rem;
+            width: 100%;
+        }
+        h1, h2, h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 2.25rem;
+            color: hsl(var(--primary));
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            color: hsl(var(--accent));
+            margin-bottom: 0.75rem;
+        }
+        h3 {
+            font-size: 1.125rem;
+            color: hsl(var(--primary));
+            margin-bottom: 0.75rem;
+            margin-top: 1rem;
+        }
+        a {
+            color: hsl(var(--primary));
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .text-muted-foreground {
+            color: hsl(var(--muted-foreground));
+        }
+        .social-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .social-links svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: hsl(var(--muted-foreground));
+        }
+        .social-links a:hover svg {
+            fill: hsl(var(--accent));
+        }
+        p {
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        li p {
+            font-size: 0.875rem;
+            margin-left: 1.5rem;
+        }
+        .section {
+            margin-bottom: 2rem;
+        }
+        .subsection {
+            margin-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Albin Babu Varghese</h1>
+        <div class="social-links">
+            <a href="https://github.com/albus-droid" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297 24 5.67 18.627.297 12 .297z"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/albin-babu-varghese" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+            </a>
+            <a href="mailto:albinbabuvarghese@gmail.com" aria-label="Email">
+                 <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Email</title><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.75L12 16.625l-6.545-4.875v9.25H1.636C.732 21 .001 20.269.001 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.908 1.528-1.145C21.69 3.28 24 4.435 24 5.457z"/></svg>
+            </a>
+        </div>
+
+        <div class="section">
+            <h2># who-i-am</h2>
+            <p class="text-muted-foreground">I'm a developer with a strong interest in Linux, Ubuntu, and open-source communities. I am passionate about learning and improving, and I'm motivated by the opportunity to work alongside and learn from experienced engineers. I'm eager to take on challenges, contribute where I can, and steadily grow through mentorship, collaboration, and hands-on experience. My goal is not only to develop my technical abilities but also to support the success of the team and the wider open-source community through consistent effort and a willingness to learn.</p>
+        </div>
+
+        <div class="section">
+            <h2># what-i-am-interested-in</h2>
+            <p class="text-muted-foreground">Beyond coding, I'm passionate about exploring the depths of Linux, contributing to open-source projects, and tinkering with cloud technologies. I'm always looking for new ways to automate, optimize, and build resilient systems. When I'm not at the keyboard, I enjoy hiking and discovering new trails around the city.</p>
+        </div>
+
+        <div class="section">
+            <h2># what-all-have-i-done</h2>
+            <div class="subsection">
+                <h3>## projects</h3>
+                <ul>
+                    <li>
+                        <a href="https://github.com/albus-droid" target="_blank" rel="noopener noreferrer">food-delivery-backend</a>
+                        <p class="text-muted-foreground">A Go-based microservices backend for food delivery using MongoDB, PostgreSQL, Redis, and Nginx on AWS.</p>
+                    </li>
+                    <li>
+                        <a href="https://github.com/albus-droid" target="_blank" rel="noopener noreferrer">pokedex-object-detection</a>
+                        <p class="text-muted-foreground">A real-time Pokemon detection app using Python, Streamlit, and YOLOv5, deployed on AWS ECS.</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="subsection">
+                <h3>## blogs</h3>
+                <ul>
+                    <li>
+                        <a href="#" target="_blank" rel="noopener noreferrer">my-first-blog-post</a>
+                        <p class="text-muted-foreground">This is a placeholder for a future blog post. Stay tuned!</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
