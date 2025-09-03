@@ -29,14 +29,20 @@
 /* -----------------------------
    Global
 ------------------------------ */
+html, body { height: 100%; }
+
 body {
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
-  font-family: 'JetBrains Mono', monospace;  /* ✅ single mention */
-  min-height: 100vh;
+  display: grid;
+  /* one track that’s at most 80 characters wide (teletype feel) */
+  grid-template-columns: min(80ch, 100% - 2rem);
+  justify-content: center;   /* center that column horizontally */
+  align-content: start;      /* top-align vertically; use 'center' to center vertically */
+  row-gap: 2rem;             /* spacing between preamble and content */
   margin: 0;
-  padding: 1rem;
-  display: block;
+  padding: 1rem 0;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: "JetBrains Mono", monospace;
 }
 
 main {
