@@ -17,8 +17,8 @@
              :publishing-function 'org-html-publish-to-html
              :html-head-include-default-style nil
              :html-head-include-scripts nil
-             :html-head "<link rel=\"stylesheet\" href=\"/home/albin/portfolio/templates/style.css\"/>"
-             :html-head-extra "<script src=\"/home/albin/portfolio/templates/typewriter-name.js\" defer></script>"
+             :html-head "<link rel=\"stylesheet\" href=\"/templates/style.css\"/>"
+             :html-head-extra "<script src=\"/templates/typewriter-name.js\" defer></script>"
              :with-title nil
              :html-preamble (slurp "/home/albin/portfolio/templates/layout-fragment.html"))))
 
