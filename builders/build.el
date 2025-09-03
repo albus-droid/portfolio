@@ -19,7 +19,9 @@
              :html-head "<link rel=\"stylesheet\" href=\"style.css\"/>"
              :html-head-extra "<script src=\"typewriter-name.js\" defer></script>"
              :with-title nil
-             :html-container "main"
+			 :html-divs '((preamble nil nil)
+                          (content  "main" nil)
+                          (postamble nil nil))
              :html-preamble (slurp "layout-fragment.html"))))
 
 (org-publish-all t)
