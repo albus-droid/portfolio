@@ -102,6 +102,8 @@ a:hover {
 ul {
   list-style: revert-layer;
   padding-left: 2rem;
+  padding-bottom: 2px;
+  margin-bottom: 0;
 }
 
 li p {
