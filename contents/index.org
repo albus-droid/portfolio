@@ -15,5 +15,5 @@ Beyond coding, I'm passionate about exploring the depths of Linux, contributing 
    - A real-time Pokemon detection app using Python, Streamlit, and YOLOv5, deployed on AWS ECS.
 
 ** ## blogs
-- my first blog post
+- [[blog/how-i-build-this.html]] my first blog post
   - This is a placeholder for a future blog post. Stay tuned!
