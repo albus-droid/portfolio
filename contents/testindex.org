@@ -1,0 +1,11 @@
+#+TITLE: Albin Babu Varghese - Test Index
+#+OPTIONS: toc:nil num:nil html-postamble:nil
+
+* who-i-am
+I'm a developer with a strong interest in Linux...
+
+* what-i-am-interested-in
+Beyond coding, I'm passionate about...
+
+* projects
+- [[https://github.com/albus-droid][food-delivery-backend]] :: Go-based microservices...
