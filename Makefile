@@ -1,2 +1,4 @@
-build:
-	emacs --script build.el
+blog:
+	emacs --script builers/build.el
+resume:
+        pandoc  
