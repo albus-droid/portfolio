@@ -143,6 +143,10 @@ li p {
   fill: hsl(var(--accent));
 }
 
+.container {
+  display: flex;
+  justify-content: space-between;
+}
 /* -----------------------------
    Cursor
 ------------------------------ */
