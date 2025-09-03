@@ -10,5 +10,5 @@ resume:
 	pandoc resume_coop.tex -s -t html5 \
 		-o ../../dist/resume/resume.html \
 		-H ../../templates/header.html \
-		-A ../../templates/footer.html
+		-A ../../templates/footer.html \
 		--metadata title="My Resume"
