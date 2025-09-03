@@ -59,20 +59,18 @@ h1, h2, h3 {
 }
 
 h1 {
-  font-size: 2.25rem;
+  font-size: 3rem;
   color: hsl(var(--primary));
   text-transform: uppercase;
   margin-bottom: 2rem;
 }
 
 h2 {
-  font-size: 1.25rem;
   color: hsl(var(--accent));
   margin-bottom: 0.75rem;
 }
 
 h3 {
-  font-size: 1.125rem;
   color: hsl(var(--primary));
   margin: 1rem 0 0.75rem;
 }
@@ -104,6 +102,10 @@ ul {
   padding-left: 2rem;
   padding-bottom: 2px;
   margin-bottom: 0;
+}
+
+li {
+  margin-bottom: 5px;
 }
 
 li p {
