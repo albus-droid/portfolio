@@ -9,9 +9,12 @@
 	      :publishing-directory "."
 	      :base-extension "org"
 	      :publishing-function 'org-html-publish-to-html
-              :html-head-include-default-style nil
-              :html-head "<link rel=\"stylesheet\" href=\"style.css\"/>"
-	      :html-head-extra "<script src=\"typewriter-name.js\" defer></script>")))
+          :html-head-include-default-style nil
+          :html-head "<link rel=\"stylesheet\" href=\"style.css\"/>"
+	      :html-head-extra "<script src=\"typewriter-name.js\" defer></script>"
+          :with-title nil
+          :html-container "main"
+          :html-preamble (slurp "layout-fragment.html"))))
 
 ;; Generate the site output
 (org-publish-all t)
