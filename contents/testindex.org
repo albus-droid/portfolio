@@ -1,11 +1,19 @@
-#+TITLE: Albin Babu Varghese - Test Index
+#+TITLE: Albin Babu Varghese
 #+OPTIONS: toc:nil num:nil html-postamble:nil
 
-* who-i-am
-I'm a developer with a strong interest in Linux...
+* # who i am
+I'm a developer with a strong interest in Linux, Ubuntu, and open-source communities. I am passionate about learning and improving, and I'm motivated by the opportunity to work alongside and learn from experienced engineers. I'm eager to take on challenges, contribute where I can, and steadily grow through mentorship, collaboration, and hands-on experience. My goal is not only to develop my technical abilities but also to support the success of the team and the wider open-source community through consistent effort and a willingness to learn.
 
-* what-i-am-interested-in
-Beyond coding, I'm passionate about...
+* # what i am interested in
+Beyond coding, I'm passionate about exploring the depths of Linux, contributing to open-source projects, and tinkering with cloud technologies. I'm always looking for new ways to automate, optimize, and build resilient systems. When I'm not at the keyboard, I enjoy hiking and discovering new trails around the city.
 
-* projects
-- [[https://github.com/albus-droid][food-delivery-backend]] :: Go-based microservices...
+* # what all have i done
+** ## projects
+- food delivery backend
+   - A Go-based microservices backend for food delivery using MongoDB, PostgreSQL, Redis, and Nginx on AWS.
+- pokedex object detection
+   - A real-time Pokemon detection app using Python, Streamlit, and YOLOv5, deployed on AWS ECS.
+
+** ## blogs
+- my first blog post
+  - This is a placeholder for a future blog post. Stay tuned!

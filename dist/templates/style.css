@@ -1,0 +1,169 @@
+/* -----------------------------
+   Variables
+------------------------------ */
+:root {
+  --background: 0 0% 13%;
+  --foreground: 42 100% 50%;
+  --primary: 42 100% 50%;
+  --primary-foreground: 0 0% 13%;
+  --secondary: 0 0% 18%;
+  --secondary-foreground: 42 100% 50%;
+  --muted: 0 0% 18%;
+  --muted-foreground: 47 100% 65%;
+  --accent: 47 100% 65%;
+  --accent-foreground: 0 0% 13%;
+  --border: 42 100% 30%;
+}
+
+/* -----------------------------
+   Fonts
+------------------------------ */
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Regular.woff') format('woff');
+  font-style: normal;
+  font-display: swap;
+}
+
+/* -----------------------------
+   Global
+------------------------------ */
+html, body { height: 100%; }
+
+body {
+  display: grid;
+  /* one track that’s at most 80 characters wide (teletype feel) */
+  grid-template-columns: min(80ch, 100% - 2rem);
+  justify-content: center;   /* center that column horizontally */
+  align-content: start;      /* top-align vertically; use 'center' to center vertically */
+  row-gap: 2rem;             /* spacing between preamble and content */
+  margin: 0;
+  padding: 1rem 0;
+  background: hsl(var(--background));
+  color: hsl(41.9, 71.6%, 68.2%);
+  font-size: larger;
+  font-family: "JetBrains Mono", monospace;
+}
+
+main {
+  max-width: 42rem;
+  width: 100%;
+}
+
+/* -----------------------------
+   Typography
+------------------------------ */
+h1, h2, h3 {
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 3rem;
+  color: hsl(var(--primary));
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  color: hsl(var(--accent));
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  color: hsl(var(--primary));
+  margin: 1rem 0 0.75rem;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.text-muted-foreground {
+  color: hsl(var(--muted-foreground));
+}
+
+/* -----------------------------
+   Links
+------------------------------ */
+a {
+  color: hsl(var(--primary));
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* -----------------------------
+   Lists
+------------------------------ */
+ul {
+  list-style: revert-layer;
+  padding-left: 2rem;
+  padding-bottom: 2px;
+  margin-bottom: 0;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+li p {
+  font-size: 0.875rem;
+  margin-left: 1.5rem;
+}
+
+/* -----------------------------
+   Sections
+------------------------------ */
+.section {
+  margin-bottom: 2rem;
+}
+
+.subsection {
+  margin-left: 1rem;
+}
+
+/* -----------------------------
+   Social Links
+------------------------------ */
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.social-links svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: hsl(var(--muted-foreground));
+}
+
+.social-links a:hover svg {
+  fill: hsl(var(--accent));
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+/* -----------------------------
+   Cursor
+------------------------------ */
+.cursor {
+  display: inline-block;
+  width: 0.6ch;
+  height: 1em;
+  background-color: hsl(var(--primary));
+  margin-left: 0.25rem;
+  animation: blink 1s step-end infinite;
+  vertical-align: -0.1em;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.outline-2 {
+  margin-bottom: 2rem;
+}

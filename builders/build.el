@@ -6,20 +6,21 @@
     (insert-file-contents path)
     (buffer-string)))
 
+(setq org-export-with-smart-quotes t)
 (setq org-publish-project-alist
       (list
        (list "my-portfolio"
              :recursive t
-             :base-directory "."
-             :publishing-directory "."
+             :base-directory "./contents"
+             :publishing-directory "./dist"
              :base-extension "org"
              :publishing-function 'org-html-publish-to-html
              :html-head-include-default-style nil
              :html-head-include-scripts nil
-             :html-head "<link rel=\"stylesheet\" href=\"style.css\"/>"
-             :html-head-extra "<script src=\"typewriter-name.js\" defer></script>"
+             :html-head "<link rel=\"stylesheet\" href=\"/home/albin/portfolio/templates/style.css\"/>"
+             :html-head-extra "<script src=\"/home/albin/portfolio/templates/typewriter-name.js\" defer></script>"
              :with-title nil
-             :html-preamble (slurp "layout-fragment.html"))))
+             :html-preamble (slurp "/home/albin/portfolio/templates/layout-fragment.html"))))
 
 (org-publish-all t)
 (message "Build Complete!")

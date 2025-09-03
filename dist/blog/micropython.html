@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-09-03 Wed 02:27 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Micropython questions I have for Myself</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="./templates/style.css"/>
+<script src="./templates/typewriter-name.js" defer></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<h1 id="name-typewriter"></h1>
+<div class="container">
+    <div class="social-links">
+        <a href="https://github.com/albus-droid" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297 24 5.67 18.627.297 12 .297z"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/albin-babu-varghese" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+        </a>
+        <a href="mailto:albinbabuvarghese@gmail.com" aria-label="Email">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Email</title><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.75L12 16.625l-6.545-4.875v9.25H1.636C.732 21 .001 20.269.001 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.908 1.528-1.145C21.69 3.28 24 4.435 24 5.457z"/></svg>
+        </a>
+    </div>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="/" class="nav-link">[HOME]</a>
+        <a href="/resume.html" target="_blank" class="nav-link" rel="noopener noreferrer">[RESUME]</a>
+    </div>
+</div>
+</div>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org9d2b1b0">1. What is Micropython?</a></li>
+<li><a href="#org968737d">2. Is it same as Python then?</a></li>
+<li><a href="#orgd5c97c6">3. How does it even work?</a></li>
+<li><a href="#org619b161">4. How fast is it?</a></li>
+<li><a href="#orge6dce8e">5. Why do you use it?</a>
+<ul>
+<li><a href="#orgaab210f">5.1. Flask Replacement</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9d2b1b0" class="outline-2">
+<h2 id="org9d2b1b0"><span class="section-number-2">1.</span> What is Micropython?</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+It&rsquo;s an implementation of Python3 that is really lightweight. It can run on baremetal. How?
+</p>
+</div>
+</div>
+<div id="outline-container-org968737d" class="outline-2">
+<h2 id="org968737d"><span class="section-number-2">2.</span> Is it same as Python then?</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+I don&rsquo;t know, it feels like a stripped down version of Python. Something I&rsquo;m not really familiar with.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd5c97c6" class="outline-2">
+<h2 id="orgd5c97c6"><span class="section-number-2">3.</span> How does it even work?</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+It works on pyboard, which is a basically running low-level Python OS.
+</p>
+</div>
+</div>
+<div id="outline-container-org619b161" class="outline-2">
+<h2 id="org619b161"><span class="section-number-2">4.</span> How fast is it?</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+I don&rsquo;t know. All it says is that it is compact enough to run on within 256K storage and 16K RAM.
+</p>
+</div>
+</div>
+<div id="outline-container-orge6dce8e" class="outline-2">
+<h2 id="orge6dce8e"><span class="section-number-2">5.</span> Why do you use it?</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+For portability so that you don&rsquo;t have to learn C. But how efficient is it compared to something like C, which is often though as the Gold Standard for embedded programming.
+</p>
+
+<p>
+I&rsquo;m more interested about the OS. Is it written in C?
+So basically just a board with an OS and Python installed built in?
+</p>
+</div>
+<div id="outline-container-orgaab210f" class="outline-3">
+<h3 id="orgaab210f"><span class="section-number-3">5.1.</span> Flask Replacement</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Microdot  framework. How is it small? How did he achieve it?
+He used rhsell. Is it a shell or terminal emulator? It&rsquo;s a shell I believe.
+It uses asyncio to achieve concurrency, since there is no support for processes or threads.
+</p>
+
+<p>
+How is different from flask?
+The author said there are some functionalities that are actually missing which he chose to ignore, since it would make it too large for his device. 
+There is support for WebSocket and SSE. 
+</p>
+
+<p>
+Before all that. Why?
+It is really light so it is compatable with Micropython. But is CPython same as Python. Why is it called CPython?
+</p>
+
+<p>
+What is flask&rsquo;s application context? What is it used for?
+</p>
+
+<p>
+What is FastAPI framework, Where is it used? Why is it used? Is it something like Flask but more beginner friendly?
+</p>
+
+<p>
+What about Bottle Framework?
+So in Micropython the code is precompiled on the host? Interesting. So there is an .mpy file. How big is that files and how does the board know which files to run based if its just plugged in.
+</p>
+
+<p>
+Was he doing cross compilation for this project too.
+</p>
+
+<p>
+He was also speaking about Native code emitters and Viper code emitter for Micropython. What are they?</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2025-09-03 Wed 02:27</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
