@@ -1,0 +1,3 @@
+[submodule "contents/resume"]
+	path = contents/resume
+	url = https://github.com/albus-droid/resume.git

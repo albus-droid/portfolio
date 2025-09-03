@@ -1,4 +1,14 @@
+.PHONY: blog resume all
+
+all: blog resume
+
 blog:
-	emacs --script builers/build.el
+	emacs --script builders/build.el
+
 resume:
-        pandoc  
+	cd contents/resume && \
+	pandoc resume_coop.tex -s -t html5 \
+		-o ../../dist/resume/resume.html \
+		-H ../../templates/header.html \
+		-A ../../templates/footer.html
+		--metadata title="My Resume"
