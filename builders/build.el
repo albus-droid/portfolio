@@ -6,10 +6,10 @@
     (url-insert-file-contents url)
     (buffer-string)))
 
-(setq github-base-url "https://raw.githubusercontent.com/albus-droid/portfolio/refs/heads/master/templates/")
-(setq css-url (concat github-base-url "style.css"))
-(setq js-url (concat github-base-url "typewriter-name.js"))
-(setq layout-fragment-url (concat github-base-url "layout-fragment.html"))
+(setq github-base-url "https://albus-droid.github.io/portfolio/")
+(setq css-url (concat github-base-url "templates/style.css"))
+(setq js-url (concat github-base-url "templates/typewriter-name.js"))
+(setq layout-fragment-url (concat github-base-url "templates/layout-fragment.html"))
 
 (setq org-export-with-smart-quotes t)
 (setq org-publish-project-alist
