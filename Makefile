@@ -10,4 +10,5 @@ resume:
 	pandoc resume_coop.tex -s -t html5 \
 		-o ../../dist/resume.html \
 		-H ../../templates/header.html \
-		-A ../../templates/footer.html 
+		-A ../../templates/footer.html \
+		-V pagetitle="My Resume" -M title-block=false -M title=
