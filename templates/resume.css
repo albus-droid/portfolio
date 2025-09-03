@@ -159,6 +159,18 @@ ul.task-list li input[type="checkbox"] {
 }
 .display.math{display: block; text-align: center; margin: 0.5rem auto;}
 
+/* -----------------------------
+   Fonts
+------------------------------ */
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Regular.woff') format('woff');
+  font-style: normal;
+  font-display: swap;
+}
+
+
 html {
   background: hsl(0, 0%, 13%);
   color: hsl(41.9, 71.6%, 68.2%);
