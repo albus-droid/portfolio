@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-09-10 Wed 19:12 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LKMP Getting Started</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="https://albus-droid.github.io/portfolio/templates/style.css"/>
+<script src="https://albus-droid.github.io/portfolio/templates/typewriter-name.js" defer></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<h1 id="name-typewriter"></h1>
+<div class="container">
+    <div class="social-links">
+        <a href="https://github.com/albus-droid" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297 24 5.67 18.627.297 12 .297z"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/albin-babu-varghese" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+        </a>
+        <a href="mailto:albinbabuvarghese@gmail.com" aria-label="Email">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Email</title><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.75L12 16.625l-6.545-4.875v9.25H1.636C.732 21 .001 20.269.001 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.908 1.528-1.145C21.69 3.28 24 4.435 24 5.457z"/></svg>
+        </a>
+    </div>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="/" class="nav-link">[HOME]</a>
+        <a href="resume.html" class="nav-link">[RESUME]</a>
+    </div>
+</div>
+</div>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2eaa2be">1. Baby Steps</a></li>
+<li><a href="#org74d2418">2. Tools for Linux Kernel Bug Fixing</a>
+<ul>
+<li><a href="#org018e516">2.1. 1. Core Runtime Debugging</a></li>
+<li><a href="#orgdfd3837">2.2. 2. Tracing &amp; Timing</a></li>
+<li><a href="#orgb07cbbf">2.3. 3. Hang &amp; Stall Detectors</a></li>
+<li><a href="#org70d2fef">2.4. 4. Sanitizers &amp; Checkers</a></li>
+<li><a href="#org369bc95">2.5. 5. Post-Mortem &amp; Field Debugging</a></li>
+<li><a href="#org95626a7">2.6. 6. Instrumentation &amp; Logging</a></li>
+</ul>
+</li>
+<li><a href="#orgc1c06c5">3. Must have configs and options:</a></li>
+</ul>
+</div>
+</div>
+<p>
+It is with great happiness I&rsquo;m sharing that I was selected for the LKMP Fall 2025 and this is a small write where I write about the tools I will be using for this Bug Fixing Intership. I will be updating more as I get familiar with each one. I got inspiration for this from the wonderful session by &#x2014; and also after reading this posting by -&#x2014;
+</p>
+<div id="outline-container-org2eaa2be" class="outline-2">
+<h2 id="org2eaa2be"><span class="section-number-2">1.</span> Baby Steps</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+My first plan is to find a bug reported by syzbot and fix it, it could be from any subsystem. I just want to get my feet wet and see how it is going to be moving forward. I watched this mentorship session and got familiar with some of the tools people use for Bug Fixing. It will be discussed in the coming sections.
+</p>
+
+<p>
+From what I understood from the video, this is how a typical workflow is going to be like.
+</p>
+
+<ol class="org-ol">
+<li>Build kernel with `CONFIG<sub>DEBUG</sub><sub>INFO</sub>=y CONFIG<sub>FRAME</sub><sub>POINTER</sub>=y`</li>
+<li>Boot QEMU with `-s -S` and `nokaslr ftrace<sub>dump</sub><sub>on</sub><sub>oops</sub>`</li>
+<li>Attach GDB: `gdb vmlinux`, `target remote :1234`, set breakpoints</li>
+<li>Trace: `trace-cmd record &#x2026;` → `trace-cmd report`</li>
+<li>Measure scheduling: `perf sched record`, `perf sched latency sort max`</li>
+<li>Enable watchdogs &amp; hung task detectors</li>
+<li>Sprinkle `trace<sub>printk</sub>()` in suspected paths</li>
+<li>For production: configure <b>kdump</b>, analyze dumps with <b>crash</b></li>
+</ol>
+
+<p>
+But this since I am getting started I will start with a bug from reported by a syzkaller and will work my way along. I will start with `gdb` first. I&rsquo;m going to follow this guide by &#x2014; for that.
+</p>
+</div>
+</div>
+<div id="outline-container-org74d2418" class="outline-2">
+<h2 id="org74d2418"><span class="section-number-2">2.</span> Tools for Linux Kernel Bug Fixing</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+While watching the video I came across some tools as I mentioned, so I thought of writing it down so that it is easier for me to look up. Even though there is no single right way to find bugs I will use these as the dots that can connect me to the end result. I believe knowing a lot of technolgies is a plus, so we will have the flexiblity to find the easiest solutions.
+</p>
+</div>
+<div id="outline-container-org018e516" class="outline-3">
+<h3 id="org018e516"><span class="section-number-3">2.1.</span> 1. Core Runtime Debugging</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li><b>QEMU</b>
+<ul class="org-ul">
+<li>Virtual machine emulator for running custom kernels.</li>
+<li>Safe, reproducible, scriptable test environment.</li>
+<li><p>
+Example:
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">qemu-system-x86_64 -kernel bzImage -append "console=ttyS0 root=/dev/sda nokaslr" -s -S -nographic
+</pre>
+</div>
+<ul class="org-ul">
+<li>`-s -S` exposes a GDB server and waits for attach.</li>
+</ul></li>
+</ul></li>
+
+<li><b>GDB (with vmlinux)</b>
+<ul class="org-ul">
+<li>Source-level debugger for the kernel in QEMU.</li>
+<li>Commands: `target remote :1234`, `bt`, `info threads`, `b panic`, `list`, `disassemble`.</li>
+</ul></li>
+
+<li><b>KGDB</b>
+<ul class="org-ul">
+<li>Stub for attaching GDB to real hardware (via serial/net).</li>
+</ul></li>
+
+<li><b>OpenOCD / JTAG</b>
+<ul class="org-ul">
+<li>Hardware debugging path for very early boot failures.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgdfd3837" class="outline-3">
+<h3 id="orgdfd3837"><span class="section-number-3">2.2.</span> 2. Tracing &amp; Timing</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li><b>Ftrace</b>
+<ul class="org-ul">
+<li>Built-in low-overhead tracer (&ldquo;flight recorder&rdquo;).</li>
+<li>Useful boot params:
+<ul class="org-ul">
+<li>`ftrace<sub>dump</sub><sub>on</sub><sub>oops</sub>`</li>
+<li>`traceoff<sub>on</sub><sub>warning</sub>`</li>
+<li>`panic<sub>on</sub><sub>warn</sub>=1`</li>
+<li>`trace<sub>event</sub>=sched:sched<sub>switch,cpu</sub><sub>idle</sub>`</li>
+</ul></li>
+</ul></li>
+
+<li><b>trace-cmd</b>
+<ul class="org-ul">
+<li>Front-end to Ftrace.</li>
+<li><p>
+Examples:
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">trace-cmd record -p function_graph -g kfree
+trace-cmd report
+</pre>
+</div></li>
+</ul></li>
+
+<li><b>perf / perf sched</b>
+<ul class="org-ul">
+<li>Scheduler profiling &amp; latency analysis.</li>
+<li><p>
+Examples:
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">perf sched record -- sleep 10
+perf sched latency sort max
+perf script
+</pre>
+</div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb07cbbf" class="outline-3">
+<h3 id="orgb07cbbf"><span class="section-number-3">2.3.</span> 3. Hang &amp; Stall Detectors</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li><b>Hard/Soft Lockup Watchdogs</b>
+<ul class="org-ul">
+<li>Detect CPUs that stop servicing interrupts (hard) or spin in kernel too long (soft).</li>
+<li>Example: `nmi<sub>watchdog</sub>=1 watchdog<sub>thresh</sub>=2`</li>
+</ul></li>
+
+<li><b>Hung Task Detector</b>
+<ul class="org-ul">
+<li>Detects tasks stuck in uninterruptible sleep.</li>
+<li>Example: `echo 10 &gt; /proc/sys/kernel/hung<sub>task</sub><sub>timeout</sub><sub>secs</sub>`</li>
+</ul></li>
+
+<li><b>RCU Stall Detector</b>
+<ul class="org-ul">
+<li>Detect CPUs failing to pass RCU quiescent states.</li>
+<li>Example: `rcupdate.rcu<sub>cpu</sub><sub>stall</sub><sub>timeout</sub>=20`, `panic<sub>on</sub><sub>rcu</sub><sub>stall</sub>=1`</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org70d2fef" class="outline-3">
+<h3 id="org70d2fef"><span class="section-number-3">2.4.</span> 4. Sanitizers &amp; Checkers</h3>
+<div class="outline-text-3" id="text-2-4">
+<dl class="org-dl">
+<dt><b>KASAN</b></dt><dd>Detects memory bugs (UAF, OOB).</dd>
+<dt><b>KCSAN</b></dt><dd>Detects concurrency/data race bugs.</dd>
+<dt><b>LOCKDEP</b></dt><dd>Checks locking correctness.</dd>
+<dt><b>Preempt/IRQ-off tracers</b></dt><dd>Find long latency sections.</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org369bc95" class="outline-3">
+<h3 id="org369bc95"><span class="section-number-3">2.5.</span> 5. Post-Mortem &amp; Field Debugging</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li><b>kdump / kexec + crash</b>
+<ul class="org-ul">
+<li>On panic, boot capture kernel and dump vmcore.</li>
+<li>Analyze with `crash`.</li>
+</ul></li>
+
+<li><b>SysRq</b>
+<ul class="org-ul">
+<li>Magic key combos for emergency actions and stack dumps.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org95626a7" class="outline-3">
+<h3 id="org95626a7"><span class="section-number-3">2.6.</span> 6. Instrumentation &amp; Logging</h3>
+<div class="outline-text-3" id="text-2-6">
+<ul class="org-ul">
+<li><b>printk / trace<sub>printk</sub></b>
+<ul class="org-ul">
+<li>Add breadcrumbs in code.</li>
+<li>`trace<sub>printk</sub>` writes into Ftrace buffer (less console overhead).</li>
+<li>Use sampling (every Nth hit) to avoid flooding logs.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc1c06c5" class="outline-2">
+<h2 id="orgc1c06c5"><span class="section-number-2">3.</span> Must have configs and options:</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Kernel configs:
+<ul class="org-ul">
+<li>`CONFIG<sub>DEBUG</sub><sub>INFO</sub>=y`</li>
+<li>`CONFIG<sub>FRAME</sub><sub>POINTER</sub>=y`</li>
+<li>`CONFIG<sub>GDB</sub><sub>SCRIPTS</sub>=y`</li>
+</ul></li>
+
+<li>Useful cmdline:
+<ul class="org-ul">
+<li>`nokaslr`</li>
+<li>`panic<sub>on</sub><sub>warn</sub>=1`</li>
+<li>`traceoff<sub>on</sub><sub>warning</sub>`</li>
+<li>`ftrace<sub>dump</sub><sub>on</sub><sub>oops</sub>`</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2025-09-10 Wed 19:12</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
