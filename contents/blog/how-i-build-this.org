@@ -1,6 +1,15 @@
-#+title: How I Build This
+#+title: How I Build This Website
+#+OPTIONS: toc:nil num:nil html-postamble:nil
 
-* I had to spend a whole day to get this working.
-* I will write about this soon* I had to spend a whole day to get this working.
+I built something like a SSG, there were other options. I could've simply used
+something like Hugo or Jekyll, but I thought why not built somthing for myself.
+I built this using emacs' html publishing mode. I injected a few css templates to
+it and some js and this is how it looks after. Is this a complete SSG, not
+really? It maybe a 20% of what a typical SSGs is but it does the 80% of whatever
+functionality I think is needed
 
-** Resume button needs some changes too
+* What this can do
+** This can export my existing org files and export it to html within a nice CSS template
+** Export my latex resume to html and display it on the resume page
+
+* I will write about how I implemented this soon

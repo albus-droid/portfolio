@@ -1,0 +1,116 @@
+#+title: LKMP Getting Started
+
+It is with great happiness I'm sharing that I was selected for the LKMP Fall 2025 and this is a small write where I write about the tools I will be using for this Bug Fixing Intership. I will be updating more as I get familiar with each one. I got inspiration for this from the wonderful session by --- and also after reading this posting by ----
+
+* Baby Steps
+
+My first plan is to find a bug reported by syzbot and fix it, it could be from any subsystem. I just want to get my feet wet and see how it is going to be moving forward. I watched this mentorship session and got familiar with some of the tools people use for Bug Fixing. It will be discussed in the coming sections.
+
+From what I understood from the video, this is how a typical workflow is going to be like.
+
+    1. Build kernel with `CONFIG_DEBUG_INFO=y CONFIG_FRAME_POINTER=y`
+    2. Boot QEMU with `-s -S` and `nokaslr ftrace_dump_on_oops`
+    3. Attach GDB: `gdb vmlinux`, `target remote :1234`, set breakpoints
+    4. Trace: `trace-cmd record ...` → `trace-cmd report`
+    5. Measure scheduling: `perf sched record`, `perf sched latency sort max`
+    6. Enable watchdogs & hung task detectors
+    7. Sprinkle `trace_printk()` in suspected paths
+    8. For production: configure *kdump*, analyze dumps with *crash*
+
+But this since I am getting started I will start with a bug from reported by a syzkaller and will work my way along. I will start with `gdb` first. I'm going to follow this guide by --- for that.
+
+* Tools for Linux Kernel Bug Fixing
+
+While watching the video I came across some tools as I mentioned, so I thought of writing it down so that it is easier for me to look up. Even though there is no single right way to find bugs I will use these as the dots that can connect me to the end result. I believe knowing a lot of technolgies is a plus, so we will have the flexiblity to find the easiest solutions.
+
+
+** 1. Core Runtime Debugging
+- *QEMU*
+  - Virtual machine emulator for running custom kernels.
+  - Safe, reproducible, scriptable test environment.
+  - Example:
+    #+begin_src bash
+    qemu-system-x86_64 -kernel bzImage -append "console=ttyS0 root=/dev/sda nokaslr" -s -S -nographic
+    #+end_src
+    - `-s -S` exposes a GDB server and waits for attach.
+
+- *GDB (with vmlinux)*
+  - Source-level debugger for the kernel in QEMU.
+  - Commands: `target remote :1234`, `bt`, `info threads`, `b panic`, `list`, `disassemble`.
+
+- *KGDB*
+  - Stub for attaching GDB to real hardware (via serial/net).
+
+- *OpenOCD / JTAG*
+  - Hardware debugging path for very early boot failures.
+
+** 2. Tracing & Timing
+- *Ftrace*
+  - Built-in low-overhead tracer ("flight recorder").
+  - Useful boot params:
+    - `ftrace_dump_on_oops`
+    - `traceoff_on_warning`
+    - `panic_on_warn=1`
+    - `trace_event=sched:sched_switch,cpu_idle`
+
+- *trace-cmd*
+  - Front-end to Ftrace.
+  - Examples:
+    #+begin_src bash
+    trace-cmd record -p function_graph -g kfree
+    trace-cmd report
+    #+end_src
+
+- *perf / perf sched*
+  - Scheduler profiling & latency analysis.
+  - Examples:
+    #+begin_src bash
+    perf sched record -- sleep 10
+    perf sched latency sort max
+    perf script
+    #+end_src
+
+** 3. Hang & Stall Detectors
+- *Hard/Soft Lockup Watchdogs*
+  - Detect CPUs that stop servicing interrupts (hard) or spin in kernel too long (soft).
+  - Example: `nmi_watchdog=1 watchdog_thresh=2`
+
+- *Hung Task Detector*
+  - Detects tasks stuck in uninterruptible sleep.
+  - Example: `echo 10 > /proc/sys/kernel/hung_task_timeout_secs`
+
+- *RCU Stall Detector*
+  - Detect CPUs failing to pass RCU quiescent states.
+  - Example: `rcupdate.rcu_cpu_stall_timeout=20`, `panic_on_rcu_stall=1`
+
+** 4. Sanitizers & Checkers
+- *KASAN* :: Detects memory bugs (UAF, OOB).
+- *KCSAN* :: Detects concurrency/data race bugs.
+- *LOCKDEP* :: Checks locking correctness.
+- *Preempt/IRQ-off tracers* :: Find long latency sections.
+
+** 5. Post-Mortem & Field Debugging
+- *kdump / kexec + crash*
+  - On panic, boot capture kernel and dump vmcore.
+  - Analyze with `crash`.
+
+- *SysRq*
+  - Magic key combos for emergency actions and stack dumps.
+
+** 6. Instrumentation & Logging
+- *printk / trace_printk*
+  - Add breadcrumbs in code.
+  - `trace_printk` writes into Ftrace buffer (less console overhead).
+  - Use sampling (every Nth hit) to avoid flooding logs.
+
+* Must have configs and options:
+- Kernel configs:
+  - `CONFIG_DEBUG_INFO=y`
+  - `CONFIG_FRAME_POINTER=y`
+  - `CONFIG_GDB_SCRIPTS=y`
+
+- Useful cmdline:
+  - `nokaslr`
+  - `panic_on_warn=1`
+  - `traceoff_on_warning`
+  - `ftrace_dump_on_oops`
