@@ -1,15 +1,63 @@
-#+title: How I Build This Website
+#+TITLE: How I Built This Website
 #+OPTIONS: toc:nil num:nil html-postamble:nil
 
-I built something like a SSG, there were other options. I could've simply used
-something like Hugo or Jekyll, but I thought why not built somthing for myself.
-I built this using emacs' html publishing mode. I injected a few css templates to
-it and some js and this is how it looks after. Is this a complete SSG, not
-really? It maybe a 20% of what a typical SSGs is but it does the 80% of whatever
-functionality I think is needed
+I stumbled upon [[https://ogbe.net/blog/emacs_org_static_site][this blog post]] about building a static site with Emacs' Org mode, and it immediately sparked something in me. At the time, I was thinking about building a blog for myself—not just as a project, but as a way to showcase what I've built and share my process. So I decided to dive in and build my own static site generator.
 
-* What this can do
-** This can export my existing org files and export it to html within a nice CSS template
-** Export my latex resume to html and display it on the resume page
+* Why Build My Own SSG?
 
-* I will write about how I implemented this soon
+There were other options. I could've simply used something like Hugo or Jekyll, but I thought, why not build something for myself? I wanted to understand the process from the ground up, and I was drawn to the idea of using Emacs' HTML publishing mode as the foundation.
+
+Is this a complete SSG? Not really. It's maybe 20% of what a typical SSG offers, but it does 80% of the functionality I need. And that's exactly the point—I built what I needed, nothing more.
+
+* What This Can Do
+
+** Export my existing Org files to HTML within a nice CSS template
+** Export my LaTeX resume to HTML and display it on the resume page
+** Automate the build process with a Makefile
+
+* The Design Vision
+
+I wanted something minimalist and developer-focused: a dark background with a golden accent color, monospace fonts (JetBrains Mono), and a terminal-inspired aesthetic. The landing page features a typewriter effect for my name, and simple icon buttons linking to GitHub, LinkedIn, and email.
+
+The goal was to create something that felt like *me*—a blend of retro and modern minimalism.
+
+* The Stack
+
+I kept it simple:
+- *HTML* for structure
+- *CSS* for theming (dark mode with golden accents)
+- *JavaScript* for the typewriter animation and blinking cursor
+- *Pandoc* for converting Org files to HTML
+- *Makefile* for automation
+
+* The Typewriter Effect
+Getting the typewriter animation smooth took iteration. I had to:
+- Loop through each character with a delay
+- Add a blinking block cursor that overlays the final character
+- Respect ~prefers-reduced-motion~ for accessibility
+
+The cursor animation uses CSS ~@keyframes~ to simulate an old-school terminal, and I inverted the colors on the last character to make it feel authentic.
+
+* The Iterative Process
+
+This didn't come together in one sitting. My process looked like this:
+1. Start with basic HTML
+2. Add CSS styling
+3. Create a Makefile for automation
+4. Add header/footer includes
+5. Handle metadata properly
+6. Add a "Download PDF" button
+
+Each step introduced a new roadblock that I solved piece by piece. That's the beauty of building from scratch—you learn by debugging.
+
+* Next Steps
+
+- Implement a dark/light theme toggle
+- Add syntax highlighting for code blocks
+- Create an RSS feed
+
+* Conclusion
+
+Building your own static site generator isn't for everyone, but if you enjoy understanding how things work under the hood, I highly recommend it. You'll learn more about build systems, templating, and web standards than any tutorial could teach you.
+
+And at the end of the day, you'll have something that's uniquely yours.
