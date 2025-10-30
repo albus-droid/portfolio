@@ -2,7 +2,7 @@
 
 I was selected for LKMP Fall 2025! This is where I'll document the debugging tools and workflow I'm learning. Will update as I go.
 
-** Baby Steps
+*** Baby Steps
 
 My goal: Find and fix a syzbot bug. Any subsystem, just want to get started.
 
@@ -19,9 +19,9 @@ From the mentorship videos, here's the basic process:
 
 Starting with GDB first.
 
-** Debugging Tools
+*** Debugging Tools
 
-*** Core Debugging
+**** Core Debugging
 
 QEMU - Run custom kernels safely
 
@@ -38,7 +38,7 @@ KGDB - GDB for real hardware (serial/network)
 
 JTAG - For early boot problems
 
-*** Tracing
+**** Tracing
 
 Ftrace - Built-in kernel tracer
 Boot params: ~ftrace_dump_on_oops~, ~traceoff_on_warning~, ~panic_on_warn=1~
@@ -58,7 +58,7 @@ perf sched latency sort max
 perf script
 #+end_src
 
-*** Detectors
+**** Detectors
 
 Lockup Watchdogs - Catch hung CPUs
 Use: ~nmi_watchdog=1 watchdog_thresh=2~
@@ -69,19 +69,19 @@ Use: ~echo 10 > /proc/sys/kernel/hung_task_timeout_secs~
 RCU Stall Detector - RCU problems
 Use: ~rcupdate.rcu_cpu_stall_timeout=20~
 
-*** Sanitizers
+**** Sanitizers
 
 KASAN - memory bugs (use-after-free, out-of-bounds)
 KCSAN - data races
 LOCKDEP - locking bugs
 
-*** Post-Mortem
+**** Post-Mortem
 
 kdump/crash - Capture and analyze kernel crashes
 
 SysRq - Emergency debugging keys
 
-*** Logging
+**** Logging
 
 printk:
 
@@ -95,7 +95,7 @@ trace_printk (lower overhead):
 trace_printk("value=%d\n", value);
 #+end_src
 
-** Required Config
+*** Required Config
 
 Kernel:
 - ~CONFIG_DEBUG_INFO=y~
@@ -108,7 +108,7 @@ Boot params:
 - ~traceoff_on_warning~
 - ~ftrace_dump_on_oops~
 
-** Next Steps
+*** Next Steps
 
 Setup QEMU environment
 Build debug kernel
@@ -116,7 +116,7 @@ Pick first syzbot bug
 Document the fix
 Submit patch
 
-** Links
+*** Links
 
 - https://docs.kernel.org/dev-tools/
 - https://syzkaller.appspot.com/
