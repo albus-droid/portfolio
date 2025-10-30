@@ -16,3 +16,21 @@
         <a href="resume.html" class="nav-link">[RESUME]</a>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+document.querySelectorAll('pre[class*="src-"]').forEach(pre => {
+  const match = pre.className.match(/src-(\w+)/);
+  if (match) {
+    const lang = match[1];
+    let code = pre.querySelector('code');
+    if (!code) {
+      code = document.createElement('code');
+      code.textContent = pre.textContent;
+      pre.textContent = '';
+      pre.appendChild(code);
+    }
+    code.className = `language-${lang}`;
+  }
+});
+hljs.highlightAll();
+</script>
