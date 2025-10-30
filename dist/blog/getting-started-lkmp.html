@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-29 Wed 22:33 -->
+<!-- 2025-10-29 Wed 22:46 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LKMP Getting Started</title>
@@ -52,32 +52,32 @@ hljs.highlightAll();
 </div>
 <div id="content" class="content">
 <div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
+<h3>Table of Contents</h3>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org20f666f">1. Baby Steps</a></li>
-<li><a href="#orge90cc31">2. Debugging Tools</a>
+<li><a href="#org4edd3b6">1. Baby Steps</a></li>
+<li><a href="#orged77892">2. Debugging Tools</a>
 <ul>
-<li><a href="#orgd3b035a">2.1. Core Debugging</a></li>
-<li><a href="#orgee4d030">2.2. Tracing</a></li>
-<li><a href="#org7edcab1">2.3. Detectors</a></li>
-<li><a href="#org4b92ec2">2.4. Sanitizers</a></li>
-<li><a href="#org2327881">2.5. Post-Mortem</a></li>
-<li><a href="#orgd993456">2.6. Logging</a></li>
+<li><a href="#org50b827d">2.1. Core Debugging</a></li>
+<li><a href="#org4c8667c">2.2. Tracing</a></li>
+<li><a href="#org1546c22">2.3. Detectors</a></li>
+<li><a href="#org25f1c5d">2.4. Sanitizers</a></li>
+<li><a href="#org27e8de4">2.5. Post-Mortem</a></li>
+<li><a href="#org90fd242">2.6. Logging</a></li>
 </ul>
 </li>
-<li><a href="#org79fa3c7">3. Required Config</a></li>
-<li><a href="#org686d86f">4. Next Steps</a></li>
-<li><a href="#orgc6aedce">5. Links</a></li>
+<li><a href="#orgda96e7a">3. Required Config</a></li>
+<li><a href="#orgd7112a1">4. Next Steps</a></li>
+<li><a href="#org58e83d5">5. Links</a></li>
 </ul>
 </div>
 </div>
 <p>
 I was selected for LKMP Fall 2025! This is where I&rsquo;ll document the debugging tools and workflow I&rsquo;m learning. Will update as I go.
 </p>
-<div id="outline-container-org20f666f" class="outline-2">
-<h2 id="org20f666f"><span class="section-number-2">1.</span> Baby Steps</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-org4edd3b6" class="outline-3">
+<h3 id="org4edd3b6"><span class="section-number-3">1.</span> Baby Steps</h3>
+<div class="outline-text-3" id="text-1">
 <p>
 My goal: Find and fix a syzbot bug. Any subsystem, just want to get started.
 </p>
@@ -102,13 +102,13 @@ Starting with GDB first.
 </p>
 </div>
 </div>
-<div id="outline-container-orge90cc31" class="outline-2">
-<h2 id="orge90cc31"><span class="section-number-2">2.</span> Debugging Tools</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orged77892" class="outline-3">
+<h3 id="orged77892"><span class="section-number-3">2.</span> Debugging Tools</h3>
+<div class="outline-text-3" id="text-2">
 </div>
-<div id="outline-container-orgd3b035a" class="outline-3">
-<h3 id="orgd3b035a"><span class="section-number-3">2.1.</span> Core Debugging</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-org50b827d" class="outline-4">
+<h4 id="org50b827d"><span class="section-number-4">2.1.</span> Core Debugging</h4>
+<div class="outline-text-4" id="text-2-1">
 <p>
 QEMU - Run custom kernels safely
 </p>
@@ -136,9 +136,9 @@ JTAG - For early boot problems
 </p>
 </div>
 </div>
-<div id="outline-container-orgee4d030" class="outline-3">
-<h3 id="orgee4d030"><span class="section-number-3">2.2.</span> Tracing</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-org4c8667c" class="outline-4">
+<h4 id="org4c8667c"><span class="section-number-4">2.2.</span> Tracing</h4>
+<div class="outline-text-4" id="text-2-2">
 <p>
 Ftrace - Built-in kernel tracer
 Boot params: <code>ftrace_dump_on_oops</code>, <code>traceoff_on_warning</code>, <code>panic_on_warn=1</code>
@@ -166,9 +166,9 @@ perf script
 </div>
 </div>
 </div>
-<div id="outline-container-org7edcab1" class="outline-3">
-<h3 id="org7edcab1"><span class="section-number-3">2.3.</span> Detectors</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-org1546c22" class="outline-4">
+<h4 id="org1546c22"><span class="section-number-4">2.3.</span> Detectors</h4>
+<div class="outline-text-4" id="text-2-3">
 <p>
 Lockup Watchdogs - Catch hung CPUs
 Use: <code>nmi_watchdog=1 watchdog_thresh=2</code>
@@ -185,9 +185,9 @@ Use: <code>rcupdate.rcu_cpu_stall_timeout=20</code>
 </p>
 </div>
 </div>
-<div id="outline-container-org4b92ec2" class="outline-3">
-<h3 id="org4b92ec2"><span class="section-number-3">2.4.</span> Sanitizers</h3>
-<div class="outline-text-3" id="text-2-4">
+<div id="outline-container-org25f1c5d" class="outline-4">
+<h4 id="org25f1c5d"><span class="section-number-4">2.4.</span> Sanitizers</h4>
+<div class="outline-text-4" id="text-2-4">
 <p>
 KASAN - memory bugs (use-after-free, out-of-bounds)
 KCSAN - data races
@@ -195,9 +195,9 @@ LOCKDEP - locking bugs
 </p>
 </div>
 </div>
-<div id="outline-container-org2327881" class="outline-3">
-<h3 id="org2327881"><span class="section-number-3">2.5.</span> Post-Mortem</h3>
-<div class="outline-text-3" id="text-2-5">
+<div id="outline-container-org27e8de4" class="outline-4">
+<h4 id="org27e8de4"><span class="section-number-4">2.5.</span> Post-Mortem</h4>
+<div class="outline-text-4" id="text-2-5">
 <p>
 kdump/crash - Capture and analyze kernel crashes
 </p>
@@ -207,9 +207,9 @@ SysRq - Emergency debugging keys
 </p>
 </div>
 </div>
-<div id="outline-container-orgd993456" class="outline-3">
-<h3 id="orgd993456"><span class="section-number-3">2.6.</span> Logging</h3>
-<div class="outline-text-3" id="text-2-6">
+<div id="outline-container-org90fd242" class="outline-4">
+<h4 id="org90fd242"><span class="section-number-4">2.6.</span> Logging</h4>
+<div class="outline-text-4" id="text-2-6">
 <p>
 printk:
 </p>
@@ -230,9 +230,9 @@ trace<sub>printk</sub> (lower overhead):
 </div>
 </div>
 </div>
-<div id="outline-container-org79fa3c7" class="outline-2">
-<h2 id="org79fa3c7"><span class="section-number-2">3.</span> Required Config</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgda96e7a" class="outline-3">
+<h3 id="orgda96e7a"><span class="section-number-3">3.</span> Required Config</h3>
+<div class="outline-text-3" id="text-3">
 <p>
 Kernel:
 </p>
@@ -253,9 +253,9 @@ Boot params:
 </ul>
 </div>
 </div>
-<div id="outline-container-org686d86f" class="outline-2">
-<h2 id="org686d86f"><span class="section-number-2">4.</span> Next Steps</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgd7112a1" class="outline-3">
+<h3 id="orgd7112a1"><span class="section-number-3">4.</span> Next Steps</h3>
+<div class="outline-text-3" id="text-4">
 <p>
 Setup QEMU environment
 Build debug kernel
@@ -265,9 +265,9 @@ Submit patch
 </p>
 </div>
 </div>
-<div id="outline-container-orgc6aedce" class="outline-2">
-<h2 id="orgc6aedce"><span class="section-number-2">5.</span> Links</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-org58e83d5" class="outline-3">
+<h3 id="org58e83d5"><span class="section-number-3">5.</span> Links</h3>
+<div class="outline-text-3" id="text-5">
 <ul class="org-ul">
 <li><a href="https://docs.kernel.org/dev-tools/">https://docs.kernel.org/dev-tools/</a></li>
 <li><a href="https://syzkaller.appspot.com/">https://syzkaller.appspot.com/</a></li>
@@ -277,7 +277,7 @@ Submit patch
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2025-10-29 Wed 22:33</p>
+<p class="date">Created: 2025-10-29 Wed 22:46</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
