@@ -3,10 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-29 Wed 21:16 -->
+<!-- 2025-10-29 Wed 21:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LKMP Getting Started</title>
+<meta name="author" content="Albin Babu Varghese" />
+<meta name="description" content="My journey into Linux Kernel Bug Fixing as part of LKMP Fall 2025" />
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="https://albus-droid.github.io/portfolio/templates/style.css"/>
 <script src="https://albus-droid.github.io/portfolio/templates/typewriter-name.js" defer></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"><script src="https://albus-droid.github.io/portfolio/templates/highlight-code.js" defer></script>
@@ -55,231 +57,463 @@ hljs.highlightAll();
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org76709b7">1. Baby Steps</a></li>
-<li><a href="#orgcb4db01">2. Tools for Linux Kernel Bug Fixing</a>
+<li><a href="#baby-steps">1. Baby Steps</a>
 <ul>
-<li><a href="#org0b8a692">2.1. 1. Core Runtime Debugging</a></li>
-<li><a href="#orga5481d4">2.2. 2. Tracing &amp; Timing</a></li>
-<li><a href="#orgc2ec676">2.3. 3. Hang &amp; Stall Detectors</a></li>
-<li><a href="#org092ff53">2.4. 4. Sanitizers &amp; Checkers</a></li>
-<li><a href="#orgd0f8e29">2.5. 5. Post-Mortem &amp; Field Debugging</a></li>
-<li><a href="#org4092486">2.6. 6. Instrumentation &amp; Logging</a></li>
+<li><a href="#org7f30908">1.1. Typical Workflow</a></li>
 </ul>
 </li>
-<li><a href="#orga48bab9">3. Must have configs and options:</a></li>
+<li><a href="#tools">2. Tools for Linux Kernel Bug Fixing</a>
+<ul>
+<li><a href="#core-debugging">2.1. 1. Core Runtime Debugging</a>
+<ul>
+<li><a href="#org63ddd0d">2.1.1. QEMU</a></li>
+<li><a href="#orgdccfcd0">2.1.2. GDB (with vmlinux)</a></li>
+<li><a href="#orgf56ef32">2.1.3. KGDB</a></li>
+<li><a href="#orgac8946a">2.1.4. OpenOCD / JTAG</a></li>
+</ul>
+</li>
+<li><a href="#tracing">2.2. 2. Tracing &amp; Timing</a>
+<ul>
+<li><a href="#org252e7a8">2.2.1. Ftrace</a></li>
+<li><a href="#org0cf01b2">2.2.2. trace-cmd</a></li>
+<li><a href="#org9e68aec">2.2.3. perf / perf sched</a></li>
+</ul>
+</li>
+<li><a href="#detectors">2.3. 3. Hang &amp; Stall Detectors</a>
+<ul>
+<li><a href="#orgb6b64df">2.3.1. Hard/Soft Lockup Watchdogs</a></li>
+<li><a href="#org58c43ad">2.3.2. Hung Task Detector</a></li>
+<li><a href="#org6d867f3">2.3.3. RCU Stall Detector</a></li>
+</ul>
+</li>
+<li><a href="#sanitizers">2.4. 4. Sanitizers &amp; Checkers</a></li>
+<li><a href="#post-mortem">2.5. 5. Post-Mortem &amp; Field Debugging</a>
+<ul>
+<li><a href="#org796ed25">2.5.1. kdump / kexec + crash</a></li>
+<li><a href="#org49e3511">2.5.2. SysRq</a></li>
+</ul>
+</li>
+<li><a href="#logging">2.6. 6. Instrumentation &amp; Logging</a>
+<ul>
+<li><a href="#org216cf5e">2.6.1. printk / trace<sub>printk</sub></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#config">3. Essential Configuration</a>
+<ul>
+<li><a href="#org3c939e6">3.1. Kernel Build Configs</a></li>
+<li><a href="#org09d2717">3.2. Boot Command Line Options</a></li>
+</ul>
+</li>
+<li><a href="#next-steps">4. Next Steps</a></li>
+<li><a href="#resources">5. Resources</a></li>
 </ul>
 </div>
 </div>
+<blockquote>
 <p>
-It is with great happiness I&rsquo;m sharing that I was selected for the LKMP Fall 2025 and this is a small write where I write about the tools I will be using for this Bug Fixing Intership. I will be updating more as I get familiar with each one. I got inspiration for this from the wonderful session by &#x2014; and also after reading this posting by -&#x2014;
+It is with great happiness I&rsquo;m sharing that I was selected for the <b>LKMP Fall 2025</b> and this is a small write-up where I document the tools I will be using for this Bug Fixing Internship. I will be updating this as I get familiar with each tool. I got inspiration from the wonderful mentorship sessions and community resources.
 </p>
-<div id="outline-container-org76709b7" class="outline-2">
-<h2 id="org76709b7"><span class="section-number-2">1.</span> Baby Steps</h2>
-<div class="outline-text-2" id="text-1">
+</blockquote>
+<div id="outline-container-baby-steps" class="outline-2">
+<h2 id="baby-steps"><span class="section-number-2">1.</span> Baby Steps</h2>
+<div class="outline-text-2" id="text-baby-steps">
 <p>
-My first plan is to find a bug reported by syzbot and fix it, it could be from any subsystem. I just want to get my feet wet and see how it is going to be moving forward. I watched this mentorship session and got familiar with some of the tools people use for Bug Fixing. It will be discussed in the coming sections.
+My first plan is to find a bug reported by <b>syzbot</b> and fix it—it could be from any subsystem. I just want to get my feet wet and see how things evolve moving forward. I watched several mentorship sessions and got familiar with some of the tools people use for bug fixing.
 </p>
-
+</div>
+<div id="outline-container-org7f30908" class="outline-3">
+<h3 id="org7f30908"><span class="section-number-3">1.1.</span> Typical Workflow</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
-From what I understood from the video, this is how a typical workflow is going to be like.
+From what I understood, here&rsquo;s a typical kernel debugging workflow:
 </p>
 
 <ol class="org-ol">
-<li>Build kernel with `CONFIG<sub>DEBUG</sub><sub>INFO</sub>=y CONFIG<sub>FRAME</sub><sub>POINTER</sub>=y`</li>
-<li>Boot QEMU with `-s -S` and `nokaslr ftrace<sub>dump</sub><sub>on</sub><sub>oops</sub>`</li>
-<li>Attach GDB: `gdb vmlinux`, `target remote :1234`, set breakpoints</li>
-<li>Trace: `trace-cmd record &#x2026;` → `trace-cmd report`</li>
-<li>Measure scheduling: `perf sched record`, `perf sched latency sort max`</li>
-<li>Enable watchdogs &amp; hung task detectors</li>
-<li>Sprinkle `trace<sub>printk</sub>()` in suspected paths</li>
-<li>For production: configure <b>kdump</b>, analyze dumps with <b>crash</b></li>
+<li><b>Build kernel</b> with <code>CONFIG_DEBUG_INFO=y</code> <code>CONFIG_FRAME_POINTER=y</code></li>
+<li><b>Boot QEMU</b> with <code>-s -S</code> and <code>nokaslr ftrace_dump_on_oops</code></li>
+<li><b>Attach GDB</b>: <code>gdb vmlinux</code>, <code>target remote :1234</code>, set breakpoints</li>
+<li><b>Trace</b>: <code>trace-cmd record ...</code> → <code>trace-cmd report</code></li>
+<li><b>Measure scheduling</b>: <code>perf sched record</code>, <code>perf sched latency sort max</code></li>
+<li><b>Enable watchdogs</b> &amp; hung task detectors</li>
+<li><b>Sprinkle</b> <code>trace_printk()</code> in suspected paths</li>
+<li><b>For production</b>: configure <b>kdump</b>, analyze dumps with <b>crash</b></li>
 </ol>
 
 <p>
-But this since I am getting started I will start with a bug from reported by a syzkaller and will work my way along. I will start with `gdb` first. I&rsquo;m going to follow this guide by &#x2014; for that.
+Since I&rsquo;m just getting started, I&rsquo;ll begin with a bug reported by syzkaller and work my way through the process. My first tool will be <code>gdb</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgcb4db01" class="outline-2">
-<h2 id="orgcb4db01"><span class="section-number-2">2.</span> Tools for Linux Kernel Bug Fixing</h2>
-<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-tools" class="outline-2">
+<h2 id="tools"><span class="section-number-2">2.</span> Tools for Linux Kernel Bug Fixing</h2>
+<div class="outline-text-2" id="text-tools">
 <p>
-While watching the video I came across some tools as I mentioned, so I thought of writing it down so that it is easier for me to look up. Even though there is no single right way to find bugs I will use these as the dots that can connect me to the end result. I believe knowing a lot of technolgies is a plus, so we will have the flexiblity to find the easiest solutions.
+While watching videos and reading documentation, I came across various debugging tools. Even though there&rsquo;s no single right way to find bugs, I&rsquo;ll use these as guideposts. I believe knowing multiple technologies gives us flexibility to find the easiest solutions.
 </p>
 </div>
-<div id="outline-container-org0b8a692" class="outline-3">
-<h3 id="org0b8a692"><span class="section-number-3">2.1.</span> 1. Core Runtime Debugging</h3>
-<div class="outline-text-3" id="text-2-1">
-<ul class="org-ul">
-<li><b>QEMU</b>
-<ul class="org-ul">
-<li>Virtual machine emulator for running custom kernels.</li>
-<li>Safe, reproducible, scriptable test environment.</li>
-<li><p>
-Example:
+<div id="outline-container-core-debugging" class="outline-3">
+<h3 id="core-debugging"><span class="section-number-3">2.1.</span> 1. Core Runtime Debugging</h3>
+<div class="outline-text-3" id="text-core-debugging">
+</div>
+<div id="outline-container-org63ddd0d" class="outline-4">
+<h4 id="org63ddd0d"><span class="section-number-4">2.1.1.</span> QEMU</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+Virtual machine emulator for running custom kernels—provides a safe, reproducible, scriptable test environment.
 </p>
+
 <div class="org-src-container">
-<pre class="src src-bash">qemu-system-x86_64 -kernel bzImage -append "console=ttyS0 root=/dev/sda nokaslr" -s -S -nographic
+<pre class="src src-bash">qemu-system-x86_64 \
+  -kernel bzImage \
+  -append "console=ttyS0 root=/dev/sda nokaslr" \
+  -s -S \
+  -nographic
 </pre>
 </div>
-<ul class="org-ul">
-<li>`-s -S` exposes a GDB server and waits for attach.</li>
-</ul></li>
-</ul></li>
 
-<li><b>GDB (with vmlinux)</b>
 <ul class="org-ul">
-<li>Source-level debugger for the kernel in QEMU.</li>
-<li>Commands: `target remote :1234`, `bt`, `info threads`, `b panic`, `list`, `disassemble`.</li>
-</ul></li>
-
-<li><b>KGDB</b>
-<ul class="org-ul">
-<li>Stub for attaching GDB to real hardware (via serial/net).</li>
-</ul></li>
-
-<li><b>OpenOCD / JTAG</b>
-<ul class="org-ul">
-<li>Hardware debugging path for very early boot failures.</li>
-</ul></li>
+<li><code>-s -S</code> exposes a GDB server on port 1234 and waits for debugger to attach</li>
+<li><code>nokaslr</code> disables kernel address space layout randomization (easier debugging)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga5481d4" class="outline-3">
-<h3 id="orga5481d4"><span class="section-number-3">2.2.</span> 2. Tracing &amp; Timing</h3>
-<div class="outline-text-3" id="text-2-2">
-<ul class="org-ul">
-<li><b>Ftrace</b>
-<ul class="org-ul">
-<li>Built-in low-overhead tracer (&ldquo;flight recorder&rdquo;).</li>
-<li>Useful boot params:
-<ul class="org-ul">
-<li>`ftrace<sub>dump</sub><sub>on</sub><sub>oops</sub>`</li>
-<li>`traceoff<sub>on</sub><sub>warning</sub>`</li>
-<li>`panic<sub>on</sub><sub>warn</sub>=1`</li>
-<li>`trace<sub>event</sub>=sched:sched<sub>switch,cpu</sub><sub>idle</sub>`</li>
-</ul></li>
-</ul></li>
-
-<li><b>trace-cmd</b>
-<ul class="org-ul">
-<li>Front-end to Ftrace.</li>
-<li><p>
-Examples:
+<div id="outline-container-orgdccfcd0" class="outline-4">
+<h4 id="orgdccfcd0"><span class="section-number-4">2.1.2.</span> GDB (with vmlinux)</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+Source-level debugger for the kernel in QEMU.
 </p>
+
+<p>
+<b>Essential commands:</b>
+</p>
+<ul class="org-ul">
+<li><code>target remote :1234</code> - Connect to QEMU</li>
+<li><code>bt</code> - Backtrace (call stack)</li>
+<li><code>info threads</code> - List all threads</li>
+<li><code>b panic</code> - Set breakpoint at panic</li>
+<li><code>list</code> - Show source code</li>
+<li><code>disassemble</code> - Show assembly</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf56ef32" class="outline-4">
+<h4 id="orgf56ef32"><span class="section-number-4">2.1.3.</span> KGDB</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+Kernel debugger stub for attaching GDB to real hardware via serial or network connection.
+</p>
+</div>
+</div>
+<div id="outline-container-orgac8946a" class="outline-4">
+<h4 id="orgac8946a"><span class="section-number-4">2.1.4.</span> OpenOCD / JTAG</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<p>
+Hardware debugging path for very early boot failures and embedded systems.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-tracing" class="outline-3">
+<h3 id="tracing"><span class="section-number-3">2.2.</span> 2. Tracing &amp; Timing</h3>
+<div class="outline-text-3" id="text-tracing">
+</div>
+<div id="outline-container-org252e7a8" class="outline-4">
+<h4 id="org252e7a8"><span class="section-number-4">2.2.1.</span> Ftrace</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+Built-in low-overhead tracer (&ldquo;flight recorder&rdquo;) that&rsquo;s always available in the kernel.
+</p>
+
+<p>
+<b>Useful boot parameters:</b>
+</p>
+<ul class="org-ul">
+<li><code>ftrace_dump_on_oops</code> - Dump trace buffer on kernel crash</li>
+<li><code>traceoff_on_warning</code> - Stop tracing on WARN</li>
+<li><code>panic_on_warn=1</code> - Panic on any warning</li>
+<li><code>trace_event=sched:sched_switch,cpu_idle</code> - Enable specific trace events</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0cf01b2" class="outline-4">
+<h4 id="org0cf01b2"><span class="section-number-4">2.2.2.</span> trace-cmd</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+User-friendly front-end to Ftrace.
+</p>
+
 <div class="org-src-container">
-<pre class="src src-bash">trace-cmd record -p function_graph -g kfree
+<pre class="src src-bash"># Record function graph for kfree
+trace-cmd record -p function_graph -g kfree
+
+# View the recorded trace
 trace-cmd report
 </pre>
-</div></li>
-</ul></li>
-
-<li><b>perf / perf sched</b>
-<ul class="org-ul">
-<li>Scheduler profiling &amp; latency analysis.</li>
-<li><p>
-Examples:
+</div>
+</div>
+</div>
+<div id="outline-container-org9e68aec" class="outline-4">
+<h4 id="org9e68aec"><span class="section-number-4">2.2.3.</span> perf / perf sched</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+Scheduler profiling and latency analysis tool.
 </p>
+
 <div class="org-src-container">
-<pre class="src src-bash">perf sched record -- sleep 10
+<pre class="src src-bash"># Record scheduling events
+perf sched record -- sleep 10
+
+# Analyze scheduling latency
 perf sched latency sort max
+
+# View raw events
 perf script
 </pre>
-</div></li>
-</ul></li>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-detectors" class="outline-3">
+<h3 id="detectors"><span class="section-number-3">2.3.</span> 3. Hang &amp; Stall Detectors</h3>
+<div class="outline-text-3" id="text-detectors">
+</div>
+<div id="outline-container-orgb6b64df" class="outline-4">
+<h4 id="orgb6b64df"><span class="section-number-4">2.3.1.</span> Hard/Soft Lockup Watchdogs</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+Detect CPUs that:
+</p>
+<ul class="org-ul">
+<li><b>Hard lockup</b>: Stop servicing interrupts completely</li>
+<li><b>Soft lockup</b>: Spin in kernel space too long</li>
 </ul>
-</div>
-</div>
-<div id="outline-container-orgc2ec676" class="outline-3">
-<h3 id="orgc2ec676"><span class="section-number-3">2.3.</span> 3. Hang &amp; Stall Detectors</h3>
-<div class="outline-text-3" id="text-2-3">
-<ul class="org-ul">
-<li><b>Hard/Soft Lockup Watchdogs</b>
-<ul class="org-ul">
-<li>Detect CPUs that stop servicing interrupts (hard) or spin in kernel too long (soft).</li>
-<li>Example: `nmi<sub>watchdog</sub>=1 watchdog<sub>thresh</sub>=2`</li>
-</ul></li>
 
-<li><b>Hung Task Detector</b>
-<ul class="org-ul">
-<li>Detects tasks stuck in uninterruptible sleep.</li>
-<li>Example: `echo 10 &gt; /proc/sys/kernel/hung<sub>task</sub><sub>timeout</sub><sub>secs</sub>`</li>
-</ul></li>
+<pre class="example" id="org3cfe999">
+nmi_watchdog=1 watchdog_thresh=2
+</pre>
+</div>
+</div>
+<div id="outline-container-org58c43ad" class="outline-4">
+<h4 id="org58c43ad"><span class="section-number-4">2.3.2.</span> Hung Task Detector</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+Detects processes stuck in uninterruptible sleep (D state).
+</p>
 
-<li><b>RCU Stall Detector</b>
-<ul class="org-ul">
-<li>Detect CPUs failing to pass RCU quiescent states.</li>
-<li>Example: `rcupdate.rcu<sub>cpu</sub><sub>stall</sub><sub>timeout</sub>=20`, `panic<sub>on</sub><sub>rcu</sub><sub>stall</sub>=1`</li>
-</ul></li>
-</ul>
+<div class="org-src-container">
+<pre class="src src-bash">echo 10 &gt; /proc/sys/kernel/hung_task_timeout_secs
+</pre>
 </div>
 </div>
-<div id="outline-container-org092ff53" class="outline-3">
-<h3 id="org092ff53"><span class="section-number-3">2.4.</span> 4. Sanitizers &amp; Checkers</h3>
-<div class="outline-text-3" id="text-2-4">
-<dl class="org-dl">
-<dt><b>KASAN</b></dt><dd>Detects memory bugs (UAF, OOB).</dd>
-<dt><b>KCSAN</b></dt><dd>Detects concurrency/data race bugs.</dd>
-<dt><b>LOCKDEP</b></dt><dd>Checks locking correctness.</dd>
-<dt><b>Preempt/IRQ-off tracers</b></dt><dd>Find long latency sections.</dd>
-</dl>
 </div>
-</div>
-<div id="outline-container-orgd0f8e29" class="outline-3">
-<h3 id="orgd0f8e29"><span class="section-number-3">2.5.</span> 5. Post-Mortem &amp; Field Debugging</h3>
-<div class="outline-text-3" id="text-2-5">
-<ul class="org-ul">
-<li><b>kdump / kexec + crash</b>
-<ul class="org-ul">
-<li>On panic, boot capture kernel and dump vmcore.</li>
-<li>Analyze with `crash`.</li>
-</ul></li>
+<div id="outline-container-org6d867f3" class="outline-4">
+<h4 id="org6d867f3"><span class="section-number-4">2.3.3.</span> RCU Stall Detector</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+Detects CPUs failing to pass RCU quiescent states (causing RCU grace periods to stall).
+</p>
 
-<li><b>SysRq</b>
-<ul class="org-ul">
-<li>Magic key combos for emergency actions and stack dumps.</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org4092486" class="outline-3">
-<h3 id="org4092486"><span class="section-number-3">2.6.</span> 6. Instrumentation &amp; Logging</h3>
-<div class="outline-text-3" id="text-2-6">
-<ul class="org-ul">
-<li><b>printk / trace<sub>printk</sub></b>
-<ul class="org-ul">
-<li>Add breadcrumbs in code.</li>
-<li>`trace<sub>printk</sub>` writes into Ftrace buffer (less console overhead).</li>
-<li>Use sampling (every Nth hit) to avoid flooding logs.</li>
-</ul></li>
-</ul>
+<pre class="example" id="orgc8510a0">
+rcupdate.rcu_cpu_stall_timeout=20 panic_on_rcu_stall=1
+</pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orga48bab9" class="outline-2">
-<h2 id="orga48bab9"><span class="section-number-2">3.</span> Must have configs and options:</h2>
-<div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li>Kernel configs:
-<ul class="org-ul">
-<li>`CONFIG<sub>DEBUG</sub><sub>INFO</sub>=y`</li>
-<li>`CONFIG<sub>FRAME</sub><sub>POINTER</sub>=y`</li>
-<li>`CONFIG<sub>GDB</sub><sub>SCRIPTS</sub>=y`</li>
-</ul></li>
+<div id="outline-container-sanitizers" class="outline-3">
+<h3 id="sanitizers"><span class="section-number-3">2.4.</span> 4. Sanitizers &amp; Checkers</h3>
+<div class="outline-text-3" id="text-sanitizers">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
-<li>Useful cmdline:
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Tool</th>
+<th scope="col" class="org-left">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><b>KASAN</b></td>
+<td class="org-left">Detects memory bugs (use-after-free, out-of-bounds)</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>KCSAN</b></td>
+<td class="org-left">Detects data races and concurrency bugs</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>LOCKDEP</b></td>
+<td class="org-left">Validates locking correctness and deadlock detection</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>Preempt/IRQ-off tracers</b></td>
+<td class="org-left">Find sections with long latency</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-post-mortem" class="outline-3">
+<h3 id="post-mortem"><span class="section-number-3">2.5.</span> 5. Post-Mortem &amp; Field Debugging</h3>
+<div class="outline-text-3" id="text-post-mortem">
+</div>
+<div id="outline-container-org796ed25" class="outline-4">
+<h4 id="org796ed25"><span class="section-number-4">2.5.1.</span> kdump / kexec + crash</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<p>
+When the kernel panics:
+</p>
+<ol class="org-ol">
+<li><code>kexec</code> boots a capture kernel</li>
+<li>Memory is dumped to <code>vmcore</code></li>
+<li>Analyze with <code>crash</code> utility for post-mortem debugging</li>
+</ol>
+
+<p>
+This is essential for production systems where you can&rsquo;t run live debuggers.
+</p>
+</div>
+</div>
+<div id="outline-container-org49e3511" class="outline-4">
+<h4 id="org49e3511"><span class="section-number-4">2.5.2.</span> SysRq</h4>
+<div class="outline-text-4" id="text-2-5-2">
+<p>
+Magic key combinations for emergency actions:
+</p>
 <ul class="org-ul">
-<li>`nokaslr`</li>
-<li>`panic<sub>on</sub><sub>warn</sub>=1`</li>
-<li>`traceoff<sub>on</sub><sub>warning</sub>`</li>
-<li>`ftrace<sub>dump</sub><sub>on</sub><sub>oops</sub>`</li>
-</ul></li>
+<li><code>Alt + SysRq + t</code> - Show task states</li>
+<li><code>Alt + SysRq + w</code> - Show blocked tasks</li>
+<li><code>Alt + SysRq + m</code> - Show memory info</li>
+<li><code>Alt + SysRq + c</code> - Trigger crash dump</li>
 </ul>
+</div>
+</div>
+</div>
+<div id="outline-container-logging" class="outline-3">
+<h3 id="logging"><span class="section-number-3">2.6.</span> 6. Instrumentation &amp; Logging</h3>
+<div class="outline-text-3" id="text-logging">
+</div>
+<div id="outline-container-org216cf5e" class="outline-4">
+<h4 id="org216cf5e"><span class="section-number-4">2.6.1.</span> printk / trace<sub>printk</sub></h4>
+<div class="outline-text-4" id="text-2-6-1">
+<p>
+<b>printk:</b> Traditional kernel logging
+</p>
+<div class="org-src-container">
+<pre class="src src-c">printk(KERN_DEBUG "Debug info: value=%d\n", value);
+</pre>
+</div>
+
+<p>
+<b>trace<sub>printk</sub>:</b> Writes to Ftrace buffer (much lower overhead)
+</p>
+<div class="org-src-container">
+<pre class="src src-c">trace_printk("Fast logging: value=%d\n", value);
+</pre>
+</div>
+
+<div class="note" id="org9215305">
+<p>
+Use sampling (log every Nth occurrence) to avoid flooding logs and affecting timing.
+</p>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-config" class="outline-2">
+<h2 id="config"><span class="section-number-2">3.</span> Essential Configuration</h2>
+<div class="outline-text-2" id="text-config">
+</div>
+<div id="outline-container-org3c939e6" class="outline-3">
+<h3 id="org3c939e6"><span class="section-number-3">3.1.</span> Kernel Build Configs</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Enable these in your <code>.config</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-conf">CONFIG_DEBUG_INFO=y           # Include debug symbols
+CONFIG_FRAME_POINTER=y        # Better backtraces
+CONFIG_GDB_SCRIPTS=y          # GDB helper scripts
+CONFIG_DEBUG_KERNEL=y         # General debug options
+CONFIG_KASAN=y                # Address sanitizer (optional but recommended)
+CONFIG_LOCKDEP=y              # Lock dependency validator
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org09d2717" class="outline-3">
+<h3 id="org09d2717"><span class="section-number-3">3.2.</span> Boot Command Line Options</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Add these to your kernel command line for better debugging:
+</p>
+
+<pre class="example" id="orga49f32e">
+nokaslr                       # Disable ASLR for easier debugging
+panic_on_warn=1               # Treat warnings as panics
+traceoff_on_warning           # Stop tracing on warnings
+ftrace_dump_on_oops           # Dump trace buffer on crash
+debug                         # Enable debug messages
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-next-steps" class="outline-2">
+<h2 id="next-steps"><span class="section-number-2">4.</span> Next Steps</h2>
+<div class="outline-text-2" id="text-next-steps">
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> Set up QEMU testing environment</li>
+<li class="off"><code>[&#xa0;]</code> Build debug kernel with proper configs</li>
+<li class="off"><code>[&#xa0;]</code> Pick a syzbot bug to investigate</li>
+<li class="off"><code>[&#xa0;]</code> Document the debugging process</li>
+<li class="off"><code>[&#xa0;]</code> Submit first patch!</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-resources" class="outline-2">
+<h2 id="resources"><span class="section-number-2">5.</span> Resources</h2>
+<div class="outline-text-2" id="text-resources">
+<ul class="org-ul">
+<li><a href="https://docs.kernel.org/dev-tools/index.html">Kernel Development Tools Documentation</a></li>
+<li><a href="https://www.kernel.org/doc/html/latest/trace/ftrace.html">Ftrace Documentation</a></li>
+<li><a href="https://syzkaller.appspot.com/">Syzbot Dashboard</a></li>
+<li><a href="https://kernelnewbies.org/">Kernel Newbies</a></li>
+</ul>
+
+<div class="org-center">
+<p>
+&#x2014;
+</p>
+
+<p>
+<i>This document is a living document and will be updated as I progress through LKMP.</i>
+</p>
+
+<p>
+<i>Last updated: 2025-10-29</i>
+</p>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2025-10-29 Wed 21:16</p>
+<p class="date">Date: 2025-10-29</p>
+<p class="author">Author: Albin Babu Varghese</p>
+<p class="date">Created: 2025-10-29 Wed 21:25</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
