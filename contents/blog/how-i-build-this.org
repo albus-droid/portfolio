@@ -1,63 +1,130 @@
 #+TITLE: How I Built This Website
 #+OPTIONS: toc:nil num:nil html-postamble:nil
 
-I stumbled upon [[https://ogbe.net/blog/emacs_org_static_site][this blog post]] about building a static site with Emacs' Org mode, and it immediately sparked something in me. At the time, I was thinking about building a blog for myself—not just as a project, but as a way to showcase what I've built and share my process. So I decided to dive in and build my own static site generator.
+I stumbled upon [[https://ogbe.net/blog/emacs_org_static_site][this blog post]] about building a static site with Emacs Org mode, and it clicked immediately. I was thinking about starting a blog to document my work and share what I'm learning, so I decided to build my own static site generator instead of using something off-the-shelf.
 
 * Why Build My Own SSG?
 
-There were other options. I could've simply used something like Hugo or Jekyll, but I thought, why not build something for myself? I wanted to understand the process from the ground up, and I was drawn to the idea of using Emacs' HTML publishing mode as the foundation.
+Sure, Hugo and Jekyll exist. They're great tools. But I wanted to understand the process from scratch, and I was curious about using Emacs' built-in HTML publishing capabilities as the foundation.
 
-Is this a complete SSG? Not really. It's maybe 20% of what a typical SSG offers, but it does 80% of the functionality I need. And that's exactly the point—I built what I needed, nothing more.
+Is this a complete SSG? No. It's maybe 20% of what a typical SSG offers, but it handles 80% of what I actually need. That's the sweet spot - build what you need, skip the rest.
 
-* What This Can Do
+* What This Does
 
-** Export my existing Org files to HTML within a nice CSS template
-** Export my LaTeX resume to HTML and display it on the resume page
-** Automate the build process with a Makefile
+- Exports Org files to HTML with a custom template
+- Generates the site structure automatically
+- Handles syntax highlighting for code blocks
+- Adds interactive features like copy buttons and back-to-top
+- Supports light/dark theme switching
+- Builds everything with a simple ~make blog~ command
 
-* The Design Vision
+* The Design
 
-I wanted something minimalist and developer-focused: a dark background with a golden accent color, monospace fonts (JetBrains Mono), and a terminal-inspired aesthetic. The landing page features a typewriter effect for my name, and simple icon buttons linking to GitHub, LinkedIn, and email.
+I wanted something minimal and terminal-inspired. Dark background with golden accents, monospace fonts everywhere, no clutter. The landing page has a typewriter effect for my name and simple icon links to GitHub, LinkedIn, and email.
 
-The goal was to create something that felt like *me*—a blend of retro and modern minimalism.
+The aesthetic is somewhere between retro terminal and modern minimalism. Clean, functional, and distinctly mine.
 
 * The Stack
 
-I kept it simple:
-- *HTML* for structure
-- *CSS* for theming (dark mode with golden accents)
-- *JavaScript* for the typewriter animation and blinking cursor
-- *Pandoc* for converting Org files to HTML
-- *Makefile* for automation
+- *Emacs Org mode* for content and publishing
+- *HTML/CSS* for structure and theming
+- *JavaScript* for interactive features
+- *Highlight.js* for syntax highlighting
+- *Makefile* for build automation
+- *GitHub Actions* for CI/CD
+- *Cloudflare Pages* for hosting
+
+* Key Features
+
+** Syntax Highlighting
+
+Using Highlight.js with the Atom One Dark theme. Code blocks automatically detect the language from Org's ~#+begin_src~ blocks. Added a copy button that appears on hover - small touch, but makes code snippets way more useful.
+
+** Automated Builds
+
+GitHub Actions watches the ~contents/~ folder. Any push triggers ~make blog~, builds the site, commits the ~dist/~ folder back to the repo, and Cloudflare Pages deploys automatically. Zero manual steps.
+
+* The Build Process
+
+The ~publish.el~ file does the heavy lifting. It:
+
+1. Fetches the HTML template from the live site
+2. Processes all ~.org~ files in ~contents/~
+3. Applies the template as a preamble
+4. Injects CSS and JavaScript links
+5. Outputs everything to ~dist/~
+
+Running ~make blog~ just calls ~emacs --batch -l publish.el~. Simple, reproducible, no complex build system needed.
+
+* The Template System
+
+The layout lives in ~layout-fragment.html~. It's just the header section - navigation, social links, name with typewriter effect. Org mode's ~:html-preamble~ inserts it at the top of every page.
+
+Content headings start at ~h3~ because the page title is ~h1~ and table of contents uses ~h2~. This keeps the semantic HTML clean.
+
+* Styling Philosophy
+
+CSS uses HSL color variables for theming. The dark theme uses ~hsl(0 0% 13%)~ for background and ~hsl(42 100% 50%)~ for the golden accent. Light theme flips to ~hsl(0 0% 98%)~ background with adjusted accent colors.
+
+Inline code uses monospace font but inherits the text color - no background boxes or borders. Just a font change. Keeps it minimal.
+
+Code blocks get the full treatment - background, border, syntax highlighting, line numbers for blocks over 5 lines, and that copy button.
 
 * The Typewriter Effect
-Getting the typewriter animation smooth took iteration. I had to:
-- Loop through each character with a delay
-- Add a blinking block cursor that overlays the final character
-- Respect ~prefers-reduced-motion~ for accessibility
 
-The cursor animation uses CSS ~@keyframes~ to simulate an old-school terminal, and I inverted the colors on the last character to make it feel authentic.
+The name animation on the landing page types out character by character with a blinking cursor. Had to:
 
-* The Iterative Process
+- Loop through each character with ~setTimeout~
+- Add a CSS-animated cursor that blinks
+- Make sure it respects ~prefers-reduced-motion~
+- Handle the cursor position properly at the end
 
-This didn't come together in one sitting. My process looked like this:
-1. Start with basic HTML
-2. Add CSS styling
-3. Create a Makefile for automation
-4. Add header/footer includes
-5. Handle metadata properly
-6. Add a "Download PDF" button
+The cursor uses CSS ~@keyframes~ to fade in and out, giving it that authentic terminal feel.
 
-Each step introduced a new roadblock that I solved piece by piece. That's the beauty of building from scratch—you learn by debugging.
+* Challenges and Solutions
+
+** Challenge: Inline code wasn't styled
+Solution: Added CSS targeting ~:not(pre) > code~ to style inline code differently from code blocks.
+
+** Challenge: Manual builds were tedious
+Solution: Set up GitHub Actions to build and commit on any push to ~contents/~.
+
+** Challenge: Title was always ~h1~
+Solution: Used ~:html-toplevel-hlevel 3~ to make content headings start at ~h3~, keeping proper semantic structure.
+
+* What I Learned
+
+Building from scratch taught me more about HTML semantics, CSS organization, and build systems than any tutorial. You learn by solving real problems, not by following step-by-step guides.
+
+The 80/20 rule applies perfectly here. I spent 20% of the effort to get 80% of the functionality. The remaining 20% of features would take 80% more effort, and I don't need them yet.
+
+Starting simple and adding features incrementally is the way. Don't try to build everything at once.
 
 * Next Steps
 
-- Implement a dark/light theme toggle
-- Add syntax highlighting for code blocks
-- Create an RSS feed
+- Add line numbers to longer code blocks (done via Highlight.js plugin)
+- Improve mobile navigation with a hamburger menu
+- Add article tags and filtering
+- Create a sitemap for SEO
+- Add related posts suggestions
+- Improve RSS feed with full content
+
+* Why This Approach Works
+
+It's fast. No JavaScript framework, no build step complexity, just static HTML with progressive enhancement. Pages load instantly, work without JavaScript (mostly), and are easy to debug.
+
+It's maintainable. Everything is in plain text Org files. No database, no CMS, no admin panel. Just files and version control.
+
+It's mine. I understand every piece. When something breaks, I know where to look. When I want a feature, I know how to add it.
 
 * Conclusion
 
-Building your own static site generator isn't for everyone, but if you enjoy understanding how things work under the hood, I highly recommend it. You'll learn more about build systems, templating, and web standards than any tutorial could teach you.
+Building your own static site generator isn't for everyone. But if you want to understand how things work, enjoy solving problems, and value having complete control over your tools, it's incredibly rewarding.
 
-And at the end of the day, you'll have something that's uniquely yours.
+You'll learn more by building than by using someone else's solution. And at the end, you'll have something that's uniquely yours.
+
+The code is simple, the design is clean, and it does exactly what I need. That's enough.
+
+-----
+
+Source code: https://github.com/albus-droid/portfolio
