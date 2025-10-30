@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-29 Wed 22:23 -->
+<!-- 2025-10-29 Wed 22:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>How I Built This Website</title>
@@ -54,9 +54,9 @@ hljs.highlightAll();
 <p>
 I stumbled upon <a href="https://ogbe.net/blog/emacs_org_static_site">this blog post</a> about building a static site with Emacs&rsquo; Org mode, and it immediately sparked something in me. At the time, I was thinking about building a blog for myself—not just as a project, but as a way to showcase what I&rsquo;ve built and share my process. So I decided to dive in and build my own static site generator.
 </p>
-<div id="outline-container-orgd926a3c" class="outline-2">
-<h2 id="orgd926a3c">Why Build My Own SSG?</h2>
-<div class="outline-text-2" id="text-orgd926a3c">
+<div id="outline-container-orgeea846b" class="outline-2">
+<h2 id="orgeea846b">Why Build My Own SSG?</h2>
+<div class="outline-text-2" id="text-orgeea846b">
 <p>
 There were other options. I could&rsquo;ve simply used something like Hugo or Jekyll, but I thought, why not build something for myself? I wanted to understand the process from the ground up, and I was drawn to the idea of using Emacs&rsquo; HTML publishing mode as the foundation.
 </p>
@@ -66,23 +66,23 @@ Is this a complete SSG? Not really. It&rsquo;s maybe 20% of what a typical SSG o
 </p>
 </div>
 </div>
-<div id="outline-container-org0f46b56" class="outline-2">
-<h2 id="org0f46b56">What This Can Do</h2>
-<div class="outline-text-2" id="text-org0f46b56">
+<div id="outline-container-org36511b3" class="outline-2">
+<h2 id="org36511b3">What This Can Do</h2>
+<div class="outline-text-2" id="text-org36511b3">
 </div>
-<div id="outline-container-orgb40cc0c" class="outline-3">
-<h3 id="orgb40cc0c">Export my existing Org files to HTML within a nice CSS template</h3>
+<div id="outline-container-org4c9aef0" class="outline-3">
+<h3 id="org4c9aef0">Export my existing Org files to HTML within a nice CSS template</h3>
 </div>
-<div id="outline-container-org2857472" class="outline-3">
-<h3 id="org2857472">Export my LaTeX resume to HTML and display it on the resume page</h3>
+<div id="outline-container-org448c938" class="outline-3">
+<h3 id="org448c938">Export my LaTeX resume to HTML and display it on the resume page</h3>
 </div>
-<div id="outline-container-orgff698bd" class="outline-3">
-<h3 id="orgff698bd">Automate the build process with a Makefile</h3>
+<div id="outline-container-org1a5db3e" class="outline-3">
+<h3 id="org1a5db3e">Automate the build process with a Makefile</h3>
 </div>
 </div>
-<div id="outline-container-orgcfdf270" class="outline-2">
-<h2 id="orgcfdf270">The Design Vision</h2>
-<div class="outline-text-2" id="text-orgcfdf270">
+<div id="outline-container-org74e533e" class="outline-2">
+<h2 id="org74e533e">The Design Vision</h2>
+<div class="outline-text-2" id="text-org74e533e">
 <p>
 I wanted something minimalist and developer-focused: a dark background with a golden accent color, monospace fonts (JetBrains Mono), and a terminal-inspired aesthetic. The landing page features a typewriter effect for my name, and simple icon buttons linking to GitHub, LinkedIn, and email.
 </p>
@@ -92,9 +92,9 @@ The goal was to create something that felt like *me*—a blend of retro and mode
 </p>
 </div>
 </div>
-<div id="outline-container-org67b2c81" class="outline-2">
-<h2 id="org67b2c81">The Stack</h2>
-<div class="outline-text-2" id="text-org67b2c81">
+<div id="outline-container-org0882740" class="outline-2">
+<h2 id="org0882740">The Stack</h2>
+<div class="outline-text-2" id="text-org0882740">
 <p>
 I kept it simple:
 </p>
@@ -107,9 +107,9 @@ I kept it simple:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd4f953f" class="outline-2">
-<h2 id="orgd4f953f">The Typewriter Effect</h2>
-<div class="outline-text-2" id="text-orgd4f953f">
+<div id="outline-container-org5d1b0cf" class="outline-2">
+<h2 id="org5d1b0cf">The Typewriter Effect</h2>
+<div class="outline-text-2" id="text-org5d1b0cf">
 <p>
 Getting the typewriter animation smooth took iteration. I had to:
 </p>
@@ -124,9 +124,9 @@ The cursor animation uses CSS <code>@keyframes</code> to simulate an old-school 
 </p>
 </div>
 </div>
-<div id="outline-container-org15b0cbe" class="outline-2">
-<h2 id="org15b0cbe">The Iterative Process</h2>
-<div class="outline-text-2" id="text-org15b0cbe">
+<div id="outline-container-orgd77933d" class="outline-2">
+<h2 id="orgd77933d">The Iterative Process</h2>
+<div class="outline-text-2" id="text-orgd77933d">
 <p>
 This didn&rsquo;t come together in one sitting. My process looked like this:
 </p>
@@ -144,9 +144,9 @@ Each step introduced a new roadblock that I solved piece by piece. That&rsquo;s 
 </p>
 </div>
 </div>
-<div id="outline-container-orgf5a91e3" class="outline-2">
-<h2 id="orgf5a91e3">Next Steps</h2>
-<div class="outline-text-2" id="text-orgf5a91e3">
+<div id="outline-container-org296edcc" class="outline-2">
+<h2 id="org296edcc">Next Steps</h2>
+<div class="outline-text-2" id="text-org296edcc">
 <ul class="org-ul">
 <li>Implement a dark/light theme toggle</li>
 <li>Add syntax highlighting for code blocks</li>
@@ -154,9 +154,9 @@ Each step introduced a new roadblock that I solved piece by piece. That&rsquo;s 
 </ul>
 </div>
 </div>
-<div id="outline-container-orge454352" class="outline-2">
-<h2 id="orge454352">Conclusion</h2>
-<div class="outline-text-2" id="text-orge454352">
+<div id="outline-container-org6d40ecd" class="outline-2">
+<h2 id="org6d40ecd">Conclusion</h2>
+<div class="outline-text-2" id="text-org6d40ecd">
 <p>
 Building your own static site generator isn&rsquo;t for everyone, but if you enjoy understanding how things work under the hood, I highly recommend it. You&rsquo;ll learn more about build systems, templating, and web standards than any tutorial could teach you.
 </p>
