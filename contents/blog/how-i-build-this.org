@@ -127,4 +127,4 @@ The code is simple, the design is clean, and it does exactly what I need. That's
 
 -----
 
-Source code: https://github.com/albus-droid/portfolio
+Check out source code at https://github.com/albus-droid/portfolio
