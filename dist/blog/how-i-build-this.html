@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-29 Wed 23:09 -->
+<!-- 2025-10-30 Thu 02:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>How I Built This Website</title>
@@ -51,12 +51,13 @@ hljs.highlightAll();
 </script>
 </div>
 <div id="content" class="content">
+<h1 class="title">How I Built This Website</h1>
 <p>
 I stumbled upon <a href="https://ogbe.net/blog/emacs_org_static_site">this blog post</a> about building a static site with Emacs&rsquo; Org mode, and it immediately sparked something in me. At the time, I was thinking about building a blog for myself—not just as a project, but as a way to showcase what I&rsquo;ve built and share my process. So I decided to dive in and build my own static site generator.
 </p>
-<div id="outline-container-orgda8d4b0" class="outline-3">
-<h3 id="orgda8d4b0">Why Build My Own SSG?</h3>
-<div class="outline-text-3" id="text-orgda8d4b0">
+<div id="outline-container-org8a62bc0" class="outline-3">
+<h3 id="org8a62bc0">Why Build My Own SSG?</h3>
+<div class="outline-text-3" id="text-org8a62bc0">
 <p>
 There were other options. I could&rsquo;ve simply used something like Hugo or Jekyll, but I thought, why not build something for myself? I wanted to understand the process from the ground up, and I was drawn to the idea of using Emacs&rsquo; HTML publishing mode as the foundation.
 </p>
@@ -66,23 +67,23 @@ Is this a complete SSG? Not really. It&rsquo;s maybe 20% of what a typical SSG o
 </p>
 </div>
 </div>
-<div id="outline-container-org356d05d" class="outline-3">
-<h3 id="org356d05d">What This Can Do</h3>
-<div class="outline-text-3" id="text-org356d05d">
+<div id="outline-container-orgda791ec" class="outline-3">
+<h3 id="orgda791ec">What This Can Do</h3>
+<div class="outline-text-3" id="text-orgda791ec">
 </div>
-<div id="outline-container-orgcf1da1f" class="outline-4">
-<h4 id="orgcf1da1f">Export my existing Org files to HTML within a nice CSS template</h4>
+<div id="outline-container-org880cc83" class="outline-4">
+<h4 id="org880cc83">Export my existing Org files to HTML within a nice CSS template</h4>
 </div>
-<div id="outline-container-org6299b5d" class="outline-4">
-<h4 id="org6299b5d">Export my LaTeX resume to HTML and display it on the resume page</h4>
+<div id="outline-container-org543ce52" class="outline-4">
+<h4 id="org543ce52">Export my LaTeX resume to HTML and display it on the resume page</h4>
 </div>
-<div id="outline-container-org282099f" class="outline-4">
-<h4 id="org282099f">Automate the build process with a Makefile</h4>
+<div id="outline-container-org2e48c7e" class="outline-4">
+<h4 id="org2e48c7e">Automate the build process with a Makefile</h4>
 </div>
 </div>
-<div id="outline-container-org8e99685" class="outline-3">
-<h3 id="org8e99685">The Design Vision</h3>
-<div class="outline-text-3" id="text-org8e99685">
+<div id="outline-container-org40dc5b2" class="outline-3">
+<h3 id="org40dc5b2">The Design Vision</h3>
+<div class="outline-text-3" id="text-org40dc5b2">
 <p>
 I wanted something minimalist and developer-focused: a dark background with a golden accent color, monospace fonts (JetBrains Mono), and a terminal-inspired aesthetic. The landing page features a typewriter effect for my name, and simple icon buttons linking to GitHub, LinkedIn, and email.
 </p>
@@ -92,9 +93,9 @@ The goal was to create something that felt like *me*—a blend of retro and mode
 </p>
 </div>
 </div>
-<div id="outline-container-orgf0623f0" class="outline-3">
-<h3 id="orgf0623f0">The Stack</h3>
-<div class="outline-text-3" id="text-orgf0623f0">
+<div id="outline-container-orgc35cc84" class="outline-3">
+<h3 id="orgc35cc84">The Stack</h3>
+<div class="outline-text-3" id="text-orgc35cc84">
 <p>
 I kept it simple:
 </p>
@@ -107,9 +108,9 @@ I kept it simple:
 </ul>
 </div>
 </div>
-<div id="outline-container-org95d5a91" class="outline-3">
-<h3 id="org95d5a91">The Typewriter Effect</h3>
-<div class="outline-text-3" id="text-org95d5a91">
+<div id="outline-container-org442206d" class="outline-3">
+<h3 id="org442206d">The Typewriter Effect</h3>
+<div class="outline-text-3" id="text-org442206d">
 <p>
 Getting the typewriter animation smooth took iteration. I had to:
 </p>
@@ -124,9 +125,9 @@ The cursor animation uses CSS <code>@keyframes</code> to simulate an old-school 
 </p>
 </div>
 </div>
-<div id="outline-container-orgd9d05c7" class="outline-3">
-<h3 id="orgd9d05c7">The Iterative Process</h3>
-<div class="outline-text-3" id="text-orgd9d05c7">
+<div id="outline-container-org8a4165e" class="outline-3">
+<h3 id="org8a4165e">The Iterative Process</h3>
+<div class="outline-text-3" id="text-org8a4165e">
 <p>
 This didn&rsquo;t come together in one sitting. My process looked like this:
 </p>
@@ -144,9 +145,9 @@ Each step introduced a new roadblock that I solved piece by piece. That&rsquo;s 
 </p>
 </div>
 </div>
-<div id="outline-container-orge659d83" class="outline-3">
-<h3 id="orge659d83">Next Steps</h3>
-<div class="outline-text-3" id="text-orge659d83">
+<div id="outline-container-org2f02b8f" class="outline-3">
+<h3 id="org2f02b8f">Next Steps</h3>
+<div class="outline-text-3" id="text-org2f02b8f">
 <ul class="org-ul">
 <li>Implement a dark/light theme toggle</li>
 <li>Add syntax highlighting for code blocks</li>
@@ -154,9 +155,9 @@ Each step introduced a new roadblock that I solved piece by piece. That&rsquo;s 
 </ul>
 </div>
 </div>
-<div id="outline-container-org0915e77" class="outline-3">
-<h3 id="org0915e77">Conclusion</h3>
-<div class="outline-text-3" id="text-org0915e77">
+<div id="outline-container-orgfdf9fdd" class="outline-3">
+<h3 id="orgfdf9fdd">Conclusion</h3>
+<div class="outline-text-3" id="text-orgfdf9fdd">
 <p>
 Building your own static site generator isn&rsquo;t for everyone, but if you enjoy understanding how things work under the hood, I highly recommend it. You&rsquo;ll learn more about build systems, templating, and web standards than any tutorial could teach you.
 </p>
