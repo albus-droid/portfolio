@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-29 Wed 20:29 -->
+<!-- 2025-10-29 Wed 20:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="https://albus-droid.github.io/portfolio/templates/style.css"/>
-<script src="https://albus-droid.github.io/portfolio/templates/typewriter-name.js" defer></script>
+<script src="https://albus-droid.github.io/portfolio/templates/typewriter-name.js" defer></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"><script src="https://albus-droid.github.io/portfolio/templates/highlight-code.js" defer></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -31,6 +31,24 @@
         <a href="resume.html" class="nav-link">[RESUME]</a>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+document.querySelectorAll('pre[class*="src-"]').forEach(pre => {
+  const match = pre.className.match(/src-(\w+)/);
+  if (match) {
+    const lang = match[1];
+    let code = pre.querySelector('code');
+    if (!code) {
+      code = document.createElement('code');
+      code.textContent = pre.textContent;
+      pre.textContent = '';
+      pre.appendChild(code);
+    }
+    code.className = `language-${lang}`;
+  }
+});
+hljs.highlightAll();
+</script>
 </div>
 <div id="content" class="content">
 <p>
@@ -46,7 +64,7 @@ Wait till December for them to decide if AI code is worth having in the Kernel. 
 </p>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2025-10-29 Wed 20:29</p>
+<p class="date">Created: 2025-10-29 Wed 20:54</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
