@@ -1,0 +1,147 @@
+#+title: A Look Inside OCFS2
+
+OCFS2 (Oracle Cluster File System version 2) is a shared-disk cluster filesystem for Linux. Multiple nodes can mount the same filesystem simultaneously and see the same consistent view of data. Changes made by one node are immediately visible to others.
+
+* What Problem Does It Solve?
+
+Traditional filesystems let only one machine access a storage device at a time. Network filesystems like NFS use a client-server model where one server exports to many clients.
+
+OCFS2 is different - it lets multiple machines directly access the same block device simultaneously. Think of it as shared storage where multiple servers can read and write without copying data around or going through a central server.
+
+* Brief History
+
+OCFS version 1 was Oracle's early attempt at a clustered filesystem. It was basic and designed only for Oracle database storage - missing most POSIX features.
+
+OCFS2 was a complete rewrite to make it a general-purpose filesystem. It was merged into Linux kernel 2.6.16 in 2005. Since then many features have been added to improve storage efficiency and performance.
+
+* How Clustering Works
+
+OCFS2 needs cluster management to handle operations like node membership and fencing. All nodes must have the same configuration.
+
+Two ways to manage the cluster:
+
+- O2CB (OCFS2 Cluster Base) - In-kernel implementation, provides basic services. Each node writes to a heartbeat file to show it's alive. Simple but limited - can't remove nodes from live cluster, no cluster-wide POSIX locks.
+
+- Linux HA (High Availability) - User-space tools like heartbeat and pacemaker. Complete cluster management with failover, STONITH (Shoot The Other Node In The Head), service migration. Can remove nodes from live cluster and supports cluster-wide POSIX locks.
+
+* Disk Format
+
+OCFS2 separates data and metadata storage:
+
+- Metadata blocks - Smallest addressable unit (512 bytes to 4KB). Contains filesystem metadata like inodes, extent blocks, group descriptors. Each block has a signature identifying its contents.
+
+- Data clusters - Storage for regular file data (4KB to 1MB). Larger clusters reduce metadata overhead and make operations faster, but increase internal fragmentation. Use large clusters for VM images, small clusters for lots of small files like mail directories.
+
+* Inodes
+
+An inode occupies an entire block. The block number doubles as the inode number. This can waste space for filesystems with many small files, so OCFS2 has "inline data" - small files are packed directly into the inode.
+
+Inode numbers are 64 bits, enough for very large storage devices.
+
+File data is organized as a B-tree of extents. The inode is the root. It holds extent records that either point to data or to extent blocks (intermediate nodes). The ~l_tree_depth~ field indicates tree depth - zero means extent records point directly to data.
+
+* Locking
+
+The basic unit of locking is the inode. OCFS2 uses the Distributed Lock Manager (DLM) for coordination. When a process wants to access a file, it must request a DLM lock.
+
+Three types of lock resources per inode:
+
+- Read-write lock - Serializes writes when multiple nodes do I/O on same file
+- Inode lock - Used for metadata operations  
+- Open lock - Used to identify file deletes
+
+When opening a file, the open lock is acquired in protected-read mode. To delete, a node requests exclusive lock - if successful, no other node is using the file and it can be deleted. If unsuccessful, the inode becomes an orphan (handled specially).
+
+* Directories
+
+Directory entries are stored as name-inode pairs in directory blocks. Storage pattern is same as regular files but allocated as cluster blocks.
+
+New feature: directory indexing for faster lookups. OCFS2 maintains an indexed tree based on hash of directory names. The hash points to the directory block containing the entry. Once the block is read, entries are searched linearly.
+
+A directory trailer at the end of each block tracks free space and contains a checksum for error detection.
+
+* Filesystem Metadata
+
+A special system directory ~//~ contains all filesystem metadata files. Not accessible from normal mount (only via ~debugfs.ocfs2~ tool).
+
+Key system files:
+
+- Slotmap - Maps nodes to slots. When a node joins, it gets a slot number and inherits associated system files. Assignment is not persistent across boots.
+
+- Global bitmap - Tracks allocated blocks on device
+
+- Local allocations - Each node maintains chunks obtained from global bitmap to reduce contention
+
+Three types of allocators:
+
+- ~inode_alloc~ - Allocates inodes for local node
+- ~extent_alloc~ - Allocates extent blocks for local node  
+- ~local_alloc~ - Allocates data clusters for regular files
+
+Each allocator uses "block groups" with group descriptors containing allocation details. Group descriptors are organized as an array of linked lists.
+
+When freeing blocks that belong to another node's allocation map, they go into a local "truncate log" first. Later when the node gets a lock on the global bitmap, these blocks are freed.
+
+* Orphan Files
+
+Files aren't physically deleted until all processes close them. OCFS2 maintains an orphan list like ext3, but it's more complex because nodes must check cluster-wide usage.
+
+When unlinking the last link to a file, the node requests an exclusive lock on the inode lock resource. If the file is being used elsewhere, it's moved to the orphan directory and marked with ~OCFS2_ORPHANED_FL~. The orphan directory is scanned later to physically remove unused files.
+
+* Journaling
+
+OCFS2 uses Linux JBD2 layer for journaling. Each node maintains its own journal for local I/O to avoid contention.
+
+If a node dies, other nodes must replay the dead node's journal before proceeding with operations.
+
+* Additional Features
+
+- Reflinks - Snapshots using copy-on-write (COW). Currently accessed via ~reflink~ tool using ioctl, pending upstream system call interface.
+
+- Metaecc - Error correction for metadata using CRC32. Warns if calculated CRC differs from stored value and remounts read-only to prevent corruption. Can correct single-bit errors on the fly.
+
+* Kernel Internals
+
+Source is in ~fs/ocfs2/~ in kernel tree.
+
+Key files:
+
+- ~dlmglue.c~ - DLM integration
+- ~file.c~ - File operations
+- ~inode.c~ - Inode management
+- ~journal.c~ - Journaling
+- ~super.c~ - Superblock and mount
+
+* Use Cases
+
+- High availability clusters
+- Database clusters (Oracle RAC)
+- Virtual machine storage
+- Application clusters needing shared data
+- Any setup requiring multiple servers accessing same storage
+
+* Limitations
+
+- Less widely used than alternatives
+- Requires shared block storage (can't use local disks)
+- Performance can suffer with many nodes
+- Less active development compared to newer alternatives
+
+* Alternatives
+
+- GFS2 - Red Hat's cluster filesystem
+- CephFS - Distributed filesystem
+- GlusterFS - Scale-out NAS
+- Lustre - For HPC workloads
+
+Choose based on needs - OCFS2 is good for traditional cluster setups with shared storage.
+
+* Resources
+
+- https://docs.oracle.com/en/operating-systems/oracle-linux/ocfs2-users-guide/
+- https://github.com/markfasheh/ocfs2-tools
+- Kernel source: ~fs/ocfs2/~
+
+-----
+
+OCFS2 is solid technology for traditional clustering scenarios. While newer alternatives exist, it remains a good choice when you have shared block storage and need multiple nodes accessing the same data reliably.

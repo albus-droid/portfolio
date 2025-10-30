@@ -17,3 +17,4 @@ I'm a developer with a strong interest in Linux, Ubuntu, and open-source communi
 - [[./blog/how-i-build-this.org]] my first blog post
   - This is a placeholder for a future blog post. Stay tuned!
 - [[./blog/getting-started-lkmp.org]]
+- [[./blog/a-brief-look-into-ocfs2.org]]
