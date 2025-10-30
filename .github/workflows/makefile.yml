@@ -1,0 +1,32 @@
+name: Build Blog
+on:
+  push:
+    paths:
+      - 'contents/**'
+    branches: [ "master" ]
+  pull_request:
+    paths:
+      - 'contents/**'
+    branches: [ "master" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Emacs
+      uses: purcell/setup-emacs@master
+      with:
+        version: 29.1
+    
+    - name: Build blog
+      run: make blog
+    
+    - name: Commit dist folder
+      if: github.ref == 'refs/heads/master'
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add dist
+        git commit -m "Auto-build blog" || echo "No changes to commit"
+        git push
