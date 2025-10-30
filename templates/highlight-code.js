@@ -22,4 +22,35 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize highlight.js
   hljs.highlightAll();
+  
+  // Add copy buttons to all code blocks
+  document.querySelectorAll('pre code').forEach(block => {
+    // Create copy button
+    const button = document.createElement('button');
+    button.className = 'copy-button';
+    button.textContent = 'Copy';
+    button.setAttribute('aria-label', 'Copy code to clipboard');
+    
+    // Copy functionality
+    button.onclick = function() {
+      navigator.clipboard.writeText(block.textContent).then(() => {
+        button.textContent = 'Copied!';
+        button.classList.add('copied');
+        setTimeout(() => {
+          button.textContent = 'Copy';
+          button.classList.remove('copied');
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+        button.textContent = 'Failed';
+        setTimeout(() => {
+          button.textContent = 'Copy';
+        }, 2000);
+      });
+    };
+    
+    // Make pre position relative for absolute positioning of button
+    block.parentElement.style.position = 'relative';
+    block.parentElement.appendChild(button);
+  });
 });
