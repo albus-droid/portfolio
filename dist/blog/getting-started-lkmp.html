@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-29 Wed 21:01 -->
+<!-- 2025-10-29 Wed 21:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LKMP Getting Started</title>
@@ -55,26 +55,26 @@ hljs.highlightAll();
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org55cd76f">1. Baby Steps</a></li>
-<li><a href="#orgd90eb70">2. Tools for Linux Kernel Bug Fixing</a>
+<li><a href="#org76709b7">1. Baby Steps</a></li>
+<li><a href="#orgcb4db01">2. Tools for Linux Kernel Bug Fixing</a>
 <ul>
-<li><a href="#orgb15fab1">2.1. 1. Core Runtime Debugging</a></li>
-<li><a href="#org030412f">2.2. 2. Tracing &amp; Timing</a></li>
-<li><a href="#orgbc28990">2.3. 3. Hang &amp; Stall Detectors</a></li>
-<li><a href="#org29bbb5e">2.4. 4. Sanitizers &amp; Checkers</a></li>
-<li><a href="#org4792480">2.5. 5. Post-Mortem &amp; Field Debugging</a></li>
-<li><a href="#orgf373179">2.6. 6. Instrumentation &amp; Logging</a></li>
+<li><a href="#org0b8a692">2.1. 1. Core Runtime Debugging</a></li>
+<li><a href="#orga5481d4">2.2. 2. Tracing &amp; Timing</a></li>
+<li><a href="#orgc2ec676">2.3. 3. Hang &amp; Stall Detectors</a></li>
+<li><a href="#org092ff53">2.4. 4. Sanitizers &amp; Checkers</a></li>
+<li><a href="#orgd0f8e29">2.5. 5. Post-Mortem &amp; Field Debugging</a></li>
+<li><a href="#org4092486">2.6. 6. Instrumentation &amp; Logging</a></li>
 </ul>
 </li>
-<li><a href="#org00a6764">3. Must have configs and options:</a></li>
+<li><a href="#orga48bab9">3. Must have configs and options:</a></li>
 </ul>
 </div>
 </div>
 <p>
 It is with great happiness I&rsquo;m sharing that I was selected for the LKMP Fall 2025 and this is a small write where I write about the tools I will be using for this Bug Fixing Intership. I will be updating more as I get familiar with each one. I got inspiration for this from the wonderful session by &#x2014; and also after reading this posting by -&#x2014;
 </p>
-<div id="outline-container-org55cd76f" class="outline-2">
-<h2 id="org55cd76f"><span class="section-number-2">1.</span> Baby Steps</h2>
+<div id="outline-container-org76709b7" class="outline-2">
+<h2 id="org76709b7"><span class="section-number-2">1.</span> Baby Steps</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 My first plan is to find a bug reported by syzbot and fix it, it could be from any subsystem. I just want to get my feet wet and see how it is going to be moving forward. I watched this mentorship session and got familiar with some of the tools people use for Bug Fixing. It will be discussed in the coming sections.
@@ -100,15 +100,15 @@ But this since I am getting started I will start with a bug from reported by a s
 </p>
 </div>
 </div>
-<div id="outline-container-orgd90eb70" class="outline-2">
-<h2 id="orgd90eb70"><span class="section-number-2">2.</span> Tools for Linux Kernel Bug Fixing</h2>
+<div id="outline-container-orgcb4db01" class="outline-2">
+<h2 id="orgcb4db01"><span class="section-number-2">2.</span> Tools for Linux Kernel Bug Fixing</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 While watching the video I came across some tools as I mentioned, so I thought of writing it down so that it is easier for me to look up. Even though there is no single right way to find bugs I will use these as the dots that can connect me to the end result. I believe knowing a lot of technolgies is a plus, so we will have the flexiblity to find the easiest solutions.
 </p>
 </div>
-<div id="outline-container-orgb15fab1" class="outline-3">
-<h3 id="orgb15fab1"><span class="section-number-3">2.1.</span> 1. Core Runtime Debugging</h3>
+<div id="outline-container-org0b8a692" class="outline-3">
+<h3 id="org0b8a692"><span class="section-number-3">2.1.</span> 1. Core Runtime Debugging</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li><b>QEMU</b>
@@ -145,8 +145,8 @@ Example:
 </ul>
 </div>
 </div>
-<div id="outline-container-org030412f" class="outline-3">
-<h3 id="org030412f"><span class="section-number-3">2.2.</span> 2. Tracing &amp; Timing</h3>
+<div id="outline-container-orga5481d4" class="outline-3">
+<h3 id="orga5481d4"><span class="section-number-3">2.2.</span> 2. Tracing &amp; Timing</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li><b>Ftrace</b>
@@ -190,8 +190,8 @@ perf script
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbc28990" class="outline-3">
-<h3 id="orgbc28990"><span class="section-number-3">2.3.</span> 3. Hang &amp; Stall Detectors</h3>
+<div id="outline-container-orgc2ec676" class="outline-3">
+<h3 id="orgc2ec676"><span class="section-number-3">2.3.</span> 3. Hang &amp; Stall Detectors</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li><b>Hard/Soft Lockup Watchdogs</b>
@@ -214,8 +214,8 @@ perf script
 </ul>
 </div>
 </div>
-<div id="outline-container-org29bbb5e" class="outline-3">
-<h3 id="org29bbb5e"><span class="section-number-3">2.4.</span> 4. Sanitizers &amp; Checkers</h3>
+<div id="outline-container-org092ff53" class="outline-3">
+<h3 id="org092ff53"><span class="section-number-3">2.4.</span> 4. Sanitizers &amp; Checkers</h3>
 <div class="outline-text-3" id="text-2-4">
 <dl class="org-dl">
 <dt><b>KASAN</b></dt><dd>Detects memory bugs (UAF, OOB).</dd>
@@ -225,8 +225,8 @@ perf script
 </dl>
 </div>
 </div>
-<div id="outline-container-org4792480" class="outline-3">
-<h3 id="org4792480"><span class="section-number-3">2.5.</span> 5. Post-Mortem &amp; Field Debugging</h3>
+<div id="outline-container-orgd0f8e29" class="outline-3">
+<h3 id="orgd0f8e29"><span class="section-number-3">2.5.</span> 5. Post-Mortem &amp; Field Debugging</h3>
 <div class="outline-text-3" id="text-2-5">
 <ul class="org-ul">
 <li><b>kdump / kexec + crash</b>
@@ -242,8 +242,8 @@ perf script
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf373179" class="outline-3">
-<h3 id="orgf373179"><span class="section-number-3">2.6.</span> 6. Instrumentation &amp; Logging</h3>
+<div id="outline-container-org4092486" class="outline-3">
+<h3 id="org4092486"><span class="section-number-3">2.6.</span> 6. Instrumentation &amp; Logging</h3>
 <div class="outline-text-3" id="text-2-6">
 <ul class="org-ul">
 <li><b>printk / trace<sub>printk</sub></b>
@@ -256,8 +256,8 @@ perf script
 </div>
 </div>
 </div>
-<div id="outline-container-org00a6764" class="outline-2">
-<h2 id="org00a6764"><span class="section-number-2">3.</span> Must have configs and options:</h2>
+<div id="outline-container-orga48bab9" class="outline-2">
+<h2 id="orga48bab9"><span class="section-number-2">3.</span> Must have configs and options:</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>Kernel configs:
@@ -279,7 +279,7 @@ perf script
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2025-10-29 Wed 21:01</p>
+<p class="date">Created: 2025-10-29 Wed 21:16</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
