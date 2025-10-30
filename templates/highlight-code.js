@@ -1,5 +1,15 @@
 // highlight-code.js
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // Change title from h1 to h2
+    const title = document.querySelector('h1.title');
+    if (title) {
+    const h2 = document.createElement('h2');
+    h2.className = title.className;
+    h2.textContent = title.textContent;
+    title.parentNode.replaceChild(h2, title);
+    }
+
   // Convert org-mode src blocks to highlight.js format
   document.querySelectorAll('pre[class*="src-"]').forEach(pre => {
     const match = pre.className.match(/src-(\w+)/);
