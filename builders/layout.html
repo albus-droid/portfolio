@@ -6,6 +6,7 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="style.css">
     <script src="typewriter-name.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
 </head>
 <body>
     <main>
@@ -23,5 +24,13 @@
         </div>
     {{content}}    
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+	<script>
+	document.querySelectorAll('pre[class*="src-"]').forEach(block => {
+	  const lang = block.className.match(/src-(\w+)/)?.[1];
+	  if (lang) block.classList.add(lang);
+	});
+	hljs.highlightAll();
+	</script>
 </body>
 </html>
