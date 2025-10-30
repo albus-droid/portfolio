@@ -42,7 +42,7 @@ body {
   padding: 1rem 0;
   background: hsl(var(--background));
   color: hsl(41.9, 71.6%, 68.2%);
-  font-size: larger;
+  font-size: large;
   font-family: "JetBrains Mono", monospace;
 }
 
