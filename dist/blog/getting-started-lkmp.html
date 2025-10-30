@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-29 Wed 21:47 -->
+<!-- 2025-10-29 Wed 22:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LKMP Getting Started</title>
@@ -55,28 +55,28 @@ hljs.highlightAll();
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge5b8d5e">1. Baby Steps</a></li>
-<li><a href="#orga768aa8">2. Debugging Tools</a>
+<li><a href="#org07e7cd8">1. Baby Steps</a></li>
+<li><a href="#org9d5204c">2. Debugging Tools</a>
 <ul>
-<li><a href="#org918f207">2.1. Core Debugging</a></li>
-<li><a href="#org67dd868">2.2. Tracing</a></li>
-<li><a href="#org49247fb">2.3. Detectors</a></li>
-<li><a href="#orga87d62a">2.4. Sanitizers</a></li>
-<li><a href="#orgbebe1c3">2.5. Post-Mortem</a></li>
-<li><a href="#org13a4909">2.6. Logging</a></li>
+<li><a href="#orgd17e13e">2.1. Core Debugging</a></li>
+<li><a href="#orgf1cb689">2.2. Tracing</a></li>
+<li><a href="#org12f82ef">2.3. Detectors</a></li>
+<li><a href="#orgfb9a8e6">2.4. Sanitizers</a></li>
+<li><a href="#org3eedc4a">2.5. Post-Mortem</a></li>
+<li><a href="#orgef2afdb">2.6. Logging</a></li>
 </ul>
 </li>
-<li><a href="#org594c442">3. Required Config</a></li>
-<li><a href="#orgb40e632">4. Next Steps</a></li>
-<li><a href="#org1e1bb1a">5. Links</a></li>
+<li><a href="#orgff0342a">3. Required Config</a></li>
+<li><a href="#org55ae0c6">4. Next Steps</a></li>
+<li><a href="#org5a525d6">5. Links</a></li>
 </ul>
 </div>
 </div>
 <p>
 I was selected for LKMP Fall 2025! This is where I&rsquo;ll document the debugging tools and workflow I&rsquo;m learning. Will update as I go.
 </p>
-<div id="outline-container-orge5b8d5e" class="outline-2">
-<h2 id="orge5b8d5e"><span class="section-number-2">1.</span> Baby Steps</h2>
+<div id="outline-container-org07e7cd8" class="outline-2">
+<h2 id="org07e7cd8"><span class="section-number-2">1.</span> Baby Steps</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 My goal: Find and fix a syzbot bug. Any subsystem, just want to get started.
@@ -102,12 +102,12 @@ Starting with GDB first.
 </p>
 </div>
 </div>
-<div id="outline-container-orga768aa8" class="outline-2">
-<h2 id="orga768aa8"><span class="section-number-2">2.</span> Debugging Tools</h2>
+<div id="outline-container-org9d5204c" class="outline-2">
+<h2 id="org9d5204c"><span class="section-number-2">2.</span> Debugging Tools</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org918f207" class="outline-3">
-<h3 id="org918f207"><span class="section-number-3">2.1.</span> Core Debugging</h3>
+<div id="outline-container-orgd17e13e" class="outline-3">
+<h3 id="orgd17e13e"><span class="section-number-3">2.1.</span> Core Debugging</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 QEMU - Run custom kernels safely
@@ -136,8 +136,8 @@ JTAG - For early boot problems
 </p>
 </div>
 </div>
-<div id="outline-container-org67dd868" class="outline-3">
-<h3 id="org67dd868"><span class="section-number-3">2.2.</span> Tracing</h3>
+<div id="outline-container-orgf1cb689" class="outline-3">
+<h3 id="orgf1cb689"><span class="section-number-3">2.2.</span> Tracing</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Ftrace - Built-in kernel tracer
@@ -166,8 +166,8 @@ perf script
 </div>
 </div>
 </div>
-<div id="outline-container-org49247fb" class="outline-3">
-<h3 id="org49247fb"><span class="section-number-3">2.3.</span> Detectors</h3>
+<div id="outline-container-org12f82ef" class="outline-3">
+<h3 id="org12f82ef"><span class="section-number-3">2.3.</span> Detectors</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Lockup Watchdogs - Catch hung CPUs
@@ -185,8 +185,8 @@ Use: <code>rcupdate.rcu_cpu_stall_timeout=20</code>
 </p>
 </div>
 </div>
-<div id="outline-container-orga87d62a" class="outline-3">
-<h3 id="orga87d62a"><span class="section-number-3">2.4.</span> Sanitizers</h3>
+<div id="outline-container-orgfb9a8e6" class="outline-3">
+<h3 id="orgfb9a8e6"><span class="section-number-3">2.4.</span> Sanitizers</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 KASAN - memory bugs (use-after-free, out-of-bounds)
@@ -195,8 +195,8 @@ LOCKDEP - locking bugs
 </p>
 </div>
 </div>
-<div id="outline-container-orgbebe1c3" class="outline-3">
-<h3 id="orgbebe1c3"><span class="section-number-3">2.5.</span> Post-Mortem</h3>
+<div id="outline-container-org3eedc4a" class="outline-3">
+<h3 id="org3eedc4a"><span class="section-number-3">2.5.</span> Post-Mortem</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 kdump/crash - Capture and analyze kernel crashes
@@ -207,8 +207,8 @@ SysRq - Emergency debugging keys
 </p>
 </div>
 </div>
-<div id="outline-container-org13a4909" class="outline-3">
-<h3 id="org13a4909"><span class="section-number-3">2.6.</span> Logging</h3>
+<div id="outline-container-orgef2afdb" class="outline-3">
+<h3 id="orgef2afdb"><span class="section-number-3">2.6.</span> Logging</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 printk:
@@ -230,8 +230,8 @@ trace<sub>printk</sub> (lower overhead):
 </div>
 </div>
 </div>
-<div id="outline-container-org594c442" class="outline-2">
-<h2 id="org594c442"><span class="section-number-2">3.</span> Required Config</h2>
+<div id="outline-container-orgff0342a" class="outline-2">
+<h2 id="orgff0342a"><span class="section-number-2">3.</span> Required Config</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Kernel:
@@ -253,8 +253,8 @@ Boot params:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb40e632" class="outline-2">
-<h2 id="orgb40e632"><span class="section-number-2">4.</span> Next Steps</h2>
+<div id="outline-container-org55ae0c6" class="outline-2">
+<h2 id="org55ae0c6"><span class="section-number-2">4.</span> Next Steps</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Setup QEMU environment
@@ -265,8 +265,8 @@ Submit patch
 </p>
 </div>
 </div>
-<div id="outline-container-org1e1bb1a" class="outline-2">
-<h2 id="org1e1bb1a"><span class="section-number-2">5.</span> Links</h2>
+<div id="outline-container-org5a525d6" class="outline-2">
+<h2 id="org5a525d6"><span class="section-number-2">5.</span> Links</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 <a href="https://docs.kernel.org/dev-tools/">https://docs.kernel.org/dev-tools/</a>
@@ -276,7 +276,7 @@ Submit patch
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2025-10-29 Wed 21:47</p>
+<p class="date">Created: 2025-10-29 Wed 22:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
