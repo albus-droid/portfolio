@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-29 Wed 22:46 -->
+<!-- 2025-10-29 Wed 22:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Micropython questions I have for Myself</title>
@@ -55,52 +55,52 @@ hljs.highlightAll();
 <h3>Table of Contents</h3>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgae0677f">1. What is Micropython?</a></li>
-<li><a href="#org61d8951">2. Is it same as Python then?</a></li>
-<li><a href="#orgbcb4398">3. How does it even work?</a></li>
-<li><a href="#org0b1189f">4. How fast is it?</a></li>
-<li><a href="#org1b35d31">5. Why do you use it?</a>
+<li><a href="#org5e123c0">1. What is Micropython?</a></li>
+<li><a href="#org4d5c601">2. Is it same as Python then?</a></li>
+<li><a href="#org63556f5">3. How does it even work?</a></li>
+<li><a href="#org994a80d">4. How fast is it?</a></li>
+<li><a href="#orge8b4dc4">5. Why do you use it?</a>
 <ul>
-<li><a href="#org20db45e">5.1. Flask Replacement</a></li>
+<li><a href="#org0fb78ac">5.1. Flask Replacement</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgae0677f" class="outline-3">
-<h3 id="orgae0677f"><span class="section-number-3">1.</span> What is Micropython?</h3>
+<div id="outline-container-org5e123c0" class="outline-3">
+<h3 id="org5e123c0"><span class="section-number-3">1.</span> What is Micropython?</h3>
 <div class="outline-text-3" id="text-1">
 <p>
 It&rsquo;s an implementation of Python3 that is really lightweight. It can run on baremetal. How?
 </p>
 </div>
 </div>
-<div id="outline-container-org61d8951" class="outline-3">
-<h3 id="org61d8951"><span class="section-number-3">2.</span> Is it same as Python then?</h3>
+<div id="outline-container-org4d5c601" class="outline-3">
+<h3 id="org4d5c601"><span class="section-number-3">2.</span> Is it same as Python then?</h3>
 <div class="outline-text-3" id="text-2">
 <p>
 I don&rsquo;t know, it feels like a stripped down version of Python. Something I&rsquo;m not really familiar with.
 </p>
 </div>
 </div>
-<div id="outline-container-orgbcb4398" class="outline-3">
-<h3 id="orgbcb4398"><span class="section-number-3">3.</span> How does it even work?</h3>
+<div id="outline-container-org63556f5" class="outline-3">
+<h3 id="org63556f5"><span class="section-number-3">3.</span> How does it even work?</h3>
 <div class="outline-text-3" id="text-3">
 <p>
 It works on pyboard, which is a basically running low-level Python OS.
 </p>
 </div>
 </div>
-<div id="outline-container-org0b1189f" class="outline-3">
-<h3 id="org0b1189f"><span class="section-number-3">4.</span> How fast is it?</h3>
+<div id="outline-container-org994a80d" class="outline-3">
+<h3 id="org994a80d"><span class="section-number-3">4.</span> How fast is it?</h3>
 <div class="outline-text-3" id="text-4">
 <p>
 I don&rsquo;t know. All it says is that it is compact enough to run on within 256K storage and 16K RAM.
 </p>
 </div>
 </div>
-<div id="outline-container-org1b35d31" class="outline-3">
-<h3 id="org1b35d31"><span class="section-number-3">5.</span> Why do you use it?</h3>
+<div id="outline-container-orge8b4dc4" class="outline-3">
+<h3 id="orge8b4dc4"><span class="section-number-3">5.</span> Why do you use it?</h3>
 <div class="outline-text-3" id="text-5">
 <p>
 For portability so that you don&rsquo;t have to learn C. But how efficient is it compared to something like C, which is often though as the Gold Standard for embedded programming.
@@ -111,8 +111,8 @@ I&rsquo;m more interested about the OS. Is it written in C?
 So basically just a board with an OS and Python installed built in?
 </p>
 </div>
-<div id="outline-container-org20db45e" class="outline-4">
-<h4 id="org20db45e"><span class="section-number-4">5.1.</span> Flask Replacement</h4>
+<div id="outline-container-org0fb78ac" class="outline-4">
+<h4 id="org0fb78ac"><span class="section-number-4">5.1.</span> Flask Replacement</h4>
 <div class="outline-text-4" id="text-5-1">
 <p>
 Microdot  framework. How is it small? How did he achieve it?
@@ -155,7 +155,7 @@ He was also speaking about Native code emitters and Viper code emitter for Micro
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2025-10-29 Wed 22:46</p>
+<p class="date">Created: 2025-10-29 Wed 22:53</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
