@@ -215,22 +215,10 @@ pre:hover .copy-button {
   }
 }
 
-/* Inline code styling - just font change */
-code {
-  font-family: 'Courier New', 'Courier', monospace;
-  font-size: 1em;
-}
-
 /* Remove any extra styling from inline code */
 :not(pre) > code {
-  background: none;
-  color: inherit;
+  background: #282c34;
+  color: #abb2bf;
   padding: 0;
   border: none;
-  font-family: 'Courier New', 'Courier', monospace;
-}
-
-/* Code blocks keep their styling */
-pre code {
-  font-family: 'Courier New', 'Courier', monospace;
 }
