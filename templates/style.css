@@ -168,31 +168,6 @@ li p {
   margin-bottom: 2rem;
 }
 
-/* Better code block styling */
-pre {
-  background: hsl(0 0% 18%);
-  border: 1px solid hsl(42 100% 30%);
-  border-radius: 4px;
-  padding: 1rem;
-  overflow-x: auto;
-  margin: 1.5rem 0;
-}
-
-code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
-  font-size: 0.9em;
-  line-height: 1.5;
-}
-
-/* Inline code (not inside pre) */
-:not(pre) > code {
-  background: hsl(0 0% 18%);
-  color: hsl(47 100% 65%);
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-  border: 1px solid hsl(42 100% 30%);
-}
-
 /* Make sure code blocks don't break layout */
 pre code {
   display: block;
