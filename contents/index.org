@@ -1,5 +1,5 @@
 #+TITLE: Albin Babu Varghese
-#+OPTIONS: toc:nil num:nil html-postamble:nil
+#+OPTIONS: toc:nil num:nil html-postamble:nil title:nil
 
 * # whoami
 

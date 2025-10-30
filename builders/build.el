@@ -27,7 +27,7 @@
              :html-head-extra (concat "<script src=\"" js-url "\" defer></script>"
                                       "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css\">"
                                       "<script src=\"" highlight-js-url "\" defer></script>")             
-             :with-title nil
+             :with-title t
              :html-preamble (fetch-url-content layout-fragment-url)
              :html-toplevel-hlevel 3)))
 
