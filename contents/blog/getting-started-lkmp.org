@@ -1,252 +1,86 @@
 #+title: LKMP Getting Started
-#+date: 2025-10-29
-#+author: Albin Babu Varghese
-#+description: My journey into Linux Kernel Bug Fixing as part of LKMP Fall 2025
 
-#+begin_quote
-It is with great happiness I'm sharing that I was selected for the *LKMP Fall 2025* and this is a small write-up where I document the tools I will be using for this Bug Fixing Internship. I will be updating this as I get familiar with each tool. I got inspiration from the wonderful mentorship sessions and community resources.
-#+end_quote
+It is with great happiness I'm sharing that I was selected for the LKMP Fall 2025 and this is where I document the tools I'll be using for bug fixing. I'll update this as I learn.
 
 * Baby Steps
-:PROPERTIES:
-:CUSTOM_ID: baby-steps
-:END:
 
-My first plan is to find a bug reported by *syzbot* and fix it—it could be from any subsystem. I just want to get my feet wet and see how things evolve moving forward. I watched several mentorship sessions and got familiar with some of the tools people use for bug fixing.
+My first plan is to find a bug reported by syzbot and fix it. I just want to get my feet wet.
 
 ** Typical Workflow
 
-From what I understood, here's a typical kernel debugging workflow:
-
-1. *Build kernel* with =CONFIG_DEBUG_INFO=y= =CONFIG_FRAME_POINTER=y=
-2. *Boot QEMU* with =-s -S= and =nokaslr ftrace_dump_on_oops=
-3. *Attach GDB*: =gdb vmlinux=, =target remote :1234=, set breakpoints
-4. *Trace*: =trace-cmd record ...= → =trace-cmd report=
-5. *Measure scheduling*: =perf sched record=, =perf sched latency sort max=
-6. *Enable watchdogs* & hung task detectors
-7. *Sprinkle* =trace_printk()= in suspected paths
-8. *For production*: configure *kdump*, analyze dumps with *crash*
-
-Since I'm just getting started, I'll begin with a bug reported by syzkaller and work my way through the process. My first tool will be =gdb=.
+1. Build kernel with =CONFIG_DEBUG_INFO=y= =CONFIG_FRAME_POINTER=y=
+2. Boot QEMU with =-s -S= and =nokaslr ftrace_dump_on_oops=
+3. Attach GDB: =gdb vmlinux=, =target remote :1234=
+4. Trace: =trace-cmd record ...= → =trace-cmd report=
+5. Measure scheduling: =perf sched record=, =perf sched latency sort max=
+6. Enable watchdogs & hung task detectors
+7. Sprinkle =trace_printk()= in suspected paths
+8. For production: configure kdump, analyze dumps with crash
 
 * Tools for Linux Kernel Bug Fixing
-:PROPERTIES:
-:CUSTOM_ID: tools
-:END:
-
-While watching videos and reading documentation, I came across various debugging tools. Even though there's no single right way to find bugs, I'll use these as guideposts. I believe knowing multiple technologies gives us flexibility to find the easiest solutions.
 
 ** 1. Core Runtime Debugging
-:PROPERTIES:
-:CUSTOM_ID: core-debugging
-:END:
 
 *** QEMU
-Virtual machine emulator for running custom kernels—provides a safe, reproducible, scriptable test environment.
+Virtual machine emulator for running custom kernels.
 
 #+begin_src bash
-qemu-system-x86_64 \
-  -kernel bzImage \
-  -append "console=ttyS0 root=/dev/sda nokaslr" \
-  -s -S \
-  -nographic
+qemu-system-x86_64 -kernel bzImage -append "console=ttyS0 root=/dev/sda nokaslr" -s -S -nographic
 #+end_src
 
-- =-s -S= exposes a GDB server on port 1234 and waits for debugger to attach
-- =nokaslr= disables kernel address space layout randomization (easier debugging)
-
-*** GDB (with vmlinux)
-Source-level debugger for the kernel in QEMU.
-
-*Essential commands:*
-- =target remote :1234= - Connect to QEMU
-- =bt= - Backtrace (call stack)
-- =info threads= - List all threads
-- =b panic= - Set breakpoint at panic
-- =list= - Show source code
-- =disassemble= - Show assembly
+*** GDB
+Commands: =target remote :1234=, =bt=, =info threads=, =b panic=, =list=
 
 *** KGDB
-Kernel debugger stub for attaching GDB to real hardware via serial or network connection.
-
-*** OpenOCD / JTAG
-Hardware debugging path for very early boot failures and embedded systems.
+Attach GDB to real hardware via serial/net.
 
 ** 2. Tracing & Timing
-:PROPERTIES:
-:CUSTOM_ID: tracing
-:END:
 
 *** Ftrace
-Built-in low-overhead tracer ("flight recorder") that's always available in the kernel.
-
-*Useful boot parameters:*
-- =ftrace_dump_on_oops= - Dump trace buffer on kernel crash
-- =traceoff_on_warning= - Stop tracing on WARN
-- =panic_on_warn=1= - Panic on any warning
-- =trace_event=sched:sched_switch,cpu_idle= - Enable specific trace events
+Built-in tracer. Useful params: =ftrace_dump_on_oops=, =traceoff_on_warning=, =panic_on_warn=1=
 
 *** trace-cmd
-User-friendly front-end to Ftrace.
-
 #+begin_src bash
-# Record function graph for kfree
 trace-cmd record -p function_graph -g kfree
-
-# View the recorded trace
 trace-cmd report
 #+end_src
 
-*** perf / perf sched
-Scheduler profiling and latency analysis tool.
-
+*** perf
 #+begin_src bash
-# Record scheduling events
 perf sched record -- sleep 10
-
-# Analyze scheduling latency
 perf sched latency sort max
-
-# View raw events
-perf script
 #+end_src
 
 ** 3. Hang & Stall Detectors
-:PROPERTIES:
-:CUSTOM_ID: detectors
-:END:
 
-*** Hard/Soft Lockup Watchdogs
-Detect CPUs that:
-- *Hard lockup*: Stop servicing interrupts completely
-- *Soft lockup*: Spin in kernel space too long
-
-#+begin_example
-nmi_watchdog=1 watchdog_thresh=2
-#+end_example
-
-*** Hung Task Detector
-Detects processes stuck in uninterruptible sleep (D state).
-
-#+begin_src bash
-echo 10 > /proc/sys/kernel/hung_task_timeout_secs
-#+end_src
-
-*** RCU Stall Detector
-Detects CPUs failing to pass RCU quiescent states (causing RCU grace periods to stall).
-
-#+begin_example
-rcupdate.rcu_cpu_stall_timeout=20 panic_on_rcu_stall=1
-#+end_example
+- Hard/Soft Lockup Watchdogs
+- Hung Task Detector
+- RCU Stall Detector
 
 ** 4. Sanitizers & Checkers
-:PROPERTIES:
-:CUSTOM_ID: sanitizers
-:END:
 
-| Tool | Purpose |
-|------+---------|
-| *KASAN* | Detects memory bugs (use-after-free, out-of-bounds) |
-| *KCSAN* | Detects data races and concurrency bugs |
-| *LOCKDEP* | Validates locking correctness and deadlock detection |
-| *Preempt/IRQ-off tracers* | Find sections with long latency |
+- KASAN: memory bugs
+- KCSAN: data races
+- LOCKDEP: locking correctness
 
-** 5. Post-Mortem & Field Debugging
-:PROPERTIES:
-:CUSTOM_ID: post-mortem
-:END:
+** 5. Post-Mortem Debugging
 
-*** kdump / kexec + crash
-When the kernel panics:
-1. =kexec= boots a capture kernel
-2. Memory is dumped to =vmcore=
-3. Analyze with =crash= utility for post-mortem debugging
+- kdump/kexec + crash
+- SysRq magic keys
 
-This is essential for production systems where you can't run live debuggers.
+** 6. Logging
 
-*** SysRq
-Magic key combinations for emergency actions:
-- =Alt + SysRq + t= - Show task states
-- =Alt + SysRq + w= - Show blocked tasks
-- =Alt + SysRq + m= - Show memory info
-- =Alt + SysRq + c= - Trigger crash dump
+- =printk=: traditional logging
+- =trace_printk=: writes to ftrace buffer (faster)
 
-** 6. Instrumentation & Logging
-:PROPERTIES:
-:CUSTOM_ID: logging
-:END:
+* Essential Config
 
-*** printk / trace_printk
+Kernel configs:
+- =CONFIG_DEBUG_INFO=y=
+- =CONFIG_FRAME_POINTER=y=
+- =CONFIG_GDB_SCRIPTS=y=
 
-*printk:* Traditional kernel logging
-#+begin_src c
-printk(KERN_DEBUG "Debug info: value=%d\n", value);
-#+end_src
-
-*trace_printk:* Writes to Ftrace buffer (much lower overhead)
-#+begin_src c
-trace_printk("Fast logging: value=%d\n", value);
-#+end_src
-
-#+begin_note
-Use sampling (log every Nth occurrence) to avoid flooding logs and affecting timing.
-#+end_note
-
-* Essential Configuration
-:PROPERTIES:
-:CUSTOM_ID: config
-:END:
-
-** Kernel Build Configs
-
-Enable these in your =.config=:
-
-#+begin_src conf
-CONFIG_DEBUG_INFO=y           # Include debug symbols
-CONFIG_FRAME_POINTER=y        # Better backtraces
-CONFIG_GDB_SCRIPTS=y          # GDB helper scripts
-CONFIG_DEBUG_KERNEL=y         # General debug options
-CONFIG_KASAN=y                # Address sanitizer (optional but recommended)
-CONFIG_LOCKDEP=y              # Lock dependency validator
-#+end_src
-
-** Boot Command Line Options
-
-Add these to your kernel command line for better debugging:
-
-#+begin_example
-nokaslr                       # Disable ASLR for easier debugging
-panic_on_warn=1               # Treat warnings as panics
-traceoff_on_warning           # Stop tracing on warnings
-ftrace_dump_on_oops           # Dump trace buffer on crash
-debug                         # Enable debug messages
-#+end_example
-
-* Next Steps
-:PROPERTIES:
-:CUSTOM_ID: next-steps
-:END:
-
-- [ ] Set up QEMU testing environment
-- [ ] Build debug kernel with proper configs
-- [ ] Pick a syzbot bug to investigate
-- [ ] Document the debugging process
-- [ ] Submit first patch!
-
-* Resources
-:PROPERTIES:
-:CUSTOM_ID: resources
-:END:
-
-- [[https://docs.kernel.org/dev-tools/index.html][Kernel Development Tools Documentation]]
-- [[https://www.kernel.org/doc/html/latest/trace/ftrace.html][Ftrace Documentation]]
-- [[https://syzkaller.appspot.com/][Syzbot Dashboard]]
-- [[https://kernelnewbies.org/][Kernel Newbies]]
-
-#+begin_center
----
-
-/This document is a living document and will be updated as I progress through LKMP./
-
-/Last updated: {{{date}}}/
-#+end_center
+Boot params:
+- =nokaslr=
+- =panic_on_warn=1=
+- =ftrace_dump_on_oops=
