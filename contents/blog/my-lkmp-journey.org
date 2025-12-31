@@ -52,17 +52,17 @@ One of the first questions I had was: *what am I supposed to work on?*
 There are many ways to contribute to the Linux kernel, but these are the ones
 that worked best for me:
 
-** _Syzbot_ (my main focus)
+** @@html:<u>Syzbot</u>@@
 Syzbot reports bugs found via fuzzing. At first, they look terrifying.
 Over time, you learn that they’re just very honest crash reporters.
 
 This is where most of my LKMP work came from.
 
-** _Local Fuzzing_ (optional)
+** @@html:<u>Local Fuzzing</u>@@
 You *can* run syzkaller locally, but it’s extremely time-consuming and resource-heavy.
 Personally, I found it more effective to focus on existing reports.
 
-** _Static Analysis_
+** @@html:<u>Static Analysis</u>@@
 I saw some mentees using static analysis tools such as *Coccinelle* and
 *Sparse*.  I didn’t personally use these tools during the program, and I also
 heard that they can produce false positives in the kernel due to complex,
@@ -91,11 +91,11 @@ a big hassle. Here’s the [[https://github.com/albus-droid/lkmp-qemu-script][sc
 VM setup, kernel development became repeatable and much less stressful. That
 repo also lists some of the commands I used very frequently for easy look ups.
 
-** _Compiling the Kernel_
+** @@html:<u>Compiling the Kernel</u>@@
 Kernel builds are slow, especially at first. Even with many cores, full builds take time.
 This is normal — patience is part of the workflow.
 
-** _Reproducing the Bug_
+** @@html:<u>Reproducing the Bug</u>@@
 For filesystem bugs, I often:
 - Generated or mounted disk images
 - Built kernels using the config from the syzbot report
@@ -103,7 +103,7 @@ For filesystem bugs, I often:
 
 Successfully reproducing a bug feels like real progress — because it is.
 
-** _Debugging_
+** @@html:<u>Debugging</u>@@
 Most of my debugging relied on:
 - printk
 - basic GDB
@@ -112,7 +112,7 @@ Most of my debugging relied on:
 Remote GDB can be helpful, but it also alters timing and behavior.
 Printk is powerful but dangerous if overused.
 
-** _Tracing_ 
+** @@html:<u>Tracing</u>@@
 I didn’t invest enough time into ftrace, perf, and event tracing during the
 program.  This is something I plan to focus on next — it would have saved time
 on several bugs.
