@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-12-31 Wed 22:53 -->
+<!-- 2025-12-31 Wed 18:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>How I Built This Website</title>
@@ -55,10 +55,9 @@ hljs.highlightAll();
 <p>
 I stumbled upon <a href="https://ogbe.net/blog/emacs_org_static_site">this blog post</a> about building a static site with Emacs Org mode, and it clicked immediately. I was thinking about starting a blog to document my work and share what I&rsquo;m learning, so I decided to build my own static site generator instead of using something off-the-shelf.
 </p>
-
-<div id="outline-container-org2ba23aa" class="outline-3">
-<h3 id="org2ba23aa">Why Build My Own SSG?</h3>
-<div class="outline-text-3" id="text-org2ba23aa">
+<div id="outline-container-orgb1a5fcf" class="outline-3">
+<h3 id="orgb1a5fcf">Why Build My Own SSG?</h3>
+<div class="outline-text-3" id="text-orgb1a5fcf">
 <p>
 Sure, Hugo and Jekyll exist. They&rsquo;re great tools. But I wanted to understand the process from scratch, and I was curious about using Emacs&rsquo; built-in HTML publishing capabilities as the foundation.
 </p>
@@ -68,10 +67,9 @@ Is this a complete SSG? No. It&rsquo;s maybe 20% of what a typical SSG offers, b
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgeedd722" class="outline-3">
-<h3 id="orgeedd722">What This Does</h3>
-<div class="outline-text-3" id="text-orgeedd722">
+<div id="outline-container-org6e0b0b2" class="outline-3">
+<h3 id="org6e0b0b2">What This Does</h3>
+<div class="outline-text-3" id="text-org6e0b0b2">
 <ul class="org-ul">
 <li>Exports Org files to HTML with a custom template</li>
 <li>Generates the site structure automatically</li>
@@ -82,10 +80,9 @@ Is this a complete SSG? No. It&rsquo;s maybe 20% of what a typical SSG offers, b
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orga9c8107" class="outline-3">
-<h3 id="orga9c8107">The Design</h3>
-<div class="outline-text-3" id="text-orga9c8107">
+<div id="outline-container-org8cdece3" class="outline-3">
+<h3 id="org8cdece3">The Design</h3>
+<div class="outline-text-3" id="text-org8cdece3">
 <p>
 I wanted something minimal and terminal-inspired. Dark background with golden accents, monospace fonts everywhere, no clutter. The landing page has a typewriter effect for my name and simple icon links to GitHub, LinkedIn, and email.
 </p>
@@ -95,10 +92,9 @@ The aesthetic is somewhere between retro terminal and modern minimalism. Clean, 
 </p>
 </div>
 </div>
-
-<div id="outline-container-orge7429fa" class="outline-3">
-<h3 id="orge7429fa">The Stack</h3>
-<div class="outline-text-3" id="text-orge7429fa">
+<div id="outline-container-orgc721a28" class="outline-3">
+<h3 id="orgc721a28">The Stack</h3>
+<div class="outline-text-3" id="text-orgc721a28">
 <ul class="org-ul">
 <li><b>Emacs Org mode</b> for content and publishing</li>
 <li><b>HTML/CSS</b> for structure and theming</li>
@@ -110,33 +106,30 @@ The aesthetic is somewhere between retro terminal and modern minimalism. Clean, 
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgc8b3448" class="outline-3">
-<h3 id="orgc8b3448">Key Features</h3>
-<div class="outline-text-3" id="text-orgc8b3448">
+<div id="outline-container-orgb10f622" class="outline-3">
+<h3 id="orgb10f622">Key Features</h3>
+<div class="outline-text-3" id="text-orgb10f622">
 </div>
-<div id="outline-container-org445ee00" class="outline-4">
-<h4 id="org445ee00">Syntax Highlighting</h4>
-<div class="outline-text-4" id="text-org445ee00">
+<div id="outline-container-org153edc4" class="outline-4">
+<h4 id="org153edc4">Syntax Highlighting</h4>
+<div class="outline-text-4" id="text-org153edc4">
 <p>
 Using Highlight.js with the Atom One Dark theme. Code blocks automatically detect the language from Org&rsquo;s <code>#+begin_src</code> blocks. Added a copy button that appears on hover - small touch, but makes code snippets way more useful.
 </p>
 </div>
 </div>
-
-<div id="outline-container-orga1a1424" class="outline-4">
-<h4 id="orga1a1424">Automated Builds</h4>
-<div class="outline-text-4" id="text-orga1a1424">
+<div id="outline-container-org8c49cd3" class="outline-4">
+<h4 id="org8c49cd3">Automated Builds</h4>
+<div class="outline-text-4" id="text-org8c49cd3">
 <p>
 GitHub Actions watches the <code>contents/</code> folder. Any push triggers <code>make blog</code>, builds the site, commits the <code>dist/</code> folder back to the repo, and Cloudflare Pages deploys automatically. Zero manual steps.
 </p>
 </div>
 </div>
 </div>
-
-<div id="outline-container-org818a08f" class="outline-3">
-<h3 id="org818a08f">The Build Process</h3>
-<div class="outline-text-3" id="text-org818a08f">
+<div id="outline-container-orgd2699b9" class="outline-3">
+<h3 id="orgd2699b9">The Build Process</h3>
+<div class="outline-text-3" id="text-orgd2699b9">
 <p>
 The <code>publish.el</code> file does the heavy lifting. It:
 </p>
@@ -154,10 +147,9 @@ Running <code>make blog</code> just calls <code>emacs --batch -l publish.el</cod
 </p>
 </div>
 </div>
-
-<div id="outline-container-org16ce7ab" class="outline-3">
-<h3 id="org16ce7ab">The Template System</h3>
-<div class="outline-text-3" id="text-org16ce7ab">
+<div id="outline-container-org7363044" class="outline-3">
+<h3 id="org7363044">The Template System</h3>
+<div class="outline-text-3" id="text-org7363044">
 <p>
 The layout lives in <code>layout-fragment.html</code>. It&rsquo;s just the header section - navigation, social links, name with typewriter effect. Org mode&rsquo;s <code>:html-preamble</code> inserts it at the top of every page.
 </p>
@@ -167,10 +159,9 @@ Content headings start at <code>h3</code> because the page title is <code>h1</co
 </p>
 </div>
 </div>
-
-<div id="outline-container-org456a1e9" class="outline-3">
-<h3 id="org456a1e9">Styling Philosophy</h3>
-<div class="outline-text-3" id="text-org456a1e9">
+<div id="outline-container-org24f8143" class="outline-3">
+<h3 id="org24f8143">Styling Philosophy</h3>
+<div class="outline-text-3" id="text-org24f8143">
 <p>
 CSS uses HSL color variables for theming. The dark theme uses <code>hsl(0 0% 13%)</code> for background and <code>hsl(42 100% 50%)</code> for the golden accent. Light theme flips to <code>hsl(0 0% 98%)</code> background with adjusted accent colors.
 </p>
@@ -184,10 +175,9 @@ Code blocks get the full treatment - background, border, syntax highlighting, li
 </p>
 </div>
 </div>
-
-<div id="outline-container-org1d83511" class="outline-3">
-<h3 id="org1d83511">The Typewriter Effect</h3>
-<div class="outline-text-3" id="text-org1d83511">
+<div id="outline-container-org0f29554" class="outline-3">
+<h3 id="org0f29554">The Typewriter Effect</h3>
+<div class="outline-text-3" id="text-org0f29554">
 <p>
 The name animation on the landing page types out character by character with a blinking cursor. Had to:
 </p>
@@ -204,42 +194,38 @@ The cursor uses CSS <code>@keyframes</code> to fade in and out, giving it that a
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgd47955d" class="outline-3">
-<h3 id="orgd47955d">Challenges and Solutions</h3>
-<div class="outline-text-3" id="text-orgd47955d">
+<div id="outline-container-org3e1d464" class="outline-3">
+<h3 id="org3e1d464">Challenges and Solutions</h3>
+<div class="outline-text-3" id="text-org3e1d464">
 </div>
-<div id="outline-container-org5fab24d" class="outline-4">
-<h4 id="org5fab24d">Challenge: Inline code wasn&rsquo;t styled</h4>
-<div class="outline-text-4" id="text-org5fab24d">
+<div id="outline-container-org1574bba" class="outline-4">
+<h4 id="org1574bba">Challenge: Inline code wasn&rsquo;t styled</h4>
+<div class="outline-text-4" id="text-org1574bba">
 <p>
 Solution: Added CSS targeting <code>:not(pre) &gt; code</code> to style inline code differently from code blocks.
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgb1cfdc3" class="outline-4">
-<h4 id="orgb1cfdc3">Challenge: Manual builds were tedious</h4>
-<div class="outline-text-4" id="text-orgb1cfdc3">
+<div id="outline-container-orgd85a010" class="outline-4">
+<h4 id="orgd85a010">Challenge: Manual builds were tedious</h4>
+<div class="outline-text-4" id="text-orgd85a010">
 <p>
 Solution: Set up GitHub Actions to build and commit on any push to <code>contents/</code>.
 </p>
 </div>
 </div>
-
-<div id="outline-container-org5115f7e" class="outline-4">
-<h4 id="org5115f7e">Challenge: Title was always <code>h1</code></h4>
-<div class="outline-text-4" id="text-org5115f7e">
+<div id="outline-container-org0da9f22" class="outline-4">
+<h4 id="org0da9f22">Challenge: Title was always <code>h1</code></h4>
+<div class="outline-text-4" id="text-org0da9f22">
 <p>
 Solution: Used <code>:html-toplevel-hlevel 3</code> to make content headings start at <code>h3</code>, keeping proper semantic structure.
 </p>
 </div>
 </div>
 </div>
-
-<div id="outline-container-org59b2826" class="outline-3">
-<h3 id="org59b2826">What I Learned</h3>
-<div class="outline-text-3" id="text-org59b2826">
+<div id="outline-container-org2becf50" class="outline-3">
+<h3 id="org2becf50">What I Learned</h3>
+<div class="outline-text-3" id="text-org2becf50">
 <p>
 Building from scratch taught me more about HTML semantics, CSS organization, and build systems than any tutorial. You learn by solving real problems, not by following step-by-step guides.
 </p>
@@ -253,10 +239,9 @@ Starting simple and adding features incrementally is the way. Don&rsquo;t try to
 </p>
 </div>
 </div>
-
-<div id="outline-container-org29af43d" class="outline-3">
-<h3 id="org29af43d">Next Steps</h3>
-<div class="outline-text-3" id="text-org29af43d">
+<div id="outline-container-org4a235d1" class="outline-3">
+<h3 id="org4a235d1">Next Steps</h3>
+<div class="outline-text-3" id="text-org4a235d1">
 <ul class="org-ul">
 <li>Add line numbers to longer code blocks (done via Highlight.js plugin)</li>
 <li>Improve mobile navigation with a hamburger menu</li>
@@ -267,10 +252,9 @@ Starting simple and adding features incrementally is the way. Don&rsquo;t try to
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgc303226" class="outline-3">
-<h3 id="orgc303226">Why This Approach Works</h3>
-<div class="outline-text-3" id="text-orgc303226">
+<div id="outline-container-org2f8ba15" class="outline-3">
+<h3 id="org2f8ba15">Why This Approach Works</h3>
+<div class="outline-text-3" id="text-org2f8ba15">
 <p>
 It&rsquo;s fast. No JavaScript framework, no build step complexity, just static HTML with progressive enhancement. Pages load instantly, work without JavaScript (mostly), and are easy to debug.
 </p>
@@ -284,10 +268,9 @@ It&rsquo;s mine. I understand every piece. When something breaks, I know where t
 </p>
 </div>
 </div>
-
-<div id="outline-container-org0c643da" class="outline-3">
-<h3 id="org0c643da">Conclusion</h3>
-<div class="outline-text-3" id="text-org0c643da">
+<div id="outline-container-org3980532" class="outline-3">
+<h3 id="org3980532">Conclusion</h3>
+<div class="outline-text-3" id="text-org3980532">
 <p>
 Building your own static site generator isn&rsquo;t for everyone. But if you want to understand how things work, enjoy solving problems, and value having complete control over your tools, it&rsquo;s incredibly rewarding.
 </p>
