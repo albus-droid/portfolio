@@ -1,8 +1,8 @@
 #+TITLE: My LKMP Journey
 #+AUTHOR: Albin Babu Varghese
 #+DATE: December 2025
+#+HTML_VALIDATION_LINK: nil
 #+OPTIONS: toc:nil num:nil
-#+OPTIONS: html-validation-link:nil
 #+DESCRIPTION: My experience in the Linux Kernel Mentorship Program (LKMP), what I struggled with, what worked, and how beginners can get started with real kernel debugging.
 #+LANGUAGE: en
 
@@ -42,9 +42,7 @@ before the fight, for anyone who decides to step into the kernel next.
 
 There is no mandatory attendance and no assigned homework. This is not a class.
 You are expected to find problems, investigate them, and ask for help when
-stuck.
-
-That took me some time to fully internalize.
+stuck. That took me some time to fully internalize.
 
 * Finding Something to Work On
 
@@ -60,8 +58,9 @@ Over time, you learn that they’re just very honest crash reporters.
 This is where most of my LKMP work came from.
 
 ** @@html:<u>Local Fuzzing</u>@@
-You *can* run syzkaller locally, but it’s extremely time-consuming and resource-heavy.
-Personally, I found it more effective to focus on existing reports.
+You *can* run syzkaller locally, but it’s extremely time-consuming and
+resource-heavy.  Personally, I found it more effective to focus on existing
+reports.
 
 ** @@html:<u>Static Analysis</u>@@
 I saw some mentees using static analysis tools such as *Coccinelle* and
@@ -76,8 +75,8 @@ slow.  Diagnosing a bug can take days. Writing the patch may take minutes — bu
 getting it *right* takes longer.
 
 I fixed multiple bugs across ext4, ocfs2, and fbdev, including issues that were
-later assigned CVEs. I teamed up with *Ahmet Eray Karadag* for most of my patches.
-His write-up is available on his [[https://medium.com/@eraykrdg1/surviving-the-linux-kernel-mentorship-my-journey-tips-f08a9af844b4][blog]].
+later assigned CVEs. I teamed up with *Ahmet Eray Karadag* for most of my
+patches. His write-up is available on his [[https://medium.com/@eraykrdg1/surviving-the-linux-kernel-mentorship-my-journey-tips-f08a9af844b4][blog]].
 
 Maintainers were strict but fair. Clean logic, clean commits, and clear
 explanations mattered just as much as the fix itself.
@@ -88,9 +87,11 @@ more educational than getting one merged.
 * My Workflow
 
 When I first applied, I had limited exposure to QEMU, and getting started wasn’t
-a big hassle. Here’s the [[https://github.com/albus-droid/lkmp-qemu-script][script]] I used for running QEMU. Once I had a reliable
-VM setup, kernel development became repeatable and much less stressful. That
-repo also lists some of the commands I used very frequently for easy look ups.
+a big hassle and this session [[https://www.youtube.com/watch?v=FdNIiQxwJuk][Mentorship Session: Linux Kernel Debugging –
+Tricks of the Trade]], fundamentally changed how I think about debugging. Here’s
+the [[https://github.com/albus-droid/lkmp-qemu-script][script]] I used for running QEMU. Once I had a reliable VM setup, kernel
+development became repeatable and much less stressful. That repo also lists some
+of the commands I used very frequently for easy lookups.
 
 ** @@html:<u>Compiling the Kernel</u>@@
 Kernel builds are slow, especially at first. Even with many cores, full builds take time.
@@ -117,14 +118,6 @@ Printk is powerful but dangerous if overused.
 I didn’t invest enough time into ftrace, perf, and event tracing during the
 program.  This is something I plan to focus on next — it would have saved time
 on several bugs.
-
-One very helpful session was:
-
-Mentorship Session: *Linux Kernel Debugging – Tricks of the Trade*   by the
-Linux Foundation  
-https://www.youtube.com/watch?v=FdNIiQxwJuk
-
-This session fundamentally changed how I think about debugging.
 
 * Submitting Patches
 
@@ -168,8 +161,8 @@ If you’re considering LKMP:
 
 * Closing Thoughts
 
-LKMP changed how I see the Linux kernel.
-It’s no longer a black box — it’s a system built by people carefully reasoning about failure.
+LKMP changed how I see the Linux kernel.  It’s no longer a black box — it’s a
+system built by people carefully reasoning about failure.
 
 I’m still early in this journey, but now I know how to continue.
 And that, to me, is the real value of this program.
