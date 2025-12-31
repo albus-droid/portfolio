@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-12-31 Wed 23:23 -->
+<!-- 2025-12-31 Wed 23:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>My LKMP Journey</title>
@@ -54,39 +54,10 @@ hljs.highlightAll();
 </div>
 <div id="content" class="content">
 <h1 class="title">My LKMP Journey</h1>
-<div id="table-of-contents" role="doc-toc">
-<h3>Table of Contents</h3>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#orgcdb4942">1. Introduction</a></li>
-<li><a href="#orgf16b928">2. About the Program</a></li>
-<li><a href="#orgd1a285d">3. Finding Something to Work On</a>
-<ul>
-<li><a href="#org2cb3033">3.1. <u>Syzbot</u></a></li>
-<li><a href="#org8b6350d">3.2. <u>Local Fuzzing</u></a></li>
-<li><a href="#orgea66d68">3.3. <u>Static Analysis</u></a></li>
-</ul>
-</li>
-<li><a href="#orgcafc362">4. My Experience</a></li>
-<li><a href="#org41b9aa8">5. My Workflow</a>
-<ul>
-<li><a href="#org16eff37">5.1. <u>Compiling the Kernel</u></a></li>
-<li><a href="#orgb264306">5.2. <u>Reproducing the Bug</u></a></li>
-<li><a href="#org376c4c5">5.3. <u>Debugging</u></a></li>
-<li><a href="#org5130913">5.4. <u>Tracing</u></a></li>
-</ul>
-</li>
-<li><a href="#orge397bd7">6. Submitting Patches</a></li>
-<li><a href="#org1cccf20">7. What I Learned</a></li>
-<li><a href="#org265b2e3">8. Tips for Future Mentees</a></li>
-<li><a href="#orgdabe55b">9. Closing Thoughts</a></li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-orgcdb4942" class="outline-3">
-<h3 id="orgcdb4942"><span class="section-number-3">1.</span> Introduction</h3>
-<div class="outline-text-3" id="text-1">
+<div id="outline-container-orgb10a50b" class="outline-3">
+<h3 id="orgb10a50b">Introduction</h3>
+<div class="outline-text-3" id="text-orgb10a50b">
 <p>
 I recently wrapped up my time as a mentee in the Linux Kernel Mentorship Program
 (LKMP). Before this program, I had a solid theoretical understanding of
@@ -118,7 +89,7 @@ before the fight, for anyone who decides to step into the kernel next.
 </p>
 
 
-<div id="org9daa8a0" class="figure">
+<div id="org59bafca" class="figure">
 <p><img src="https://i.imgur.com/PmfvIMV.png" alt="Dark Souls message before a boss" style="max-width: 100%; height: auto;" />
 </p>
 <p><span class="figure-number">Figure 1: </span>A message left before facing the kernel.</p>
@@ -126,9 +97,9 @@ before the fight, for anyone who decides to step into the kernel next.
 </div>
 </div>
 
-<div id="outline-container-orgf16b928" class="outline-3">
-<h3 id="orgf16b928"><span class="section-number-3">2.</span> About the Program</h3>
-<div class="outline-text-3" id="text-2">
+<div id="outline-container-org6fd86c2" class="outline-3">
+<h3 id="org6fd86c2">About the Program</h3>
+<div class="outline-text-3" id="text-org6fd86c2">
 <ul class="org-ul">
 <li>Program: Linux Kernel Bug Fixing Mentorship Program (Fall 2025)</li>
 <li>Duration: ~3 months</li>
@@ -151,9 +122,9 @@ That took me some time to fully internalize.
 </div>
 </div>
 
-<div id="outline-container-orgd1a285d" class="outline-3">
-<h3 id="orgd1a285d"><span class="section-number-3">3.</span> Finding Something to Work On</h3>
-<div class="outline-text-3" id="text-3">
+<div id="outline-container-orgb73a1bc" class="outline-3">
+<h3 id="orgb73a1bc">Finding Something to Work On</h3>
+<div class="outline-text-3" id="text-orgb73a1bc">
 <p>
 One of the first questions I had was: <b>what am I supposed to work on?</b>
 </p>
@@ -164,9 +135,9 @@ that worked best for me:
 </p>
 </div>
 
-<div id="outline-container-org2cb3033" class="outline-4">
-<h4 id="org2cb3033"><span class="section-number-4">3.1.</span> <u>Syzbot</u></h4>
-<div class="outline-text-4" id="text-3-1">
+<div id="outline-container-org69e5995" class="outline-4">
+<h4 id="org69e5995"><u>Syzbot</u></h4>
+<div class="outline-text-4" id="text-org69e5995">
 <p>
 Syzbot reports bugs found via fuzzing. At first, they look terrifying.
 Over time, you learn that they’re just very honest crash reporters.
@@ -178,9 +149,9 @@ This is where most of my LKMP work came from.
 </div>
 </div>
 
-<div id="outline-container-org8b6350d" class="outline-4">
-<h4 id="org8b6350d"><span class="section-number-4">3.2.</span> <u>Local Fuzzing</u></h4>
-<div class="outline-text-4" id="text-3-2">
+<div id="outline-container-orgb6670e5" class="outline-4">
+<h4 id="orgb6670e5"><u>Local Fuzzing</u></h4>
+<div class="outline-text-4" id="text-orgb6670e5">
 <p>
 You <b>can</b> run syzkaller locally, but it’s extremely time-consuming and resource-heavy.
 Personally, I found it more effective to focus on existing reports.
@@ -188,9 +159,9 @@ Personally, I found it more effective to focus on existing reports.
 </div>
 </div>
 
-<div id="outline-container-orgea66d68" class="outline-4">
-<h4 id="orgea66d68"><span class="section-number-4">3.3.</span> <u>Static Analysis</u></h4>
-<div class="outline-text-4" id="text-3-3">
+<div id="outline-container-org84e32ba" class="outline-4">
+<h4 id="org84e32ba"><u>Static Analysis</u></h4>
+<div class="outline-text-4" id="text-org84e32ba">
 <p>
 I saw some mentees using static analysis tools such as <b>Coccinelle</b> and
 <b>Sparse</b>.  I didn’t personally use these tools during the program, and I also
@@ -201,9 +172,9 @@ intentional code patterns. YMMV.
 </div>
 </div>
 
-<div id="outline-container-orgcafc362" class="outline-3">
-<h3 id="orgcafc362"><span class="section-number-3">4.</span> My Experience</h3>
-<div class="outline-text-3" id="text-4">
+<div id="outline-container-org03f6741" class="outline-3">
+<h3 id="org03f6741">My Experience</h3>
+<div class="outline-text-3" id="text-org03f6741">
 <p>
 I tried to fix as many bugs as I reasonably could, but kernel bug fixing is
 slow.  Diagnosing a bug can take days. Writing the patch may take minutes — but
@@ -228,9 +199,9 @@ more educational than getting one merged.
 </div>
 </div>
 
-<div id="outline-container-org41b9aa8" class="outline-3">
-<h3 id="org41b9aa8"><span class="section-number-3">5.</span> My Workflow</h3>
-<div class="outline-text-3" id="text-5">
+<div id="outline-container-org56317af" class="outline-3">
+<h3 id="org56317af">My Workflow</h3>
+<div class="outline-text-3" id="text-org56317af">
 <p>
 When I first applied, I had limited exposure to QEMU, and getting started wasn’t
 a big hassle. Here’s the <a href="https://github.com/albus-droid/lkmp-qemu-script">script</a> I used for running QEMU. Once I had a reliable
@@ -239,9 +210,9 @@ repo also lists some of the commands I used very frequently for easy look ups.
 </p>
 </div>
 
-<div id="outline-container-org16eff37" class="outline-4">
-<h4 id="org16eff37"><span class="section-number-4">5.1.</span> <u>Compiling the Kernel</u></h4>
-<div class="outline-text-4" id="text-5-1">
+<div id="outline-container-orge1d0ecb" class="outline-4">
+<h4 id="orge1d0ecb"><u>Compiling the Kernel</u></h4>
+<div class="outline-text-4" id="text-orge1d0ecb">
 <p>
 Kernel builds are slow, especially at first. Even with many cores, full builds take time.
 This is normal — patience is part of the workflow.
@@ -249,9 +220,9 @@ This is normal — patience is part of the workflow.
 </div>
 </div>
 
-<div id="outline-container-orgb264306" class="outline-4">
-<h4 id="orgb264306"><span class="section-number-4">5.2.</span> <u>Reproducing the Bug</u></h4>
-<div class="outline-text-4" id="text-5-2">
+<div id="outline-container-orgfbdb7ad" class="outline-4">
+<h4 id="orgfbdb7ad"><u>Reproducing the Bug</u></h4>
+<div class="outline-text-4" id="text-orgfbdb7ad">
 <p>
 For filesystem bugs, I often:
 </p>
@@ -267,9 +238,9 @@ Successfully reproducing a bug feels like real progress — because it is.
 </div>
 </div>
 
-<div id="outline-container-org376c4c5" class="outline-4">
-<h4 id="org376c4c5"><span class="section-number-4">5.3.</span> <u>Debugging</u></h4>
-<div class="outline-text-4" id="text-5-3">
+<div id="outline-container-orgb01bc42" class="outline-4">
+<h4 id="orgb01bc42"><u>Debugging</u></h4>
+<div class="outline-text-4" id="text-orgb01bc42">
 <p>
 Most of my debugging relied on:
 </p>
@@ -286,9 +257,9 @@ Printk is powerful but dangerous if overused.
 </div>
 </div>
 
-<div id="outline-container-org5130913" class="outline-4">
-<h4 id="org5130913"><span class="section-number-4">5.4.</span> <u>Tracing</u></h4>
-<div class="outline-text-4" id="text-5-4">
+<div id="outline-container-orgde1f31e" class="outline-4">
+<h4 id="orgde1f31e"><u>Tracing</u></h4>
+<div class="outline-text-4" id="text-orgde1f31e">
 <p>
 I didn’t invest enough time into ftrace, perf, and event tracing during the
 program.  This is something I plan to focus on next — it would have saved time
@@ -312,9 +283,9 @@ This session fundamentally changed how I think about debugging.
 </div>
 </div>
 
-<div id="outline-container-orge397bd7" class="outline-3">
-<h3 id="orge397bd7"><span class="section-number-3">6.</span> Submitting Patches</h3>
-<div class="outline-text-3" id="text-6">
+<div id="outline-container-org10fbd22" class="outline-3">
+<h3 id="org10fbd22">Submitting Patches</h3>
+<div class="outline-text-3" id="text-org10fbd22">
 <p>
 Once a fix looked solid:
 </p>
@@ -333,9 +304,9 @@ This process felt intimidating at first, but it quickly became routine.
 </div>
 </div>
 
-<div id="outline-container-org1cccf20" class="outline-3">
-<h3 id="org1cccf20"><span class="section-number-3">7.</span> What I Learned</h3>
-<div class="outline-text-3" id="text-7">
+<div id="outline-container-orgd8ee022" class="outline-3">
+<h3 id="orgd8ee022">What I Learned</h3>
+<div class="outline-text-3" id="text-orgd8ee022">
 <p>
 LKMP taught me far more than kernel APIs.
 </p>
@@ -365,9 +336,9 @@ But now I know <b>what</b> to improve — and that clarity is valuable.
 </div>
 </div>
 
-<div id="outline-container-org265b2e3" class="outline-3">
-<h3 id="org265b2e3"><span class="section-number-3">8.</span> Tips for Future Mentees</h3>
-<div class="outline-text-3" id="text-8">
+<div id="outline-container-orgb31a04b" class="outline-3">
+<h3 id="orgb31a04b">Tips for Future Mentees</h3>
+<div class="outline-text-3" id="text-orgb31a04b">
 <p>
 If you’re considering LKMP:
 </p>
@@ -383,9 +354,9 @@ If you’re considering LKMP:
 </div>
 </div>
 
-<div id="outline-container-orgdabe55b" class="outline-3">
-<h3 id="orgdabe55b"><span class="section-number-3">9.</span> Closing Thoughts</h3>
-<div class="outline-text-3" id="text-9">
+<div id="outline-container-org488ff53" class="outline-3">
+<h3 id="org488ff53">Closing Thoughts</h3>
+<div class="outline-text-3" id="text-org488ff53">
 <p>
 LKMP changed how I see the Linux kernel.
 It’s no longer a black box — it’s a system built by people carefully reasoning about failure.
@@ -405,7 +376,7 @@ Thanks for reading.
 <div id="postamble" class="status">
 <p class="date">Date: December 2025</p>
 <p class="author">Author: Albin Babu Varghese</p>
-<p class="date">Created: 2025-12-31 Wed 23:23</p>
+<p class="date">Created: 2025-12-31 Wed 23:26</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
