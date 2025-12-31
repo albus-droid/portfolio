@@ -2,6 +2,7 @@
 #+AUTHOR: Albin Babu Varghese
 #+DATE: December 2025
 #+HTML_VALIDATION_LINK: nil
+#+HTML_POSTAMBLE: nil
 #+OPTIONS: toc:nil num:nil
 #+DESCRIPTION: My experience in the Linux Kernel Mentorship Program (LKMP), what I struggled with, what worked, and how beginners can get started with real kernel debugging.
 #+LANGUAGE: en
