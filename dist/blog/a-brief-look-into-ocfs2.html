@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-12-31 Wed 23:15 -->
+<!-- 2025-12-31 Wed 23:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>A Look Inside OCFS2</title>
@@ -56,22 +56,22 @@ hljs.highlightAll();
 <h3>Table of Contents</h3>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8595576">1. What Problem Does It Solve?</a></li>
-<li><a href="#org9df3a81">2. Brief History</a></li>
-<li><a href="#orgbe6991e">3. How Clustering Works</a></li>
-<li><a href="#orgbcbfd1c">4. Disk Format</a></li>
-<li><a href="#org9435883">5. Inodes</a></li>
-<li><a href="#orgbaab414">6. Locking</a></li>
-<li><a href="#org82997a1">7. Directories</a></li>
-<li><a href="#org7e07207">8. Filesystem Metadata</a></li>
-<li><a href="#orgf6b7a78">9. Orphan Files</a></li>
-<li><a href="#org71a540a">10. Journaling</a></li>
-<li><a href="#org4e4e375">11. Additional Features</a></li>
-<li><a href="#orgfc1e122">12. Kernel Internals</a></li>
-<li><a href="#org04cd3d5">13. Use Cases</a></li>
-<li><a href="#org90cd3e8">14. Limitations</a></li>
-<li><a href="#orgedbafc8">15. Alternatives</a></li>
-<li><a href="#org6f685a2">16. Resources</a></li>
+<li><a href="#org5e70e07">1. What Problem Does It Solve?</a></li>
+<li><a href="#orgd07893c">2. Brief History</a></li>
+<li><a href="#org113aba8">3. How Clustering Works</a></li>
+<li><a href="#orgb401aeb">4. Disk Format</a></li>
+<li><a href="#org401939d">5. Inodes</a></li>
+<li><a href="#org04fdc09">6. Locking</a></li>
+<li><a href="#org15c3d4a">7. Directories</a></li>
+<li><a href="#org3c17ed4">8. Filesystem Metadata</a></li>
+<li><a href="#orgf121773">9. Orphan Files</a></li>
+<li><a href="#org32e3fba">10. Journaling</a></li>
+<li><a href="#org56d0a27">11. Additional Features</a></li>
+<li><a href="#org28af34a">12. Kernel Internals</a></li>
+<li><a href="#org4f54c48">13. Use Cases</a></li>
+<li><a href="#orgae26c27">14. Limitations</a></li>
+<li><a href="#org57c6214">15. Alternatives</a></li>
+<li><a href="#org9bec932">16. Resources</a></li>
 </ul>
 </div>
 </div>
@@ -79,8 +79,8 @@ hljs.highlightAll();
 OCFS2 (Oracle Cluster File System version 2) is a shared-disk cluster filesystem for Linux. Multiple nodes can mount the same filesystem simultaneously and see the same consistent view of data. Changes made by one node are immediately visible to others.
 </p>
 
-<div id="outline-container-org8595576" class="outline-3">
-<h3 id="org8595576"><span class="section-number-3">1.</span> What Problem Does It Solve?</h3>
+<div id="outline-container-org5e70e07" class="outline-3">
+<h3 id="org5e70e07"><span class="section-number-3">1.</span> What Problem Does It Solve?</h3>
 <div class="outline-text-3" id="text-1">
 <p>
 Traditional filesystems let only one machine access a storage device at a time. Network filesystems like NFS use a client-server model where one server exports to many clients.
@@ -92,8 +92,8 @@ OCFS2 is different - it lets multiple machines directly access the same block de
 </div>
 </div>
 
-<div id="outline-container-org9df3a81" class="outline-3">
-<h3 id="org9df3a81"><span class="section-number-3">2.</span> Brief History</h3>
+<div id="outline-container-orgd07893c" class="outline-3">
+<h3 id="orgd07893c"><span class="section-number-3">2.</span> Brief History</h3>
 <div class="outline-text-3" id="text-2">
 <p>
 OCFS version 1 was Oracle&rsquo;s early attempt at a clustered filesystem. It was basic and designed only for Oracle database storage - missing most POSIX features.
@@ -105,8 +105,8 @@ OCFS2 was a complete rewrite to make it a general-purpose filesystem. It was mer
 </div>
 </div>
 
-<div id="outline-container-orgbe6991e" class="outline-3">
-<h3 id="orgbe6991e"><span class="section-number-3">3.</span> How Clustering Works</h3>
+<div id="outline-container-org113aba8" class="outline-3">
+<h3 id="org113aba8"><span class="section-number-3">3.</span> How Clustering Works</h3>
 <div class="outline-text-3" id="text-3">
 <p>
 OCFS2 needs cluster management to handle operations like node membership and fencing. All nodes must have the same configuration.
@@ -124,8 +124,8 @@ Two ways to manage the cluster:
 </div>
 </div>
 
-<div id="outline-container-orgbcbfd1c" class="outline-3">
-<h3 id="orgbcbfd1c"><span class="section-number-3">4.</span> Disk Format</h3>
+<div id="outline-container-orgb401aeb" class="outline-3">
+<h3 id="orgb401aeb"><span class="section-number-3">4.</span> Disk Format</h3>
 <div class="outline-text-3" id="text-4">
 <p>
 OCFS2 separates data and metadata storage:
@@ -139,8 +139,8 @@ OCFS2 separates data and metadata storage:
 </div>
 </div>
 
-<div id="outline-container-org9435883" class="outline-3">
-<h3 id="org9435883"><span class="section-number-3">5.</span> Inodes</h3>
+<div id="outline-container-org401939d" class="outline-3">
+<h3 id="org401939d"><span class="section-number-3">5.</span> Inodes</h3>
 <div class="outline-text-3" id="text-5">
 <p>
 An inode occupies an entire block. The block number doubles as the inode number. This can waste space for filesystems with many small files, so OCFS2 has &ldquo;inline data&rdquo; - small files are packed directly into the inode.
@@ -156,8 +156,8 @@ File data is organized as a B-tree of extents. The inode is the root. It holds e
 </div>
 </div>
 
-<div id="outline-container-orgbaab414" class="outline-3">
-<h3 id="orgbaab414"><span class="section-number-3">6.</span> Locking</h3>
+<div id="outline-container-org04fdc09" class="outline-3">
+<h3 id="org04fdc09"><span class="section-number-3">6.</span> Locking</h3>
 <div class="outline-text-3" id="text-6">
 <p>
 The basic unit of locking is the inode. OCFS2 uses the Distributed Lock Manager (DLM) for coordination. When a process wants to access a file, it must request a DLM lock.
@@ -179,8 +179,8 @@ When opening a file, the open lock is acquired in protected-read mode. To delete
 </div>
 </div>
 
-<div id="outline-container-org82997a1" class="outline-3">
-<h3 id="org82997a1"><span class="section-number-3">7.</span> Directories</h3>
+<div id="outline-container-org15c3d4a" class="outline-3">
+<h3 id="org15c3d4a"><span class="section-number-3">7.</span> Directories</h3>
 <div class="outline-text-3" id="text-7">
 <p>
 Directory entries are stored as name-inode pairs in directory blocks. Storage pattern is same as regular files but allocated as cluster blocks.
@@ -196,8 +196,8 @@ A directory trailer at the end of each block tracks free space and contains a ch
 </div>
 </div>
 
-<div id="outline-container-org7e07207" class="outline-3">
-<h3 id="org7e07207"><span class="section-number-3">8.</span> Filesystem Metadata</h3>
+<div id="outline-container-org3c17ed4" class="outline-3">
+<h3 id="org3c17ed4"><span class="section-number-3">8.</span> Filesystem Metadata</h3>
 <div class="outline-text-3" id="text-8">
 <p>
 A special system directory <code>//</code> contains all filesystem metadata files. Not accessible from normal mount (only via <code>debugfs.ocfs2</code> tool).
@@ -235,8 +235,8 @@ When freeing blocks that belong to another node&rsquo;s allocation map, they go 
 </div>
 </div>
 
-<div id="outline-container-orgf6b7a78" class="outline-3">
-<h3 id="orgf6b7a78"><span class="section-number-3">9.</span> Orphan Files</h3>
+<div id="outline-container-orgf121773" class="outline-3">
+<h3 id="orgf121773"><span class="section-number-3">9.</span> Orphan Files</h3>
 <div class="outline-text-3" id="text-9">
 <p>
 Files aren&rsquo;t physically deleted until all processes close them. OCFS2 maintains an orphan list like ext3, but it&rsquo;s more complex because nodes must check cluster-wide usage.
@@ -248,8 +248,8 @@ When unlinking the last link to a file, the node requests an exclusive lock on t
 </div>
 </div>
 
-<div id="outline-container-org71a540a" class="outline-3">
-<h3 id="org71a540a"><span class="section-number-3">10.</span> Journaling</h3>
+<div id="outline-container-org32e3fba" class="outline-3">
+<h3 id="org32e3fba"><span class="section-number-3">10.</span> Journaling</h3>
 <div class="outline-text-3" id="text-10">
 <p>
 OCFS2 uses Linux JBD2 layer for journaling. Each node maintains its own journal for local I/O to avoid contention.
@@ -261,8 +261,8 @@ If a node dies, other nodes must replay the dead node&rsquo;s journal before pro
 </div>
 </div>
 
-<div id="outline-container-org4e4e375" class="outline-3">
-<h3 id="org4e4e375"><span class="section-number-3">11.</span> Additional Features</h3>
+<div id="outline-container-org56d0a27" class="outline-3">
+<h3 id="org56d0a27"><span class="section-number-3">11.</span> Additional Features</h3>
 <div class="outline-text-3" id="text-11">
 <ul class="org-ul">
 <li>Reflinks - Snapshots using copy-on-write (COW). Currently accessed via <code>reflink</code> tool using ioctl, pending upstream system call interface.</li>
@@ -272,8 +272,8 @@ If a node dies, other nodes must replay the dead node&rsquo;s journal before pro
 </div>
 </div>
 
-<div id="outline-container-orgfc1e122" class="outline-3">
-<h3 id="orgfc1e122"><span class="section-number-3">12.</span> Kernel Internals</h3>
+<div id="outline-container-org28af34a" class="outline-3">
+<h3 id="org28af34a"><span class="section-number-3">12.</span> Kernel Internals</h3>
 <div class="outline-text-3" id="text-12">
 <p>
 Source is in <code>fs/ocfs2/</code> in kernel tree.
@@ -293,8 +293,8 @@ Key files:
 </div>
 </div>
 
-<div id="outline-container-org04cd3d5" class="outline-3">
-<h3 id="org04cd3d5"><span class="section-number-3">13.</span> Use Cases</h3>
+<div id="outline-container-org4f54c48" class="outline-3">
+<h3 id="org4f54c48"><span class="section-number-3">13.</span> Use Cases</h3>
 <div class="outline-text-3" id="text-13">
 <ul class="org-ul">
 <li>High availability clusters</li>
@@ -306,8 +306,8 @@ Key files:
 </div>
 </div>
 
-<div id="outline-container-org90cd3e8" class="outline-3">
-<h3 id="org90cd3e8"><span class="section-number-3">14.</span> Limitations</h3>
+<div id="outline-container-orgae26c27" class="outline-3">
+<h3 id="orgae26c27"><span class="section-number-3">14.</span> Limitations</h3>
 <div class="outline-text-3" id="text-14">
 <ul class="org-ul">
 <li>Less widely used than alternatives</li>
@@ -318,8 +318,8 @@ Key files:
 </div>
 </div>
 
-<div id="outline-container-orgedbafc8" class="outline-3">
-<h3 id="orgedbafc8"><span class="section-number-3">15.</span> Alternatives</h3>
+<div id="outline-container-org57c6214" class="outline-3">
+<h3 id="org57c6214"><span class="section-number-3">15.</span> Alternatives</h3>
 <div class="outline-text-3" id="text-15">
 <ul class="org-ul">
 <li>GFS2 - Red Hat&rsquo;s cluster filesystem</li>
@@ -334,8 +334,8 @@ Choose based on needs - OCFS2 is good for traditional cluster setups with shared
 </div>
 </div>
 
-<div id="outline-container-org6f685a2" class="outline-3">
-<h3 id="org6f685a2"><span class="section-number-3">16.</span> Resources</h3>
+<div id="outline-container-org9bec932" class="outline-3">
+<h3 id="org9bec932"><span class="section-number-3">16.</span> Resources</h3>
 <div class="outline-text-3" id="text-16">
 <ul class="org-ul">
 <li><a href="https://docs.oracle.com/en/operating-systems/oracle-linux/ocfs2-users-guide/">https://docs.oracle.com/en/operating-systems/oracle-linux/ocfs2-users-guide/</a></li>
@@ -351,7 +351,7 @@ OCFS2 is solid technology for traditional clustering scenarios. While newer alte
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2025-12-31 Wed 23:15</p>
+<p class="date">Created: 2025-12-31 Wed 23:23</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
