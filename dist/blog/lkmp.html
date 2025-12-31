@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-12-31 Wed 18:11 -->
+<!-- 2025-12-31 Wed 23:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>My Journey Contributing to the Linux Kernel: LFX Mentorship Fall 2025</title>
@@ -53,8 +53,9 @@ hljs.highlightAll();
 </div>
 <div id="content" class="content">
 <h1 class="title">My Journey Contributing to the Linux Kernel: LFX Mentorship Fall 2025</h1>
-<div id="outline-container-orgb46d7fa" class="outline-3">
-<h3 id="orgb46d7fa"><span class="section-number-3">1.</span> From User to Contributor: My Linux Kernel Journey</h3>
+
+<div id="outline-container-org4139bbd" class="outline-3">
+<h3 id="org4139bbd"><span class="section-number-3">1.</span> From User to Contributor: My Linux Kernel Journey</h3>
 <div class="outline-text-3" id="text-1">
 <p>
 For seven years, I&rsquo;ve been a Linux user. I&rsquo;ve configured systems, written scripts, debugged applications, and relied on the kernel every single day. But I never truly understood what was happening beneath the surface—until now.
@@ -65,8 +66,9 @@ This fall, I participated in the Linux Foundation&rsquo;s LFX Mentorship Program
 </p>
 </div>
 </div>
-<div id="outline-container-orgf788f1d" class="outline-3">
-<h3 id="orgf788f1d"><span class="section-number-3">2.</span> The Beginning: Staring at Stack Traces</h3>
+
+<div id="outline-container-orgc4ff402" class="outline-3">
+<h3 id="orgc4ff402"><span class="section-number-3">2.</span> The Beginning: Staring at Stack Traces</h3>
 <div class="outline-text-3" id="text-2">
 <p>
 My first week in the program was humbling. I opened my first syzbot report—an automated bug report from the kernel&rsquo;s continuous fuzzing system—and stared at a stack trace that might as well have been written in a foreign language. Terms like &ldquo;vmalloc-out-of-bounds,&rdquo; &ldquo;refcount underflow,&rdquo; and &ldquo;inode validation&rdquo; swirled around in my head with no clear connection to actual code.
@@ -81,8 +83,9 @@ The answer, I learned, wasn&rsquo;t some magical insight. It was systematic prac
 </p>
 </div>
 </div>
-<div id="outline-container-org61efdb4" class="outline-3">
-<h3 id="org61efdb4"><span class="section-number-3">3.</span> My First Patch: The Framebuffer Bug</h3>
+
+<div id="outline-container-org8ce4ee4" class="outline-3">
+<h3 id="org8ce4ee4"><span class="section-number-3">3.</span> My First Patch: The Framebuffer Bug</h3>
 <div class="outline-text-3" id="text-3">
 <p>
 My first accepted patch came from a bug in the framebuffer subsystem. The kernel was writing beyond allocated memory during console operations—a classic bounds checking issue. The crash logs pointed to <code>bit_putcs()</code>, a function that renders characters to the console.
@@ -105,8 +108,9 @@ When the patch was accepted and merged into mainline, I felt a rush I&rsquo;d ne
 </p>
 </div>
 </div>
-<div id="outline-container-org8d3a9bc" class="outline-3">
-<h3 id="org8d3a9bc"><span class="section-number-3">4.</span> Learning Through Failure: The ext4 Journey</h3>
+
+<div id="outline-container-org798d9df" class="outline-3">
+<h3 id="org798d9df"><span class="section-number-3">4.</span> Learning Through Failure: The ext4 Journey</h3>
 <div class="outline-text-3" id="text-4">
 <p>
 Not every bug I tackled ended in success, and those failures taught me more than my successes.
@@ -133,8 +137,9 @@ The lesson? Read the mailing list archives. Study previous similar fixes. Unders
 </p>
 </div>
 </div>
-<div id="outline-container-orgb376ca3" class="outline-3">
-<h3 id="orgb376ca3"><span class="section-number-3">5.</span> Finding My Community: Collaboration with Ahmet</h3>
+
+<div id="outline-container-orgba23746" class="outline-3">
+<h3 id="orgba23746"><span class="section-number-3">5.</span> Finding My Community: Collaboration with Ahmet</h3>
 <div class="outline-text-3" id="text-5">
 <p>
 One of the unexpected highlights of the program was connecting with Ahmet Eray Karadag, another mentee. We ended up collaborating on several filesystem bugs, particularly in OCFS2.
@@ -153,8 +158,9 @@ This taught me something fundamental: kernel development isn&rsquo;t a solo spor
 </p>
 </div>
 </div>
-<div id="outline-container-orgb9af9d2" class="outline-3">
-<h3 id="orgb9af9d2"><span class="section-number-3">6.</span> The Tools That Changed Everything</h3>
+
+<div id="outline-container-org770bb63" class="outline-3">
+<h3 id="org770bb63"><span class="section-number-3">6.</span> The Tools That Changed Everything</h3>
 <div class="outline-text-3" id="text-6">
 <p>
 Before this program, my debugging toolkit was basic: <code>printf</code> statements and maybe <code>gdb</code> if things got really bad. The mentorship introduced me to a whole new world:
@@ -175,8 +181,9 @@ But the most important tool wasn&rsquo;t technical. It was learning to read mail
 </p>
 </div>
 </div>
-<div id="outline-container-orgbf67fbb" class="outline-3">
-<h3 id="orgbf67fbb"><span class="section-number-3">7.</span> What I Learned About Myself</h3>
+
+<div id="outline-container-org3cdb63c" class="outline-3">
+<h3 id="org3cdb63c"><span class="section-number-3">7.</span> What I Learned About Myself</h3>
 <div class="outline-text-3" id="text-7">
 <p>
 This program revealed gaps in my knowledge I didn&rsquo;t know existed. Working on filesystem bugs exposed how little I understood about inode lifecycle management, extent trees, and cluster allocation. Attempting to fix race conditions showed me how much I still need to learn about kernel concurrency primitives.
@@ -191,15 +198,17 @@ Before this program, I was a Linux user who occasionally read kernel code. Now I
 </p>
 </div>
 </div>
-<div id="outline-container-orga0f1258" class="outline-3">
-<h3 id="orga0f1258"><span class="section-number-3">8.</span> The Patches (So Far)</h3>
+
+<div id="outline-container-org973b6e8" class="outline-3">
+<h3 id="org973b6e8"><span class="section-number-3">8.</span> The Patches (So Far)</h3>
 <div class="outline-text-3" id="text-8">
 <p>
 Here&rsquo;s what I contributed during the three-month program:
 </p>
 </div>
-<div id="outline-container-org3ab6bac" class="outline-4">
-<h4 id="org3ab6bac"><span class="section-number-4">8.1.</span> Merged in Mainline</h4>
+
+<div id="outline-container-org87033f3" class="outline-4">
+<h4 id="org87033f3"><span class="section-number-4">8.1.</span> Merged in Mainline</h4>
 <div class="outline-text-4" id="text-8-1">
 <ol class="org-ol">
 <li>ext4: guard against EA inode refcount underflow (co-developed with Ahmet)</li>
@@ -208,8 +217,9 @@ Here&rsquo;s what I contributed during the three-month program:
 </ol>
 </div>
 </div>
-<div id="outline-container-org7d1a2ab" class="outline-4">
-<h4 id="org7d1a2ab"><span class="section-number-4">8.2.</span> In Maintainer Tree</h4>
+
+<div id="outline-container-org7f0ef74" class="outline-4">
+<h4 id="org7f0ef74"><span class="section-number-4">8.2.</span> In Maintainer Tree</h4>
 <div class="outline-text-4" id="text-8-2">
 <ol class="org-ol">
 <li>ocfs2: invalidate inode if i_mode is zero (co-developed with Ahmet)</li>
@@ -223,8 +233,9 @@ Six patches might not sound like much, but each one represents days or weeks of 
 </div>
 </div>
 </div>
-<div id="outline-container-orgb2c56b9" class="outline-3">
-<h3 id="orgb2c56b9"><span class="section-number-3">9.</span> What&rsquo;s Next?</h3>
+
+<div id="outline-container-org305cfe5" class="outline-3">
+<h3 id="org305cfe5"><span class="section-number-3">9.</span> What&rsquo;s Next?</h3>
 <div class="outline-text-3" id="text-9">
 <p>
 The formal mentorship has ended, but my kernel journey is just beginning. I&rsquo;m continuing to work on syzbot reports, diving deeper into filesystem internals, and expanding into other subsystems. Ahmet and I are staying in touch to collaborate on future patches.
@@ -235,8 +246,9 @@ More importantly, I&rsquo;m investing in the foundational knowledge I&rsquo;ve b
 </p>
 </div>
 </div>
-<div id="outline-container-org237ad58" class="outline-3">
-<h3 id="org237ad58"><span class="section-number-3">10.</span> Advice for Future Mentees</h3>
+
+<div id="outline-container-org86e7c3b" class="outline-3">
+<h3 id="org86e7c3b"><span class="section-number-3">10.</span> Advice for Future Mentees</h3>
 <div class="outline-text-3" id="text-10">
 <p>
 If you&rsquo;re considering the LFX Kernel Bug Fixing program, here&rsquo;s what I wish someone had told me:
@@ -259,8 +271,9 @@ If you&rsquo;re considering the LFX Kernel Bug Fixing program, here&rsquo;s what
 </ol>
 </div>
 </div>
-<div id="outline-container-orgc8580b1" class="outline-3">
-<h3 id="orgc8580b1"><span class="section-number-3">11.</span> Closing Thoughts</h3>
+
+<div id="outline-container-orga2c31a7" class="outline-3">
+<h3 id="orga2c31a7"><span class="section-number-3">11.</span> Closing Thoughts</h3>
 <div class="outline-text-3" id="text-11">
 <p>
 Seven years ago, I installed Linux for the first time. I was just a user, running commands I didn&rsquo;t fully understand, relying on a system I couldn&rsquo;t see into.
@@ -283,8 +296,9 @@ And now I get to be part of that. That&rsquo;s a feeling I&rsquo;ll carry with m
 </p>
 </div>
 </div>
-<div id="outline-container-org7b34cd4" class="outline-3">
-<h3 id="org7b34cd4"><span class="section-number-3">12.</span> Links and Resources</h3>
+
+<div id="outline-container-org6a04f68" class="outline-3">
+<h3 id="org6a04f68"><span class="section-number-3">12.</span> Links and Resources</h3>
 <div class="outline-text-3" id="text-12">
 <ul class="org-ul">
 <li>My LFX Mentorship Report: <a href="https://albinbabuvarghese.com/lfx-report">Full Technical Report</a></li>
@@ -305,7 +319,7 @@ And now I get to be part of that. That&rsquo;s a feeling I&rsquo;ll carry with m
 <div id="postamble" class="status">
 <p class="date">Date: December 2025</p>
 <p class="author">Author: Albin Babu Varghese</p>
-<p class="date">Created: 2025-12-31 Wed 18:11</p>
+<p class="date">Created: 2025-12-31 Wed 23:15</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
