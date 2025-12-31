@@ -1,0 +1,138 @@
+#+TITLE: My Journey Contributing to the Linux Kernel: LFX Mentorship Fall 2025
+#+AUTHOR: Albin Babu Varghese
+#+DATE: December 2025
+#+OPTIONS: toc:nil ^:nil
+
+* From User to Contributor: My Linux Kernel Journey
+
+For seven years, I've been a Linux user. I've configured systems, written scripts, debugged applications, and relied on the kernel every single day. But I never truly understood what was happening beneath the surface—until now.
+
+This fall, I participated in the Linux Foundation's LFX Mentorship Program for kernel bug fixing. What started as an opportunity to learn kernel development turned into a transformative experience that changed how I think about software, debugging, and my own capabilities as a developer.
+
+* The Beginning: Staring at Stack Traces
+
+My first week in the program was humbling. I opened my first syzbot report—an automated bug report from the kernel's continuous fuzzing system—and stared at a stack trace that might as well have been written in a foreign language. Terms like "vmalloc-out-of-bounds," "refcount underflow," and "inode validation" swirled around in my head with no clear connection to actual code.
+
+I remember thinking: "How does anyone debug this?"
+
+The answer, I learned, wasn't some magical insight. It was systematic practice, the right tools, and a willingness to be wrong—a lot.
+
+* My First Patch: The Framebuffer Bug
+
+My first accepted patch came from a bug in the framebuffer subsystem. The kernel was writing beyond allocated memory during console operations—a classic bounds checking issue. The crash logs pointed to =bit_putcs()=, a function that renders characters to the console.
+
+I spent days setting up QEMU environments, running reproducers, stepping through code with GDB. The breakthrough came when I finally understood the data flow: character position calculations weren't accounting for framebuffer boundaries during VT resize operations.
+
+The fix itself was simple—add bounds validation before rendering operations. But getting to that point taught me something crucial: kernel debugging isn't about being clever. It's about being methodical.
+
+When the patch was accepted and merged into mainline, I felt a rush I'd never experienced with any of my previous projects. This wasn't code running on my machine—this was code that would run on millions of machines around the world.
+
+*Patch:* [[https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=3637d34b35b287ab830e66048841ace404382b67][fbdev: Add bounds checking in bit_putcs]]
+
+* Learning Through Failure: The ext4 Journey
+
+Not every bug I tackled ended in success, and those failures taught me more than my successes.
+
+I spent weeks on an ext4 inline data bug. My first attempt at a fix addressed what I thought was the problem: incorrect =free_blocks= counters. I submitted the patch, feeling confident.
+
+Ted Ts'o, the ext4 maintainer, pointed out that I was treating symptoms, not the root cause. The real issue was a race condition with =i_inline_size= becoming stale between operations. While I was working to understand the deeper architectural issues, another mentee found the correct solution using an established pattern from a previous fix.
+
+My patch wasn't merged. His was.
+
+At first, I felt defeated. But then I realized what had actually happened: I'd learned how kernel development really works. It's not about individual heroics. It's about collective problem-solving, learning from past solutions, and understanding that sometimes the best contribution is recognizing when someone else has found a better approach.
+
+The lesson? Read the mailing list archives. Study previous similar fixes. Understand the patterns that maintainers have proven over years of work. Don't reinvent the wheel when someone has already built a perfectly good wheel.
+
+* Finding My Community: Collaboration with Ahmet
+
+One of the unexpected highlights of the program was connecting with Ahmet Eray Karadag, another mentee. We ended up collaborating on several filesystem bugs, particularly in OCFS2.
+
+Working together changed everything. When I got stuck on an OCFS2 validation bug, Ahmet would suggest a different angle of investigation. When he was puzzled by refcount semantics in ext4, I'd share what I'd learned from my earlier failures. We'd compare notes on our QEMU setups, share debugging techniques, and celebrate when either of us made progress.
+
+Together, we co-developed six patches for OCFS2 and ext4, all of which were accepted. Three are already in mainline, and three more are in Andrew Morton's tree waiting for the next merge window.
+
+This taught me something fundamental: kernel development isn't a solo sport. The best work happens when people collaborate, share knowledge, and build on each other's insights.
+
+* The Tools That Changed Everything
+
+Before this program, my debugging toolkit was basic: =printf= statements and maybe =gdb= if things got really bad. The mentorship introduced me to a whole new world:
+
+- *cscope*: Shuah showed us this in an early session, and it transformed how I navigate kernel source. No more grepping through thousands of files—cscope let me jump directly to definitions and find call sites instantly.
+
+- *GDB + QEMU*: Learning to debug a live kernel running in QEMU was a game-changer. Being able to set breakpoints in kernel code, step through filesystem operations, and inspect data structures in real-time made complex bugs tractable.
+
+- *syzkaller*: Understanding how syzbot generates reproducers helped me create my own test cases and validate fixes comprehensively.
+
+- *xfstests and ocfs2-test*: These test suites taught me that a good fix isn't just about making the bug go away—it's about ensuring you haven't broken anything else.
+
+But the most important tool wasn't technical. It was learning to read mailing list archives and study how experienced developers approached similar problems in the past.
+
+* What I Learned About Myself
+
+This program revealed gaps in my knowledge I didn't know existed. Working on filesystem bugs exposed how little I understood about inode lifecycle management, extent trees, and cluster allocation. Attempting to fix race conditions showed me how much I still need to learn about kernel concurrency primitives.
+
+But here's what's valuable: I now *know* what I don't know. I have a roadmap. I understand which questions to ask and where to find answers.
+
+Before this program, I was a Linux user who occasionally read kernel code. Now I'm a contributor who understands enough to know how much more there is to learn. That self-awareness is directing me toward the right books, the right subsystems to study, and the right people to learn from.
+
+* The Patches (So Far)
+
+Here's what I contributed during the three-month program:
+
+** Merged in Mainline
+1. ext4: guard against EA inode refcount underflow (co-developed with Ahmet)
+2. fbdev: Add bounds checking in bit_putcs (independent)
+3. ocfs2: mark inode bad upon validation failure (co-developed with Ahmet)
+
+** In Maintainer Tree
+4. ocfs2: invalidate inode if i_mode is zero (co-developed with Ahmet)
+5. ocfs2: add ocfs2_emergency_state helper (co-developed with Ahmet)
+6. ocfs2: convert to ocfs2_emergency_state (co-developed with Ahmet)
+
+Six patches might not sound like much, but each one represents days or weeks of investigation, learning, iteration, and collaboration. Each one made Linux a tiny bit more stable and secure.
+
+* What's Next?
+
+The formal mentorship has ended, but my kernel journey is just beginning. I'm continuing to work on syzbot reports, diving deeper into filesystem internals, and expanding into other subsystems. Ahmet and I are staying in touch to collaborate on future patches.
+
+More importantly, I'm investing in the foundational knowledge I've been learning "on the run." I'm studying operating systems design, reading kernel documentation cover to cover, and mastering the advanced debugging tools I only scratched the surface of during the program.
+
+* Advice for Future Mentees
+
+If you're considering the LFX Kernel Bug Fixing program, here's what I wish someone had told me:
+
+1. *Start with the basics*: Make sure you're comfortable with C, understand pointers and memory management, and have basic debugging skills before diving in.
+
+2. *Don't skip the setup*: Invest time in getting your QEMU environment working properly. You'll use it constantly.
+
+3. *Read the archives*: Before tackling a bug, search the mailing list for similar issues. Learning from past fixes will save you enormous time.
+
+4. *Ask questions, but do your homework first*: The mentors and community are incredibly helpful, but show that you've tried to understand the problem yourself.
+
+5. *Embrace failure*: Your first patches will probably not be perfect. That's fine. The feedback is how you learn.
+
+6. *Find a buddy*: Collaborating with another mentee made the experience infinitely better. You'll learn more together.
+
+7. *It's a marathon, not a sprint*: Kernel development is complex. Be patient with yourself.
+
+* Closing Thoughts
+
+Seven years ago, I installed Linux for the first time. I was just a user, running commands I didn't fully understand, relying on a system I couldn't see into.
+
+Today, I'm a contributor. Not a major one—not yet. But I've fixed real bugs, submitted patches that maintainers accepted, and helped make the kernel I rely on every day a little bit better.
+
+More than that, I've found a community. I've discovered that the people maintaining this massive, critical piece of software are approachable, helpful, and genuinely invested in bringing new contributors into the fold.
+
+If you've ever wondered what it's like "inside" the kernel development process, I can tell you: it's challenging, sometimes frustrating, but ultimately incredibly rewarding. It's a place where careful thinking, systematic debugging, and collaborative problem-solving come together to build something that powers the world.
+
+And now I get to be part of that. That's a feeling I'll carry with me for the rest of my career.
+
+* Links and Resources
+
+- My LFX Mentorship Report: [[https://albinbabuvarghese.com/lfx-report][Full Technical Report]]
+- My Patches: [[https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/log/?qt=author&q=Albin+Babu+Varghese][git.kernel.org]]
+- LFX Mentorship Program: [[https://mentorship.lfx.linuxfoundation.org/][Apply Here]]
+
+---
+
+*Have questions about kernel development or the LFX program? Feel free to reach out on [[https://github.com/albinbabuvarghese][GitHub]] or [[mailto:albinbabuvarghese20@gmail.com][email]].*

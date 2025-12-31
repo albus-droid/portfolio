@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-12-31 Wed 17:48 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My LKMP Journey</title>
+<meta name="author" content="Albin Babu Varghese" />
+<meta name="description" content="My experience in the Linux Kernel Mentorship Program (LKMP), what I struggled with, what worked, and how beginners can get started with real kernel debugging." />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="https://albus-droid.github.io/portfolio/templates/style.css"/>
+<script src="https://albus-droid.github.io/portfolio/templates/typewriter-name.js" defer></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"><script src="https://albus-droid.github.io/portfolio/templates/highlight-code.js" defer></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<h1 id="name-typewriter"></h1>
+<div class="container">
+    <div class="social-links">
+        <a href="https://github.com/albus-droid" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297 24 5.67 18.627.297 12 .297z"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/albin-babu-varghese" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+        </a>
+        <a href="mailto:albinbabuvarghese@gmail.com" aria-label="Email">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Email</title><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.75L12 16.625l-6.545-4.875v9.25H1.636C.732 21 .001 20.269.001 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.908 1.528-1.145C21.69 3.28 24 4.435 24 5.457z"/></svg>
+        </a>
+    </div>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="/" class="nav-link">[HOME]</a>
+        <a href="resume.html" class="nav-link">[RESUME]</a>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+document.querySelectorAll('pre[class*="src-"]').forEach(pre => {
+  const match = pre.className.match(/src-(\w+)/);
+  if (match) {
+    const lang = match[1];
+    let code = pre.querySelector('code');
+    if (!code) {
+      code = document.createElement('code');
+      code.textContent = pre.textContent;
+      pre.textContent = '';
+      pre.appendChild(code);
+    }
+    code.className = `language-${lang}`;
+  }
+});
+hljs.highlightAll();
+</script>
+</div>
+<div id="content" class="content">
+<h1 class="title">My LKMP Journey</h1>
+<div id="table-of-contents" role="doc-toc">
+<h3>Table of Contents</h3>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga81e9cc">1. Introduction</a></li>
+<li><a href="#org4fc8e21">2. About the Program</a></li>
+<li><a href="#orgab738f5">3. Finding Something to Work On</a>
+<ul>
+<li><a href="#orgdaefb56">3.1. Syzbot (my main focus)</a></li>
+<li><a href="#org2116c0b">3.2. Local Fuzzing (optional)</a></li>
+<li><a href="#orgea66868">3.3. Static Analsysi</a></li>
+</ul>
+</li>
+<li><a href="#org7df943f">4. My Experience</a></li>
+<li><a href="#orga5ad79f">5. My Workflow</a>
+<ul>
+<li><a href="#orgc63dbb3">5.1. Compiling the Kernel</a></li>
+<li><a href="#org7c96f61">5.2. Reproducing the Bug</a></li>
+<li><a href="#org4d04b22">5.3. Debugging</a></li>
+<li><a href="#org87dcc3a">5.4. Tracing (a regret)</a></li>
+</ul>
+</li>
+<li><a href="#orgba08050">6. Submitting Patches</a></li>
+<li><a href="#org9802a57">7. What I Learned</a></li>
+<li><a href="#orgb53c30f">8. Tips for Future Mentees</a></li>
+<li><a href="#org8fe0401">9. Closing Thoughts</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga81e9cc" class="outline-3">
+<h3 id="orga81e9cc"><span class="section-number-3">1.</span> Introduction</h3>
+<div class="outline-text-3" id="text-1">
+<p>
+I recently wrapped up my time as a mentee in the Linux Kernel Mentorship Program (LKMP).
+Before this program, I had a solid theoretical understanding of operating systems, had spent years using Linux daily, and had read kernel code on and off — but I had never <b>seriously</b> contributed to the upstream Linux kernel.
+</p>
+
+<p>
+LKMP was the moment where theory met something far less forgiving.
+</p>
+
+<p>
+Instead of toy examples, I was suddenly facing the kernel itself — real syzbot reports, corrupted filesystems, subtle races, and invariants that would punish even small misunderstandings. Progress was slow, mistakes were costly, and every incorrect assumption was exposed immediately.
+</p>
+
+<p>
+It was uncomfortable, frustrating, and easily the most educational experience I’ve had so far.
+</p>
+
+<p>
+Rather than walking through every line of code I changed, this post focuses on the <b>process</b>, <b>tools</b>, and <b>lessons learned</b> — a message left on the ground before the fight, for anyone who decides to step into the kernel next.
+</p>
+
+
+<div id="orgfea20de" class="figure">
+<p><img src="https://i.imgur.com/PmfvIMV.png" alt="Dark Souls message before a boss" style="max-width: 100%; height: auto;" />
+</p>
+<p><span class="figure-number">Figure 1: </span>A message left before facing the kernel.</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4fc8e21" class="outline-3">
+<h3 id="org4fc8e21"><span class="section-number-3">2.</span> About the Program</h3>
+<div class="outline-text-3" id="text-2">
+<ul class="org-ul">
+<li>Program: Linux Kernel Bug Fixing Mentorship Program (Fall 2025)</li>
+<li>Duration: ~3 months</li>
+<li>Focus areas:
+<ul class="org-ul">
+<li>Filesystems: ext4, ocfs2</li>
+<li>Framebuffer subsystem: fbdev</li>
+</ul></li>
+</ul>
+
+<p>
+There is no mandatory attendance and no assigned homework. This is not a class.
+You are expected to find problems, investigate them, and ask for help when stuck.
+</p>
+
+<p>
+That took me some time to fully internalize.
+</p>
+</div>
+</div>
+<div id="outline-container-orgab738f5" class="outline-3">
+<h3 id="orgab738f5"><span class="section-number-3">3.</span> Finding Something to Work On</h3>
+<div class="outline-text-3" id="text-3">
+<p>
+One of the first questions I had was: <b>what am I supposed to work on?</b>
+</p>
+
+<p>
+There are many ways to contribute to the Linux kernel, but these are the ones that worked best for me:
+</p>
+</div>
+<div id="outline-container-orgdaefb56" class="outline-4">
+<h4 id="orgdaefb56"><span class="section-number-4">3.1.</span> Syzbot (my main focus)</h4>
+<div class="outline-text-4" id="text-3-1">
+<p>
+Syzbot reports bugs found via fuzzing. At first, they look terrifying.
+Over time, you learn that they’re just very honest crash reporters.
+</p>
+
+<p>
+This is where most of my LKMP work came from.
+</p>
+</div>
+</div>
+<div id="outline-container-org2116c0b" class="outline-4">
+<h4 id="org2116c0b"><span class="section-number-4">3.2.</span> Local Fuzzing (optional)</h4>
+<div class="outline-text-4" id="text-3-2">
+<p>
+You <b>can</b> run syzkaller locally, but it’s extremely time-consuming and resource-heavy.
+Personally, I found it more effective to focus on existing reports.
+</p>
+</div>
+</div>
+<div id="outline-container-orgea66868" class="outline-4">
+<h4 id="orgea66868"><span class="section-number-4">3.3.</span> Static Analsysi</h4>
+</div>
+</div>
+<div id="outline-container-org7df943f" class="outline-3">
+<h3 id="org7df943f"><span class="section-number-3">4.</span> My Experience</h3>
+<div class="outline-text-3" id="text-4">
+<p>
+I tried to fix as many bugs as I reasonably could, but kernel bug fixing is slow.
+Diagnosing a bug can take days. Writing the patch may take minutes — but getting it <b>right</b> takes longer.
+</p>
+
+<p>
+I fixed multiple bugs across ext4, ocfs2, and fbdev, including issues that were later assigned CVEs. I teamed up with <b>Ahmet Eray Karadag</b> for most of my patches. Here&rsquo;s a link to his <a href="https://medium.com/@eraykrdg1/surviving-the-linux-kernel-mentorship-my-journey-tips-f08a9af844b4">blog</a>.
+</p>
+
+<p>
+Maintainers were strict but fair. Clean logic, clean commits, and clear explanations mattered just as much as the fix itself.
+</p>
+
+<p>
+One thing that surprised me: understanding <b>why your patch is wrong</b> is often more educational than getting one merged.
+</p>
+</div>
+</div>
+<div id="outline-container-orga5ad79f" class="outline-3">
+<h3 id="orga5ad79f"><span class="section-number-3">5.</span> My Workflow</h3>
+<div class="outline-text-3" id="text-5">
+<p>
+When I first applied, I had limited exposure to QEMU and getting started wasnt a big hassle. Heres the <a href="https://github.com/albus-droid/lkmp-qemu-script">script</a> I used for running QEMU
+Once I had a reliable VM setup, kernel development became repeatable and much less stressful.
+</p>
+</div>
+<div id="outline-container-orgc63dbb3" class="outline-4">
+<h4 id="orgc63dbb3"><span class="section-number-4">5.1.</span> Compiling the Kernel</h4>
+<div class="outline-text-4" id="text-5-1">
+<p>
+Kernel builds are slow, especially at first. Even with many cores, full builds take time.
+This is normal — patience is part of the workflow.
+</p>
+</div>
+</div>
+<div id="outline-container-org7c96f61" class="outline-4">
+<h4 id="org7c96f61"><span class="section-number-4">5.2.</span> Reproducing the Bug</h4>
+<div class="outline-text-4" id="text-5-2">
+<p>
+For filesystem bugs, I often:
+</p>
+<ul class="org-ul">
+<li>Generated or mounted disk images</li>
+<li>Built kernels using the config from the syzbot report</li>
+<li>Ran the provided C reproducer until the crash matched</li>
+</ul>
+
+<p>
+Successfully reproducing a bug feels like real progress — because it is.
+</p>
+</div>
+</div>
+<div id="outline-container-org4d04b22" class="outline-4">
+<h4 id="org4d04b22"><span class="section-number-4">5.3.</span> Debugging</h4>
+<div class="outline-text-4" id="text-5-3">
+<p>
+Most of my debugging relied on:
+</p>
+<ul class="org-ul">
+<li>printk</li>
+<li>basic GDB</li>
+<li>careful reasoning about invariants</li>
+</ul>
+
+<p>
+Remote GDB can be helpful, but it also alters timing and behavior.
+Printk is powerful but dangerous if overused.
+</p>
+</div>
+</div>
+<div id="outline-container-org87dcc3a" class="outline-4">
+<h4 id="org87dcc3a"><span class="section-number-4">5.4.</span> Tracing (a regret)</h4>
+<div class="outline-text-4" id="text-5-4">
+<p>
+I didn’t invest enough time into ftrace, perf, and event tracing during the program.
+This is something I plan to focus on next — it would have saved time on several bugs.
+</p>
+
+<p>
+One very helpful session was:
+</p>
+
+<p>
+Mentorship Session: <b>Linux Kernel Debugging – Tricks of the Trade</b>  
+by the Linux Foundation  
+<a href="https://www.youtube.com/watch?v=FdNIiQxwJuk">https://www.youtube.com/watch?v=FdNIiQxwJuk</a>
+</p>
+
+<p>
+This session fundamentally changed how I think about debugging.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgba08050" class="outline-3">
+<h3 id="orgba08050"><span class="section-number-3">6.</span> Submitting Patches</h3>
+<div class="outline-text-3" id="text-6">
+<p>
+Once a fix looked solid:
+</p>
+
+<ol class="org-ol">
+<li><code>git format-patch</code></li>
+<li>Run <code>./scripts/checkpatch.pl</code></li>
+<li>Find maintainers with <code>./scripts/get_maintainer.pl</code></li>
+<li>Send the patch to syzbot for testing</li>
+<li>Only then send it to maintainers</li>
+</ol>
+
+<p>
+This process felt intimidating at first, but it quickly became routine.
+</p>
+</div>
+</div>
+<div id="outline-container-org9802a57" class="outline-3">
+<h3 id="org9802a57"><span class="section-number-3">7.</span> What I Learned</h3>
+<div class="outline-text-3" id="text-7">
+<p>
+LKMP taught me far more than kernel APIs.
+</p>
+
+<p>
+I learned:
+</p>
+<ul class="org-ul">
+<li>How to read syzbot reports without panic</li>
+<li>How to reason backwards from crashes to invariants</li>
+<li>How maintainers evaluate fixes</li>
+<li>How collaboration accelerates learning</li>
+</ul>
+
+<p>
+I also learned my gaps:
+</p>
+<ul class="org-ul">
+<li>I relied too much on printk</li>
+<li>My theoretical filesystem knowledge needs strengthening</li>
+<li>I need deeper fluency with tracing tools</li>
+</ul>
+
+<p>
+But now I know <b>what</b> to improve — and that clarity is valuable.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb53c30f" class="outline-3">
+<h3 id="orgb53c30f"><span class="section-number-3">8.</span> Tips for Future Mentees</h3>
+<div class="outline-text-3" id="text-8">
+<p>
+If you’re considering LKMP:
+</p>
+
+<ul class="org-ul">
+<li>Apply. You will struggle, but you will grow quickly.</li>
+<li>Focus on 1–2 subsystems instead of jumping around.</li>
+<li>Learn the tools early (QEMU, tracing, debugging).</li>
+<li>Ask questions and talk to other mentees.</li>
+<li>Read old mailing list threads — patterns repeat.</li>
+<li>Don’t treat this as a side hustle. It will demand real time and focus.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8fe0401" class="outline-3">
+<h3 id="org8fe0401"><span class="section-number-3">9.</span> Closing Thoughts</h3>
+<div class="outline-text-3" id="text-9">
+<p>
+LKMP changed how I see the Linux kernel.
+It’s no longer a black box — it’s a system built by people carefully reasoning about failure.
+</p>
+
+<p>
+I’m still early in this journey, but now I know how to continue.
+And that, to me, is the real value of this program.
+</p>
+
+<p>
+Thanks for reading.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: December 2025</p>
+<p class="author">Author: Albin Babu Varghese</p>
+<p class="date">Created: 2025-12-31 Wed 17:48</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

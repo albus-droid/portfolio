@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-12-31 Wed 17:48 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My Journey Contributing to the Linux Kernel: LFX Mentorship Fall 2025</title>
+<meta name="author" content="Albin Babu Varghese" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="https://albus-droid.github.io/portfolio/templates/style.css"/>
+<script src="https://albus-droid.github.io/portfolio/templates/typewriter-name.js" defer></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"><script src="https://albus-droid.github.io/portfolio/templates/highlight-code.js" defer></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<h1 id="name-typewriter"></h1>
+<div class="container">
+    <div class="social-links">
+        <a href="https://github.com/albus-droid" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297 24 5.67 18.627.297 12 .297z"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/albin-babu-varghese" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+        </a>
+        <a href="mailto:albinbabuvarghese@gmail.com" aria-label="Email">
+        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Email</title><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.75L12 16.625l-6.545-4.875v9.25H1.636C.732 21 .001 20.269.001 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.908 1.528-1.145C21.69 3.28 24 4.435 24 5.457z"/></svg>
+        </a>
+    </div>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="/" class="nav-link">[HOME]</a>
+        <a href="resume.html" class="nav-link">[RESUME]</a>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+document.querySelectorAll('pre[class*="src-"]').forEach(pre => {
+  const match = pre.className.match(/src-(\w+)/);
+  if (match) {
+    const lang = match[1];
+    let code = pre.querySelector('code');
+    if (!code) {
+      code = document.createElement('code');
+      code.textContent = pre.textContent;
+      pre.textContent = '';
+      pre.appendChild(code);
+    }
+    code.className = `language-${lang}`;
+  }
+});
+hljs.highlightAll();
+</script>
+</div>
+<div id="content" class="content">
+<h1 class="title">My Journey Contributing to the Linux Kernel: LFX Mentorship Fall 2025</h1>
+<div id="outline-container-org0f10e84" class="outline-3">
+<h3 id="org0f10e84"><span class="section-number-3">1.</span> From User to Contributor: My Linux Kernel Journey</h3>
+<div class="outline-text-3" id="text-1">
+<p>
+For seven years, I&rsquo;ve been a Linux user. I&rsquo;ve configured systems, written scripts, debugged applications, and relied on the kernel every single day. But I never truly understood what was happening beneath the surface—until now.
+</p>
+
+<p>
+This fall, I participated in the Linux Foundation&rsquo;s LFX Mentorship Program for kernel bug fixing. What started as an opportunity to learn kernel development turned into a transformative experience that changed how I think about software, debugging, and my own capabilities as a developer.
+</p>
+</div>
+</div>
+<div id="outline-container-org5e204b5" class="outline-3">
+<h3 id="org5e204b5"><span class="section-number-3">2.</span> The Beginning: Staring at Stack Traces</h3>
+<div class="outline-text-3" id="text-2">
+<p>
+My first week in the program was humbling. I opened my first syzbot report—an automated bug report from the kernel&rsquo;s continuous fuzzing system—and stared at a stack trace that might as well have been written in a foreign language. Terms like &ldquo;vmalloc-out-of-bounds,&rdquo; &ldquo;refcount underflow,&rdquo; and &ldquo;inode validation&rdquo; swirled around in my head with no clear connection to actual code.
+</p>
+
+<p>
+I remember thinking: &ldquo;How does anyone debug this?&rdquo;
+</p>
+
+<p>
+The answer, I learned, wasn&rsquo;t some magical insight. It was systematic practice, the right tools, and a willingness to be wrong—a lot.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfe8b94c" class="outline-3">
+<h3 id="orgfe8b94c"><span class="section-number-3">3.</span> My First Patch: The Framebuffer Bug</h3>
+<div class="outline-text-3" id="text-3">
+<p>
+My first accepted patch came from a bug in the framebuffer subsystem. The kernel was writing beyond allocated memory during console operations—a classic bounds checking issue. The crash logs pointed to <code>bit_putcs()</code>, a function that renders characters to the console.
+</p>
+
+<p>
+I spent days setting up QEMU environments, running reproducers, stepping through code with GDB. The breakthrough came when I finally understood the data flow: character position calculations weren&rsquo;t accounting for framebuffer boundaries during VT resize operations.
+</p>
+
+<p>
+The fix itself was simple—add bounds validation before rendering operations. But getting to that point taught me something crucial: kernel debugging isn&rsquo;t about being clever. It&rsquo;s about being methodical.
+</p>
+
+<p>
+When the patch was accepted and merged into mainline, I felt a rush I&rsquo;d never experienced with any of my previous projects. This wasn&rsquo;t code running on my machine—this was code that would run on millions of machines around the world.
+</p>
+
+<p>
+<b>Patch:</b> <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=3637d34b35b287ab830e66048841ace404382b67">fbdev: Add bounds checking in bit_putcs</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org6eeac85" class="outline-3">
+<h3 id="org6eeac85"><span class="section-number-3">4.</span> Learning Through Failure: The ext4 Journey</h3>
+<div class="outline-text-3" id="text-4">
+<p>
+Not every bug I tackled ended in success, and those failures taught me more than my successes.
+</p>
+
+<p>
+I spent weeks on an ext4 inline data bug. My first attempt at a fix addressed what I thought was the problem: incorrect <code>free_blocks</code> counters. I submitted the patch, feeling confident.
+</p>
+
+<p>
+Ted Ts&rsquo;o, the ext4 maintainer, pointed out that I was treating symptoms, not the root cause. The real issue was a race condition with <code>i_inline_size</code> becoming stale between operations. While I was working to understand the deeper architectural issues, another mentee found the correct solution using an established pattern from a previous fix.
+</p>
+
+<p>
+My patch wasn&rsquo;t merged. His was.
+</p>
+
+<p>
+At first, I felt defeated. But then I realized what had actually happened: I&rsquo;d learned how kernel development really works. It&rsquo;s not about individual heroics. It&rsquo;s about collective problem-solving, learning from past solutions, and understanding that sometimes the best contribution is recognizing when someone else has found a better approach.
+</p>
+
+<p>
+The lesson? Read the mailing list archives. Study previous similar fixes. Understand the patterns that maintainers have proven over years of work. Don&rsquo;t reinvent the wheel when someone has already built a perfectly good wheel.
+</p>
+</div>
+</div>
+<div id="outline-container-orgda54678" class="outline-3">
+<h3 id="orgda54678"><span class="section-number-3">5.</span> Finding My Community: Collaboration with Ahmet</h3>
+<div class="outline-text-3" id="text-5">
+<p>
+One of the unexpected highlights of the program was connecting with Ahmet Eray Karadag, another mentee. We ended up collaborating on several filesystem bugs, particularly in OCFS2.
+</p>
+
+<p>
+Working together changed everything. When I got stuck on an OCFS2 validation bug, Ahmet would suggest a different angle of investigation. When he was puzzled by refcount semantics in ext4, I&rsquo;d share what I&rsquo;d learned from my earlier failures. We&rsquo;d compare notes on our QEMU setups, share debugging techniques, and celebrate when either of us made progress.
+</p>
+
+<p>
+Together, we co-developed six patches for OCFS2 and ext4, all of which were accepted. Three are already in mainline, and three more are in Andrew Morton&rsquo;s tree waiting for the next merge window.
+</p>
+
+<p>
+This taught me something fundamental: kernel development isn&rsquo;t a solo sport. The best work happens when people collaborate, share knowledge, and build on each other&rsquo;s insights.
+</p>
+</div>
+</div>
+<div id="outline-container-orgff036ec" class="outline-3">
+<h3 id="orgff036ec"><span class="section-number-3">6.</span> The Tools That Changed Everything</h3>
+<div class="outline-text-3" id="text-6">
+<p>
+Before this program, my debugging toolkit was basic: <code>printf</code> statements and maybe <code>gdb</code> if things got really bad. The mentorship introduced me to a whole new world:
+</p>
+
+<ul class="org-ul">
+<li><b>cscope</b>: Shuah showed us this in an early session, and it transformed how I navigate kernel source. No more grepping through thousands of files—cscope let me jump directly to definitions and find call sites instantly.</li>
+
+<li><b>GDB + QEMU</b>: Learning to debug a live kernel running in QEMU was a game-changer. Being able to set breakpoints in kernel code, step through filesystem operations, and inspect data structures in real-time made complex bugs tractable.</li>
+
+<li><b>syzkaller</b>: Understanding how syzbot generates reproducers helped me create my own test cases and validate fixes comprehensively.</li>
+
+<li><b>xfstests and ocfs2-test</b>: These test suites taught me that a good fix isn&rsquo;t just about making the bug go away—it&rsquo;s about ensuring you haven&rsquo;t broken anything else.</li>
+</ul>
+
+<p>
+But the most important tool wasn&rsquo;t technical. It was learning to read mailing list archives and study how experienced developers approached similar problems in the past.
+</p>
+</div>
+</div>
+<div id="outline-container-org64cb04d" class="outline-3">
+<h3 id="org64cb04d"><span class="section-number-3">7.</span> What I Learned About Myself</h3>
+<div class="outline-text-3" id="text-7">
+<p>
+This program revealed gaps in my knowledge I didn&rsquo;t know existed. Working on filesystem bugs exposed how little I understood about inode lifecycle management, extent trees, and cluster allocation. Attempting to fix race conditions showed me how much I still need to learn about kernel concurrency primitives.
+</p>
+
+<p>
+But here&rsquo;s what&rsquo;s valuable: I now <b>know</b> what I don&rsquo;t know. I have a roadmap. I understand which questions to ask and where to find answers.
+</p>
+
+<p>
+Before this program, I was a Linux user who occasionally read kernel code. Now I&rsquo;m a contributor who understands enough to know how much more there is to learn. That self-awareness is directing me toward the right books, the right subsystems to study, and the right people to learn from.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbae92f5" class="outline-3">
+<h3 id="orgbae92f5"><span class="section-number-3">8.</span> The Patches (So Far)</h3>
+<div class="outline-text-3" id="text-8">
+<p>
+Here&rsquo;s what I contributed during the three-month program:
+</p>
+</div>
+<div id="outline-container-orgab3387e" class="outline-4">
+<h4 id="orgab3387e"><span class="section-number-4">8.1.</span> Merged in Mainline</h4>
+<div class="outline-text-4" id="text-8-1">
+<ol class="org-ol">
+<li>ext4: guard against EA inode refcount underflow (co-developed with Ahmet)</li>
+<li>fbdev: Add bounds checking in bit_putcs (independent)</li>
+<li>ocfs2: mark inode bad upon validation failure (co-developed with Ahmet)</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgb23b284" class="outline-4">
+<h4 id="orgb23b284"><span class="section-number-4">8.2.</span> In Maintainer Tree</h4>
+<div class="outline-text-4" id="text-8-2">
+<ol class="org-ol">
+<li>ocfs2: invalidate inode if i_mode is zero (co-developed with Ahmet)</li>
+<li>ocfs2: add ocfs2_emergency_state helper (co-developed with Ahmet)</li>
+<li>ocfs2: convert to ocfs2_emergency_state (co-developed with Ahmet)</li>
+</ol>
+
+<p>
+Six patches might not sound like much, but each one represents days or weeks of investigation, learning, iteration, and collaboration. Each one made Linux a tiny bit more stable and secure.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1b2ee88" class="outline-3">
+<h3 id="org1b2ee88"><span class="section-number-3">9.</span> What&rsquo;s Next?</h3>
+<div class="outline-text-3" id="text-9">
+<p>
+The formal mentorship has ended, but my kernel journey is just beginning. I&rsquo;m continuing to work on syzbot reports, diving deeper into filesystem internals, and expanding into other subsystems. Ahmet and I are staying in touch to collaborate on future patches.
+</p>
+
+<p>
+More importantly, I&rsquo;m investing in the foundational knowledge I&rsquo;ve been learning &ldquo;on the run.&rdquo; I&rsquo;m studying operating systems design, reading kernel documentation cover to cover, and mastering the advanced debugging tools I only scratched the surface of during the program.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf6be96c" class="outline-3">
+<h3 id="orgf6be96c"><span class="section-number-3">10.</span> Advice for Future Mentees</h3>
+<div class="outline-text-3" id="text-10">
+<p>
+If you&rsquo;re considering the LFX Kernel Bug Fixing program, here&rsquo;s what I wish someone had told me:
+</p>
+
+<ol class="org-ol">
+<li><b>Start with the basics</b>: Make sure you&rsquo;re comfortable with C, understand pointers and memory management, and have basic debugging skills before diving in.</li>
+
+<li><b>Don&rsquo;t skip the setup</b>: Invest time in getting your QEMU environment working properly. You&rsquo;ll use it constantly.</li>
+
+<li><b>Read the archives</b>: Before tackling a bug, search the mailing list for similar issues. Learning from past fixes will save you enormous time.</li>
+
+<li><b>Ask questions, but do your homework first</b>: The mentors and community are incredibly helpful, but show that you&rsquo;ve tried to understand the problem yourself.</li>
+
+<li><b>Embrace failure</b>: Your first patches will probably not be perfect. That&rsquo;s fine. The feedback is how you learn.</li>
+
+<li><b>Find a buddy</b>: Collaborating with another mentee made the experience infinitely better. You&rsquo;ll learn more together.</li>
+
+<li><b>It&rsquo;s a marathon, not a sprint</b>: Kernel development is complex. Be patient with yourself.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org70bfba3" class="outline-3">
+<h3 id="org70bfba3"><span class="section-number-3">11.</span> Closing Thoughts</h3>
+<div class="outline-text-3" id="text-11">
+<p>
+Seven years ago, I installed Linux for the first time. I was just a user, running commands I didn&rsquo;t fully understand, relying on a system I couldn&rsquo;t see into.
+</p>
+
+<p>
+Today, I&rsquo;m a contributor. Not a major one—not yet. But I&rsquo;ve fixed real bugs, submitted patches that maintainers accepted, and helped make the kernel I rely on every day a little bit better.
+</p>
+
+<p>
+More than that, I&rsquo;ve found a community. I&rsquo;ve discovered that the people maintaining this massive, critical piece of software are approachable, helpful, and genuinely invested in bringing new contributors into the fold.
+</p>
+
+<p>
+If you&rsquo;ve ever wondered what it&rsquo;s like &ldquo;inside&rdquo; the kernel development process, I can tell you: it&rsquo;s challenging, sometimes frustrating, but ultimately incredibly rewarding. It&rsquo;s a place where careful thinking, systematic debugging, and collaborative problem-solving come together to build something that powers the world.
+</p>
+
+<p>
+And now I get to be part of that. That&rsquo;s a feeling I&rsquo;ll carry with me for the rest of my career.
+</p>
+</div>
+</div>
+<div id="outline-container-org5f71543" class="outline-3">
+<h3 id="org5f71543"><span class="section-number-3">12.</span> Links and Resources</h3>
+<div class="outline-text-3" id="text-12">
+<ul class="org-ul">
+<li>My LFX Mentorship Report: <a href="https://albinbabuvarghese.com/lfx-report">Full Technical Report</a></li>
+<li>My Patches: <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/log/?qt=author&amp;q=Albin+Babu+Varghese">git.kernel.org</a></li>
+<li>LFX Mentorship Program: <a href="https://mentorship.lfx.linuxfoundation.org/">Apply Here</a></li>
+</ul>
+
+<p>
+&#x2014;
+</p>
+
+<p>
+<b>Have questions about kernel development or the LFX program? Feel free to reach out on <a href="https://github.com/albinbabuvarghese">GitHub</a> or <a href="mailto:albinbabuvarghese20@gmail.com">email</a>.</b>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: December 2025</p>
+<p class="author">Author: Albin Babu Varghese</p>
+<p class="date">Created: 2025-12-31 Wed 17:48</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

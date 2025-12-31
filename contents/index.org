@@ -18,3 +18,4 @@ I'm a developer with a strong interest in Linux, Ubuntu, and open-source communi
   - This is a placeholder for a future blog post. Stay tuned!
 - [[./blog/getting-started-lkmp.org]]
 - [[./blog/a-brief-look-into-ocfs2.org]]
+- [[./blog/my-lkmp-journey.org]]

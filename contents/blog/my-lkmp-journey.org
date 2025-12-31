@@ -1,0 +1,153 @@
+#+TITLE: My LKMP Journey
+#+AUTHOR: Albin Babu Varghese
+#+DATE: December 2025
+#+OPTIONS: toc:t num:t
+#+DESCRIPTION: My experience in the Linux Kernel Mentorship Program (LKMP), what I struggled with, what worked, and how beginners can get started with real kernel debugging.
+#+LANGUAGE: en
+
+* Introduction
+
+I recently wrapped up my time as a mentee in the Linux Kernel Mentorship Program (LKMP).
+Before this program, I had a solid theoretical understanding of operating systems, had spent years using Linux daily, and had read kernel code on and off — but I had never *seriously* contributed to the upstream Linux kernel.
+
+LKMP was the moment where theory met something far less forgiving.
+
+Instead of toy examples, I was suddenly facing the kernel itself — real syzbot reports, corrupted filesystems, subtle races, and invariants that would punish even small misunderstandings. Progress was slow, mistakes were costly, and every incorrect assumption was exposed immediately.
+
+It was uncomfortable, frustrating, and easily the most educational experience I’ve had so far.
+
+Rather than walking through every line of code I changed, this post focuses on the *process*, *tools*, and *lessons learned* — a message left on the ground before the fight, for anyone who decides to step into the kernel next.
+
+#+CAPTION: A message left before facing the kernel.
+#+ATTR_HTML: :alt Dark Souls message before a boss :style max-width: 100%; height: auto;
+[[https://i.imgur.com/PmfvIMV.png]]
+
+* About the Program
+
+- Program: Linux Kernel Bug Fixing Mentorship Program (Fall 2025)
+- Duration: ~3 months
+- Focus areas:
+  - Filesystems: ext4, ocfs2
+  - Framebuffer subsystem: fbdev
+
+There is no mandatory attendance and no assigned homework. This is not a class.
+You are expected to find problems, investigate them, and ask for help when stuck.
+
+That took me some time to fully internalize.
+
+* Finding Something to Work On
+
+One of the first questions I had was: *what am I supposed to work on?*
+
+There are many ways to contribute to the Linux kernel, but these are the ones that worked best for me:
+
+** Syzbot (my main focus)
+Syzbot reports bugs found via fuzzing. At first, they look terrifying.
+Over time, you learn that they’re just very honest crash reporters.
+
+This is where most of my LKMP work came from.
+
+** Local Fuzzing (optional)
+You *can* run syzkaller locally, but it’s extremely time-consuming and resource-heavy.
+Personally, I found it more effective to focus on existing reports.
+
+** Static Analsysi
+
+* My Experience
+
+I tried to fix as many bugs as I reasonably could, but kernel bug fixing is slow.
+Diagnosing a bug can take days. Writing the patch may take minutes — but getting it *right* takes longer.
+
+I fixed multiple bugs across ext4, ocfs2, and fbdev, including issues that were later assigned CVEs. I teamed up with *Ahmet Eray Karadag* for most of my patches. Here's a link to his [[https://medium.com/@eraykrdg1/surviving-the-linux-kernel-mentorship-my-journey-tips-f08a9af844b4][blog]].
+
+Maintainers were strict but fair. Clean logic, clean commits, and clear explanations mattered just as much as the fix itself.
+
+One thing that surprised me: understanding *why your patch is wrong* is often more educational than getting one merged.
+
+* My Workflow
+
+When I first applied, I had limited exposure to QEMU and getting started wasnt a big hassle. Heres the [[https://github.com/albus-droid/lkmp-qemu-script][script]] I used for running QEMU
+Once I had a reliable VM setup, kernel development became repeatable and much less stressful.
+
+** Compiling the Kernel
+Kernel builds are slow, especially at first. Even with many cores, full builds take time.
+This is normal — patience is part of the workflow.
+
+** Reproducing the Bug
+For filesystem bugs, I often:
+- Generated or mounted disk images
+- Built kernels using the config from the syzbot report
+- Ran the provided C reproducer until the crash matched
+
+Successfully reproducing a bug feels like real progress — because it is.
+
+** Debugging
+Most of my debugging relied on:
+- printk
+- basic GDB
+- careful reasoning about invariants
+
+Remote GDB can be helpful, but it also alters timing and behavior.
+Printk is powerful but dangerous if overused.
+
+** Tracing (a regret)
+I didn’t invest enough time into ftrace, perf, and event tracing during the program.
+This is something I plan to focus on next — it would have saved time on several bugs.
+
+One very helpful session was:
+
+Mentorship Session: *Linux Kernel Debugging – Tricks of the Trade*  
+by the Linux Foundation  
+https://www.youtube.com/watch?v=FdNIiQxwJuk
+
+This session fundamentally changed how I think about debugging.
+
+* Submitting Patches
+
+Once a fix looked solid:
+
+1. =git format-patch=
+2. Run =./scripts/checkpatch.pl=
+3. Find maintainers with =./scripts/get_maintainer.pl=
+4. Send the patch to syzbot for testing
+5. Only then send it to maintainers
+
+This process felt intimidating at first, but it quickly became routine.
+
+* What I Learned
+
+LKMP taught me far more than kernel APIs.
+
+I learned:
+- How to read syzbot reports without panic
+- How to reason backwards from crashes to invariants
+- How maintainers evaluate fixes
+- How collaboration accelerates learning
+
+I also learned my gaps:
+- I relied too much on printk
+- My theoretical filesystem knowledge needs strengthening
+- I need deeper fluency with tracing tools
+
+But now I know *what* to improve — and that clarity is valuable.
+
+* Tips for Future Mentees
+
+If you’re considering LKMP:
+
+- Apply. You will struggle, but you will grow quickly.
+- Focus on 1–2 subsystems instead of jumping around.
+- Learn the tools early (QEMU, tracing, debugging).
+- Ask questions and talk to other mentees.
+- Read old mailing list threads — patterns repeat.
+- Don’t treat this as a side hustle. It will demand real time and focus.
+
+* Closing Thoughts
+
+LKMP changed how I see the Linux kernel.
+It’s no longer a black box — it’s a system built by people carefully reasoning about failure.
+
+I’m still early in this journey, but now I know how to continue.
+And that, to me, is the real value of this program.
+
+Thanks for reading.
